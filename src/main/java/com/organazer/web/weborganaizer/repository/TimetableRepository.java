@@ -1,6 +1,7 @@
 package com.organazer.web.weborganaizer.repository;
 
 
+import com.organazer.web.weborganaizer.Const;
 import com.organazer.web.weborganaizer.model.LessonTimetable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,9 +13,9 @@ import java.util.List;
 public interface TimetableRepository extends JpaRepository<LessonTimetable,Long> {
     List<LessonTimetable> findAllByIdUser(Long idUser);
 
-    @Query( value = "SELECT * FROM timetable u WHERE u.id_user = ?1 AND u.number_of_week = ?2 OR u.number_of_week = 2",
+    @Query( value = "SELECT * FROM timetable u WHERE u.id_user = ?1 AND u.number_of_week = ?2 OR u.number_of_week = 'Каждую' " ,
     nativeQuery = true)
-    List<LessonTimetable> findAllByIdUserAndNumberOfWeek(Long id,int week);
+    List<LessonTimetable> findAllByIdUserAndNumberOfWeek(Long id,String week);
 
 
 }

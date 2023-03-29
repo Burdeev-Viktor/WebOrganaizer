@@ -3,111 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <!--<link href="style.css" rel="stylesheet">-->
+    <link rel="icon" href="data:,">
     <link media="all" rel="stylesheet" th:href="@{/css/style1.css}" type="text/css"/>
-    <title>Title</title>
+    <link media="all" rel="stylesheet" th:href="@{/css/main-style.css}" type="text/css"/>
+    <link media="all" rel="stylesheet" th:href="@{/css/timetable.css}" type="text/css"/>
+    <link media="all" rel="stylesheet" th:href="@{/css/right-menu.css}" type="text/css"/>
+    <link media="all" rel="stylesheet" th:href="@{/css/tabs.css}" type="text/css"/>
+    <title>Изменение напоминания</title>
 </head>
 <body>
 <div class="vBox">
     <div class="menu">
-        <div class="title">
-            <p>Студеньческий органайзер</p>
+        <div class="title" >
+            <p >Студеньческий органайзер</p>
         </div>
-        <div class="menu_button">
-            <a><p> Предметы </p></a>
-        </div>
-        <div class="menu_button">
-            <a><p> Расписание </p></a>
+        <div class="menu_buttons">
+            <button  class="button-menu" > Предметы </button>
+            <a href="/timetable">
+                <button  class="button-menu" >  Расписание </button>
+            </a>
+
         </div>
     </div>
     <div class="main_container">
         <div class="timetable">
-            <a href="/-" class="button_back"><img src="/css/img/right.png" alt="Кнопка «button»"></a>
-            <table class="day">
-                <th>Понедельник</th>
-                <tbody>
-                <tr th:each="lesson:${lessons[0]}">
-                    <div th:switch="${lesson.type}">
-                        <td th:case="Лекция" class="lecture_color" th:text="${lesson.name}"></td>
-                        <td th:case="Лабораторная" class="lab_color" th:text="${lesson.name}"></td>
-                        <td th:case="Практика" class="practice_color" th:text="${lesson.name}"></td>
-                        <td th:case="Консультация" class="consultation_color" th:text="${lesson.name}"></td>
-                        <td th:case="*" th:text="'&#160'"></td>
-                    </div>
-                </tr>
-                </tbody>
-            </table>
-            <table class="day">
-                <th>Вторник</th>
-                <tbody>
-                <tr th:each="lesson:${lessons[1]}">
-                    <div th:switch="${lesson.type}">
-                        <td th:case="Лекция" class="lecture_color" th:text="${lesson.name}"></td>
-                        <td th:case="Лабораторная" class="lab_color" th:text="${lesson.name}"></td>
-                        <td th:case="Практика" class="practice_color" th:text="${lesson.name}"></td>
-                        <td th:case="Консультация" class="consultation_color" th:text="${lesson.name}"></td>
-                        <td th:case="*" th:text="'&#160'"></td>
-                    </div>
-                </tr>
-                </tbody>
-            </table>
-            <table class="day">
-                <th>Среда</th>
-                <tbody>
-                <tr th:each="lesson:${lessons[2]}">
-                    <div th:switch="${lesson.type}">
-                        <td th:case="Лекция" class="lecture_color" th:text="${lesson.name}"></td>
-                        <td th:case="Лабораторная" class="lab_color" th:text="${lesson.name}"></td>
-                        <td th:case="Практика" class="practice_color" th:text="${lesson.name}"></td>
-                        <td th:case="Консультация" class="consultation_color" th:text="${lesson.name}"></td>
-                        <td th:case="*" th:text="'&#160'"></td>
-                    </div>
-                </tr>
-                </tbody>
-            </table>
-            <table class="day">
-                <th>Четверг</th>
-                <tbody>
-                <tr th:each="lesson:${lessons[3]}">
-                    <div th:switch="${lesson.type}">
-                        <td th:case="Лекция" class="lecture_color" th:text="${lesson.name}"></td>
-                        <td th:case="Лабораторная" class="lab_color" th:text="${lesson.name}"></td>
-                        <td th:case="Практика" class="practice_color" th:text="${lesson.name}"></td>
-                        <td th:case="Консультация" class="consultation_color" th:text="${lesson.name}"></td>
-                        <td th:case="*" th:text="'&#160'"></td>
-                    </div>
-                </tr>
-                </tbody>
-            </table>
-            <table class="day">
-                <th>Пятница</th>
-                <tbody>
-                <tr th:each="lesson:${lessons[4]}">
-                    <div th:switch="${lesson.type}">
-                        <td th:case="Лекция" class="lecture_color" th:text="${lesson.name}"></td>
-                        <td th:case="Лабораторная" class="lab_color" th:text="${lesson.name}"></td>
-                        <td th:case="Практика" class="practice_color" th:text="${lesson.name}"></td>
-                        <td th:case="Консультация" class="consultation_color" th:text="${lesson.name}"></td>
-                        <td th:case="*" th:text="'&#160'"></td>
-                    </div>
-                </tr>
-                </tbody>
-            </table>
-            <table class="day">
-                <th>Суббота</th>
-                <tbody>
-                <tr th:each="lesson:${lessons[5]}">
-                    <div th:switch="${lesson.type}">
-                        <td th:case="Лекция" class="lecture_color" th:text="${lesson.name}"></td>
-                        <td th:case="Лабораторная" class="lab_color" th:text="${lesson.name}"></td>
-                        <td th:case="Практика" class="practice_color" th:text="${lesson.name}"></td>
-                        <td th:case="Консультация" class="consultation_color" th:text="${lesson.name}"></td>
-                        <td th:case="*" th:text="'&#160'"></td>
-                    </div>
-                </tr>
-                </tbody>
-            </table>
+            <div class="container-timetable">
+                <a href="/-" class="button-week back"  ><img src="/img/right.png" alt="Кнопка «button»"></a>
+                <table class="day">
+                    <th class="th-day">Понедельник</th>
+                    <tbody>
+                    <tr th:each="lesson:${lessons[0]}" >
+                        <div th:switch="${lesson.type}">
+                            <td th:case="Лекция" class="td-lesson lecture" th:text="${lesson.name}"></td>
+                            <td th:case="Лабораторная" class="td-lesson lab" th:text="${lesson.name}"></td>
+                            <td th:case="Практика" class="td-lesson practice" th:text="${lesson.name}"></td>
+                            <td th:case="Консультация" class="td-lesson consultation" th:text="${lesson.name}"></td>
+                            <td th:case="*" th:text="'&#160'"></td>
+                        </div>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="day">
+                    <th class="th-day">Вторник</th>
+                    <tbody>
+                    <tr th:each="lesson:${lessons[1]}" >
+                        <div th:switch="${lesson.type}">
+                            <td th:case="Лекция" class="td-lesson lecture" th:text="${lesson.name}"></td>
+                            <td th:case="Лабораторная" class="td-lesson lab" th:text="${lesson.name}"></td>
+                            <td th:case="Практика" class="td-lesson practice" th:text="${lesson.name}"></td>
+                            <td th:case="Консультация" class="td-lesson consultation" th:text="${lesson.name}"></td>
+                            <td th:case="*" th:text="'&#160'"></td>
+                        </div>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="day">
+                    <th class="th-day">Среда</th>
+                    <tbody>
+                    <tr th:each="lesson:${lessons[2]}" >
+                        <div th:switch="${lesson.type}">
+                            <td th:case="Лекция" class="td-lesson lecture" th:text="${lesson.name}"></td>
+                            <td th:case="Лабораторная" class="td-lesson lab" th:text="${lesson.name}"></td>
+                            <td th:case="Практика" class="td-lesson practice" th:text="${lesson.name}"></td>
+                            <td th:case="Консультация" class="td-lesson consultation" th:text="${lesson.name}"></td>
+                            <td th:case="*" th:text="'&#160'"></td>
+                        </div>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="day">
+                    <th class="th-day">Четверг</th>
+                    <tbody>
+                    <tr th:each="lesson:${lessons[3]}">
+                        <div th:switch="${lesson.type}">
+                            <td th:case="Лекция" class="td-lesson lecture" th:text="${lesson.name}"></td>
+                            <td th:case="Лабораторная" class="td-lesson lab" th:text="${lesson.name}"></td>
+                            <td th:case="Практика" class="td-lesson practice" th:text="${lesson.name}"></td>
+                            <td th:case="Консультация" class="td-lesson consultation" th:text="${lesson.name}"></td>
+                            <td th:case="*" th:text="'&#160'"></td>
+                        </div>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="day">
+                    <th class="th-day">Пятница</th>
+                    <tbody>
+                    <tr th:each="lesson:${lessons[4]}" >
+                        <div th:switch="${lesson.type}">
+                            <td th:case="Лекция" class="td-lesson lecture" th:text="${lesson.name}"></td>
+                            <td th:case="Лабораторная" class="td-lesson lab" th:text="${lesson.name}"></td>
+                            <td th:case="Практика" class="td-lesson practice" th:text="${lesson.name}"></td>
+                            <td th:case="Консультация" class="td-lesson consultation" th:text="${lesson.name}"></td>
+                            <td th:case="*" th:text="'&#160'"></td>
+                        </div>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="day">
+                    <th class="th-day">Суббота</th>
+                    <tbody>
+                    <tr th:each="lesson:${lessons[5]}" >
+                        <div th:switch="${lesson.type}">
+                            <td th:case="Лекция" class="td-lesson lecture" th:text="${lesson.name}"></td>
+                            <td th:case="Лабораторная" class="td-lesson lab" th:text="${lesson.name}"></td>
+                            <td th:case="Практика" class="td-lesson practice" th:text="${lesson.name}"></td>
+                            <td th:case="Консультация" class="td-lesson consultation" th:text="${lesson.name}"></td>
+                            <td th:case="*" th:text="'&#160'"></td>
+                        </div>
+                    </tr>
+                    </tbody>
+                </table>
 
-            <a href="/+" class="button_next"><img src="/css/img/left.png" alt="Кнопка «button»"></a>
+                <a href="/+" class="button-week next"><img src="/img/left.png" alt="Кнопка «button»"></a>
+            </div>
         </div>
         <div class="second_container">
             <div class="reminder_container">
@@ -127,16 +135,15 @@
             <div class="tabs">
                 <div th:switch="${updateReminder.needWork}">
                     <div th:case="0">
-                        <form action="#" th:href="@{/{id}(id=${updateReminder.getId()})}" th:object="${updateReminder}">
+                        <form  th:href="@{/updete-reminde/{id}(id=${updateReminder.getId()})}" th:object="${updateReminder}" method="post">
                             <div style="display: flex">
                                 <label class="label_input" for="lessonName">Предмет: </label>
                                 <div class="input-div">
                                     <select id="lessonName" class="input-data" th:field="*{lessonName}">
-                                        <option value=""></option>
                                         <option th:each="name: ${nameLessons}"
                                                 th:value="${name}"
                                                 th:text="${name}">
-                                            Name Lesson
+                                            Lesson Name no exist
                                         </option>
                                     </select>
                                 </div>
@@ -168,7 +175,7 @@
                                     </select><br/>
                                 </div>
                             </div>
-                            <div id="hide2" class="hidden-div">
+                            <div id="divSelectDay" class="hidden-div">
                                 <label class="label_input" for="day">День: </label>
                                 <div class="input-div">
                                     <select id="day" class="input-data" th:field="*{dayOfWeek}">
@@ -188,7 +195,7 @@
                                 </div>
                             </div>
                           <div style="display: flex">
-                            <button class="button" th:href="@{/delete-reminder/{id}(id=${updateReminder.getId()})}" th:text="Удалить"></button>
+                              <a class="button a-button" th:href="@{/delete-reminder/{id}(id=${updateReminder.getId()})}" th:method="get" th:text="Удалить"></a>
                             <div class="input-div">
                               <input type="submit" class="button"  value="Сохранить">
                             </div>
@@ -225,7 +232,7 @@
                                 </div>
                             </div>
                             <div style="display: flex">
-                              <button class="button" th:href="@{/delete-reminder/{id}(id=${updateReminder.getId()})}" th:text="Удалить"></button>
+                                <a class="button a-button" th:href="@{/delete-reminder/{id}(id=${updateReminder.getId()})}" th:method="get" th:text="Удалить"></a>
                                 <div class="input-div">
                                   <input type="submit" class="button"  value="Сохранить">
                                 </div>
@@ -238,6 +245,7 @@
         </div>
     </div>
 </div>
-<script src="css/js/tabs.js"></script>
+<script src="js/tabs.js"></script>
+<script src="js/update-reminder.js"></script>
 </body>
 </html>

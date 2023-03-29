@@ -4,7 +4,6 @@ import com.organazer.web.weborganaizer.Const;
 import com.organazer.web.weborganaizer.model.LessonTimetable;
 import com.organazer.web.weborganaizer.model.Reminder;
 import com.organazer.web.weborganaizer.model.User;
-import com.organazer.web.weborganaizer.repository.LessonRepository;
 import com.organazer.web.weborganaizer.service.LessonService;
 import com.organazer.web.weborganaizer.service.ReminderService;
 import com.organazer.web.weborganaizer.service.TimetableService;
@@ -21,14 +20,13 @@ import java.util.List;
 
 @Controller
 public class mainController {
-    private LessonService lessonService;
-    private TimetableService timetableService;
-    private UserService userService;
-    private ReminderService reminderService;
+    private final LessonService lessonService;
+    private final TimetableService timetableService;
+    private final UserService userService;
+    private final ReminderService reminderService;
     private int weekCount;
 
-    public mainController(LessonService lessonService, TimetableService timetableService, UserService userService, ReminderService reminderService,
-                          LessonRepository lessonRepository) {
+    public mainController(LessonService lessonService, TimetableService timetableService, UserService userService, ReminderService reminderService) {
         this.lessonService = lessonService;
         this.timetableService = timetableService;
         this.userService = userService;
@@ -60,6 +58,7 @@ public class mainController {
         weekCount--;
         return "redirect:/";
     }
+
     @PostMapping("/create-reminder")
     public String postQuest(@AuthenticationPrincipal UserDetails userDetails,Reminder reminder){
         User user = userService.findUserByLogin(userDetails.getUsername());
@@ -85,9 +84,9 @@ public class mainController {
     }
     @GetMapping ("/delete-reminder/{id}")
     public String removeReminder(@AuthenticationPrincipal UserDetails userDetails,@PathVariable("id") Long id){
-        User user = userService.findUserByLogin(userDetails.getUsername());
-        Reminder reminder = reminderService.findOneByIdAndUserId(user.getId(),id);
-        reminderService.delete(reminder);
+      User user = userService.findUserByLogin(userDetails.getUsername());
+//        Reminder reminder = reminderService.findOneByIdAndUserId(user.getId(),id);
+        reminderService.deleteById(id);
         return "redirect:/";
     }
 }

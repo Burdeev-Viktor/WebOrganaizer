@@ -29,16 +29,16 @@ public class TimetableService {
     public List<LessonTimetable> findAllByIdUser(Long id){
         return timetableRepository.findAllByIdUser(id);
     }
-    public List<LessonTimetable> findAllByIdUserAndNumberOfWeek(Long id, int week){return  timetableRepository.findAllByIdUserAndNumberOfWeek(id,week);}
+    public List<LessonTimetable> findAllByIdUserAndNumberOfWeek(Long id, String week){return  timetableRepository.findAllByIdUserAndNumberOfWeek(id,week);}
     public List<LessonTimetable> getLessonsWeekByNumber(int week ,Long id) {
         LocalDateTime localeDate = LocalDateTime.now();
         localeDate = localeDate.plusWeeks(week);
         LocalDateTime firstSeptember = LocalDateTime.of(LocalDateTime.now().getYear(), 9, 1, 1, 1);
         List<LessonTimetable> lessonsList;
         if (ChronoUnit.WEEKS.between(firstSeptember, localeDate) % 2 == 0) {
-            lessonsList = findAllByIdUserAndNumberOfWeek(id, 0);
+            lessonsList = findAllByIdUserAndNumberOfWeek(id, Const.CHOICE_BOX_NUMBER_OF_WEEK[0]);
         } else {
-            lessonsList = findAllByIdUserAndNumberOfWeek(id, 1);
+            lessonsList = findAllByIdUserAndNumberOfWeek(id, Const.CHOICE_BOX_NUMBER_OF_WEEK[1]);
         }
         System.out.println(ChronoUnit.WEEKS.between(firstSeptember, localeDate));
         return lessonsList;
@@ -60,18 +60,19 @@ public class TimetableService {
     }
 
     public LessonTimetable[][][] getSortLessonsTimetableAll(Long id) {
+        int maxSize = 0;
         TimetableService timetableService = new TimetableService(timetableRepository);
         List<LessonTimetable> lessonTimetableList = timetableService.findAllByIdUser(id);
         LessonTimetable[][][] lessonTimetables = new LessonTimetable[2][6][];
         for (int k = 0; k < 6; k++) {
             for (int j = 0; j < 2; j++) {
                 ArrayList<LessonTimetable> lessonsList = new ArrayList<>();
-//                for (LessonTimetable lessonTimetable : lessonTimetableList) {
-//                    if (lessonTimetable.getDayOfWeek() == k && (lessonTimetable.getNumberOfWeek() == j || lessonTimetable.getNumberOfWeek() == 2)) {
-//                        lessonsList.add(lessonTimetable);
-//                    }
-//                }
-
+                for (LessonTimetable lessonTimetable : lessonTimetableList) {
+                    if (Objects.equals(lessonTimetable.getDayOfWeek(), Const.CHOICE_BOX_SIX_DAYS_OF_WEEK[k]) && (Objects.equals(lessonTimetable.getNumberOfWeek(), Const.CHOICE_BOX_NUMBER_OF_WEEK[j]) || Objects.equals(lessonTimetable.getNumberOfWeek(), Const.CHOICE_BOX_NUMBER_OF_WEEK[2]))) {
+                        lessonsList.add(lessonTimetable);
+                    }
+                }
+                if(lessonsList.size() > maxSize) maxSize = lessonsList.size();
                 if (lessonsList.size() > 1) {
                     sortLessonByTimeInDay(lessonsList);
                     LessonTimetable[] timetables = new LessonTimetable[lessonsList.size()];
@@ -94,7 +95,19 @@ public class TimetableService {
 
             }
         }
-        return lessonTimetables;
+        LessonTimetable[][][] res = new LessonTimetable[2][6][maxSize];
+        for (int week = 0; week < lessonTimetables.length; week++){
+            for (int day = 0; day < lessonTimetables[week].length; day++){
+                for (int lesson = 0;lesson < maxSize ;lesson++){
+                    if(lesson < lessonTimetables[week][day].length){
+                        res[week][day][lesson] = lessonTimetables[week][day][lesson];
+                        continue;
+                    }
+                    res[week][day][lesson] = new LessonTimetable();
+                }
+            }
+        }
+        return res;
     }
     public LessonTimetable[][] getSortLessonsTimetableOneWeek(List<LessonTimetable> lessonTimetableList) {
         int maxSize = 0;
@@ -102,7 +115,7 @@ public class TimetableService {
         for (int d = 0; d < 6; d++) {
             ArrayList<LessonTimetable> lessonsList = new ArrayList<>();
             for (LessonTimetable lessonTimetable : lessonTimetableList) {
-                if (lessonTimetable.getDayOfWeek() == d ) {
+                if (Objects.equals(lessonTimetable.getDayOfWeek(), Const.CHOICE_BOX_SIX_DAYS_OF_WEEK[d]) ) {
                     lessonsList.add(lessonTimetable);
                 }
             }

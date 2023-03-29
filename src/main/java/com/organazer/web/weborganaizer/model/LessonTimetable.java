@@ -27,15 +27,15 @@ public class LessonTimetable {
     @Column(name = "type")
     private String type;
     @Column(name = "day_of_week")
-    private int dayOfWeek;
+    private String dayOfWeek;
     @Column(name = "number_of_week")
-    private int numberOfWeek;
+    private String numberOfWeek;
 
     public LessonTimetable() {
 
     }
 
-    public LessonTimetable(Long id, Long idUser, String name, String teacher, String room, String time, String type, int dayOfWeek, int numberOfWeek) {
+    public LessonTimetable(Long id, Long idUser, String name, String teacher, String room, String time, String type, String dayOfWeek, String numberOfWeek) {
         this.id = id;
         this.idUser = idUser;
         this.name = name;
@@ -47,7 +47,7 @@ public class LessonTimetable {
         this.numberOfWeek = numberOfWeek;
     }
 
-    public LessonTimetable(String name, String teacher, String room, String time, String type, int dayOfWeek, int numberOfWeek) {
+    public LessonTimetable(String name, String teacher, String room, String time, String type, String dayOfWeek, String numberOfWeek) {
         this.name = name;
         this.teacher = teacher;
         this.room = room;
@@ -57,7 +57,7 @@ public class LessonTimetable {
         this.numberOfWeek = numberOfWeek;
     }
 
-    public LessonTimetable(Long id, String name, String teacher, String room, String time, String type, int dayOfWeek, int numberOfWeek) {
+    public LessonTimetable(Long id, String name, String teacher, String room, String time, String type, String dayOfWeek, String numberOfWeek) {
         this.id = id;
         this.name = name;
         this.teacher = teacher;

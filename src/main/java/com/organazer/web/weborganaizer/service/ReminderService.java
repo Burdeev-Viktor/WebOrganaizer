@@ -38,6 +38,9 @@ public class ReminderService {
         }
         return null;
     }
+    public void deleteById(Long id){
+        reminderRepository.deleteById(id);
+    }
     public void delete(Reminder reminder){
         reminderRepository.delete(reminder);
     }
