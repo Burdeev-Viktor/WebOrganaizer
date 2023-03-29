@@ -1,0 +1,127 @@
+.tabs {
+    max-width: 600px;
+    margin: 50px auto;
+}
+.tabs__nav {
+    display: flex;
+}
+.tabs__nav-btn {
+    padding: 15px 30px;
+    font-size: 20px;
+    background-color: #3f4441;
+    border: 0;
+    border-right: 1px solid #ddd;
+    cursor: pointer;
+    color:#ffdecf ;
+    width: 50%;
+    text-align: center;
+}
+
+.tabs__nav-btn:last-child {
+    border-right: none;
+}
+
+.tabs__nav-btn:hover {
+    background-color: #ffdecf;
+    color:#3f4441 ;
+}
+
+.tabs__nav-btn.active {
+    background-color: #ffdecf;
+    border-right-color: #ffdecf;
+    color:#3f4441 ;
+}
+
+.tabs__content {
+    padding: 30px;
+    background-color: #3f4441;
+    border: 1px solid #ffdecf;
+    color: #ffdecf ;
+    width: 410px;
+}
+
+.tabs__item {
+    display: none;
+}
+
+.tabs__item.active {
+    display: block;
+}
+.label_input{
+    padding: 5px;
+    color:#ffdecf ;
+    font-size: 20px;
+    margin: 10px;
+    width: 55%;
+}
+.input-data{
+    height: 25px;
+    width: 190px;
+    margin: 15px auto;
+    background-color: #3f4441;
+    font-size: 18px;
+    color: #ffdecf;
+    border: none;
+    border-bottom: 1px solid #ffdecf;
+}
+.input-data.error{
+    border-bottom: 1px solid red;
+}
+.input-time{
+    height: 25px;
+    width: 90px;
+    margin: 15px -5px;
+    background-color: #3f4441;
+    color: #ffdecf;
+    font-size: 18px;
+    border: none;
+    border-bottom: 1px solid #ffdecf;
+}
+.input-div{
+    width: 45%;
+    height: 30px;
+    display: flex;
+    background-color: transparent;
+}
+.hidden-div{
+    display: flex;
+    padding-bottom: 15px;
+
+}
+.hidden-div.active{
+    display: none;
+}
+.error-label{
+    display: block;
+    color: red;
+    padding-bottom: 10px;
+    font-size: 11px;
+}
+.div-form-item{
+    display: flex;
+    padding-bottom: 15px;
+}
+.button{
+    height: 50px;
+    width: 140px;
+    color: #ffdecf;
+    background-color: #5e6f64;
+    font-size: 20px;
+    transition: 0.5s;
+    border: none;
+    margin: 10px auto;
+}
+.button:hover{
+    height: 51px;
+    width: 151px;
+    color: #5e6f64;
+    background-color: #ffdecf;
+    font-size: 20px;
+    border-radius: 10px;
+    border-color:#5e6f64 ;
+}
+.a-button{
+    line-height: 2.3;
+    display: inline-block;
+    text-align: center;
+}

@@ -1,0 +1,50 @@
+.title{
+    padding: 15px 15px 100px 15px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffdecf;
+}
+.menu{
+    background: #5e6f64;
+    height: 98%;
+    width: 300px;
+    margin: 8px;
+    border-radius: 15px;
+}
+.menu_button{
+    height: 35px;
+    text-align: left;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffdecf;
+    transition: .5s;
+}
+.menu_button:hover{
+    background: #768b7d;
+    font-size: 22px;
+}
+.main_container{
+    background: #3f4441;
+    height: 100%;
+    width: 100%;
+}
+.button-menu{
+    height: 60px;
+    width: 100%;
+    color: #ffdecf;
+    background-color: #5e6f64;
+    font-size: 24px;
+    transition: 0.5s;
+    border: none;
+    text-align: left;
+    padding-left: 45px;
+}
+.button-menu:hover{
+    color: #5e6f64;
+    background-color: #ffdecf;
+    font-size: 20px;
+    border-radius: 10px;
+    border-color:#5e6f64 ;
+}

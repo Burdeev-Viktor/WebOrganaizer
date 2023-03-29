@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="data:,">
+  <!--<link href="style.css" rel="stylesheet">-->
+  <link media="all" rel="stylesheet" th:href="@{/css/style1.css}" type="text/css"/>
+  <link media="all" rel="stylesheet" th:href="@{/css/timetable.css}" type="text/css"/>
+  <link media="all" rel="stylesheet" th:href="@{/css/right-menu.css}" type="text/css"/>
+  <title>Расписание</title>
+</head>
+<body>
+<div class="vBox">
+  <div class="menu">
+    <div class="title" >
+      <p >Студеньческий органайзер</p>
+    </div>
+    <div class="menu_buttons">
+      <button class="button-menu" > Предметы </button>
+      <button class="button-menu" >  Расписание </button>
+    </div>
+  </div>
+  <div class="main_container">
+    <div class="second_container">
+      <div class="vBox">
+        <div class="timetable-two-week-container">
+        <div class="week">
+        <div class="number_week">
+          <span class="span-number-week">I</span>
+        </div>
+        <table class="day">
+          <th>Понедельник</th>
+          <tbody>
+          <tr th:each="lesson:${lessons[0][0]}" >
+            <div th:switch="${lesson.type}">
+              <td th:popup-id="${lesson.id}" th:case="Лекция" class="td-lesson ignore-height lecture open-popup" th:text="${lesson.name}"></td>
+              <td th:popup-id="${lesson.id}" th:case="Лабораторная" class="td-lesson ignore-height lab open-popup" th:text="${lesson.name}"></td>
+              <td th:popup-id="${lesson.id}" th:case="Практика" class="td-lesson ignore-height practice open-popup" th:text="${lesson.name}"></td>
+              <td th:popup-id="${lesson.id}" th:case="Консультация" class="td-lesson ignore-height consultation open-popup" th:text="${lesson.name}"></td>
+              <td th:case="*" th:text="'&#160'"></td>
+            </div>
+          </tr>
+          </tbody>
+        </table>
+        <table class="day">
+          <th>Вторник</th>
+          <tbody>
+          <tr th:each="lesson:${lessons[0][1]}" >
+            <div th:switch="${lesson.type}">
+              <td th:popup-id="${lesson.id}" th:case="Лекция" class="td-lesson ignore-height lecture open-popup" th:text="${lesson.name}"></td>
+              <td th:popup-id="${lesson.id}" th:case="Лабораторная" class="td-lesson ignore-height lab open-popup" th:text="${lesson.name}"></td>
+              <td th:popup-id="${lesson.id}" th:case="Практика" class="td-lesson ignore-height practice open-popup" th:text="${lesson.name}"></td>
+              <td th:popup-id="${lesson.id}" th:case="Консультация" class="td-lesson ignore-height consultation open-popup" th:text="${lesson.name}"></td>
+              <td th:case="*" th:text="'&#160'"></td>
+            </div>
+          </tr>
+          </tbody>
+        </table>
+        <table class="day">
+          <th>Среда</th>
+          <tbody>
+          <tr th:each="lesson:${lessons[0][2]}" >
+            <div th:switch="${lesson.type}">
+              <td th:popup-id="${lesson.id}" th:case="Лекция" class="td-lesson ignore-height lecture open-popup" th:text="${lesson.name}"></td>
+              <td th:popup-id="${lesson.id}" th:case="Лабораторная" class="td-lesson ignore-height lab open-popup" th:text="${lesson.name}"></td>
+              <td th:popup-id="${lesson.id}" th:case="Практика" class="td-lesson ignore-height practice open-popup" th:text="${lesson.name}"></td>
+              <td th:popup-id="${lesson.id}" th:case="Консультация" class="td-lesson ignore-height consultation open-popup" th:text="${lesson.name}"></td>
+              <td th:case="*" th:text="'&#160'"></td>
+            </div>
+          </tr>
+          </tbody>
+        </table>
+        <table class="day">
+          <th>Четверг</th>
+          <tbody>
+          <tr th:each="lesson:${lessons[0][3]}" >
+            <div th:switch="${lesson.type}">
+              <td th:popup-id="${lesson.id}" th:case="Лекция" class="td-lesson ignore-height lecture open-popup" th:text="${lesson.name}"></td>
+              <td th:popup-id="${lesson.id}" th:case="Лабораторная" class="td-lesson ignore-height lab open-popup" th:text="${lesson.name}"></td>
+              <td th:popup-id="${lesson.id}" th:case="Практика" class="td-lesson ignore-height practice open-popup" th:text="${lesson.name}"></td>
+              <td th:popup-id="${lesson.id}" th:case="Консультация" class="td-lesson ignore-height consultation open-popup" th:text="${lesson.name}"></td>
+              <td th:case="*" th:text="'&#160'"></td>
+            </div>
+          </tr>
+          </tbody>
+        </table>
+        <table class="day">
+          <th>Птница</th>
+          <tbody>
+          <tr th:each="lesson:${lessons[0][4]}" >
+            <div th:switch="${lesson.type}">
+              <td th:popup-id="${lesson.id}" th:case="Лекция" class="td-lesson ignore-height lecture open-popup" th:text="${lesson.name}"></td>
+              <td th:popup-id="${lesson.id}" th:case="Лабораторная" class="td-lesson ignore-height lab open-popup" th:text="${lesson.name}"></td>
+              <td th:popup-id="${lesson.id}" th:case="Практика" class="td-lesson ignore-height practice open-popup" th:text="${lesson.name}"></td>
+              <td th:popup-id="${lesson.id}" th:case="Консультация" class="td-lesson ignore-height consultation open-popup" th:text="${lesson.name}"></td>
+              <td th:case="*" th:text="'&#160'"></td>
+            </div>
+          </tr>
+          </tbody>
+        </table>
+        <table class="day">
+          <th>Суббота</th>
+          <tbody>
+          <tr th:each="lesson:${lessons[0][5]}" >
+            <div th:switch="${lesson.type}">
+              <td th:popup-id="${lesson.id}" th:case="Лекция" class="td-lesson ignore-height lecture open-popup" th:text="${lesson.name}"></td>
+              <td th:popup-id="${lesson.id}" th:case="Лабораторная" class="td-lesson ignore-height lab open-popup" th:text="${lesson.name}"></td>
+              <td th:popup-id="${lesson.id}" th:case="Практика" class="td-lesson ignore-height practice open-popup" th:text="${lesson.name}"></td>
+              <td th:popup-id="${lesson.id}" th:case="Консультация" class="td-lesson ignore-height consultation open-popup" th:text="${lesson.name}"></td>
+              <td th:case="*" th:text="'&#160'"></td>
+            </div>
+          </tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="week">
+          <div class="number_week">
+            <span class="span-number-week">II</span>
+          </div>
+          <table class="day">
+            <th>Понедельник</th>
+            <tbody>
+            <tr th:each="lesson:${lessons[1][0]}" >
+              <div th:switch="${lesson.type}">
+                <td th:popup-id="${lesson.id}" th:case="Лекция" class="td-lesson ignore-height lecture open-popup" th:text="${lesson.name}"></td>
+                <td th:popup-id="${lesson.id}" th:case="Лабораторная" class="td-lesson ignore-height lab open-popup" th:text="${lesson.name}"></td>
+                <td th:popup-id="${lesson.id}" th:case="Практика" class="td-lesson ignore-height practice open-popup" th:text="${lesson.name}"></td>
+                <td th:popup-id="${lesson.id}" th:case="Консультация" class="td-lesson ignore-height consultation open-popup" th:text="${lesson.name}"></td>
+                <td th:case="*" th:text="'&#160'"></td>
+              </div>
+            </tr>
+            </tbody>
+          </table>
+          <table class="day">
+            <th>Вторник</th>
+            <tbody>
+            <tr th:each="lesson:${lessons[1][1]}" >
+              <div th:switch="${lesson.type}">
+                <td th:popup-id="${lesson.id}" th:case="Лекция" class="td-lesson ignore-height lecture open-popup" th:text="${lesson.name}"></td>
+                <td th:popup-id="${lesson.id}" th:case="Лабораторная" class="td-lesson ignore-height lab open-popup" th:text="${lesson.name}"></td>
+                <td th:popup-id="${lesson.id}" th:case="Практика" class="td-lesson ignore-height practice open-popup" th:text="${lesson.name}"></td>
+                <td th:popup-id="${lesson.id}" th:case="Консультация" class="td-lesson ignore-height consultation open-popup" th:text="${lesson.name}"></td>
+                <td th:case="*" th:text="'&#160'"></td>
+              </div>
+            </tr>
+            </tbody>
+          </table>
+          <table class="day">
+            <th>Среда</th>
+            <tbody>
+            <tr th:each="lesson:${lessons[1][2]}" >
+              <div th:switch="${lesson.type}">
+                <td th:popup-id="${lesson.id}" th:case="Лекция" class="td-lesson ignore-height lecture open-popup" th:text="${lesson.name}"></td>
+                <td th:popup-id="${lesson.id}" th:case="Лабораторная" class="td-lesson ignore-height lab open-popup" th:text="${lesson.name}"></td>
+                <td th:popup-id="${lesson.id}" th:case="Практика" class="td-lesson ignore-height practice open-popup" th:text="${lesson.name}"></td>
+                <td th:popup-id="${lesson.id}" th:case="Консультация" class="td-lesson ignore-height consultation open-popup" th:text="${lesson.name}"></td>
+                <td th:case="*" th:text="'&#160'"></td>
+              </div>
+          </table>
+          <table class="day">
+            <th>Четверг</th>
+            <tbody>
+            <tr th:each="lesson:${lessons[1][3]}" >
+              <div th:switch="${lesson.type}">
+                <td th:popup-id="${lesson.id}" th:case="Лекция" class="td-lesson ignore-height lecture open-popup" th:text="${lesson.name}"></td>
+                <td th:popup-id="${lesson.id}" th:case="Лабораторная" class="td-lesson ignore-height lab open-popup" th:text="${lesson.name}"></td>
+                <td th:popup-id="${lesson.id}" th:case="Практика" class="td-lesson ignore-height practice open-popup" th:text="${lesson.name}"></td>
+                <td th:popup-id="${lesson.id}" th:case="Консультация" class="td-lesson ignore-height consultation open-popup" th:text="${lesson.name}"></td>
+                <td th:case="*" th:text="'&#160'"></td>
+              </div>
+            </tr>
+            </tbody>
+          </table>
+          <table class="day">
+            <th>Птница</th>
+            <tbody>
+            <tr th:each="lesson:${lessons[1][4]}" >
+              <div th:switch="${lesson.type}">
+                <td th:popup-id="${lesson.id}" th:case="Лекция" class="td-lesson ignore-height lecture open-popup" th:text="${lesson.name}"></td>
+                <td th:popup-id="${lesson.id}" th:case="Лабораторная" class="td-lesson ignore-height lab open-popup" th:text="${lesson.name}"></td>
+                <td th:popup-id="${lesson.id}" th:case="Практика" class="td-lesson ignore-height practice open-popup" th:text="${lesson.name}"></td>
+                <td th:popup-id="${lesson.id}" th:case="Консультация" class="td-lesson ignore-height consultation open-popup" th:text="${lesson.name}"></td>
+                <td th:popup-id="${lesson.id}" th:case="*" th:text="'&#160'"></td>
+              </div>
+            </tr>
+            </tbody>
+          </table>
+          <table class="day">
+            <th>Суббота</th>
+            <tbody>
+            <tr th:each="lesson:${lessons[1][5]}" >
+              <div th:switch="${lesson.type}">
+                <td th:popup-id="${lesson.id}" th:case="Лекция" class="td-lesson ignore-height lecture open-popup" th:text="${lesson.name}"></td>
+                <td th:popup-id="${lesson.id}" th:case="Лабораторная" class="td-lesson ignore-height lab open-popup" th:text="${lesson.name}"></td>
+                <td th:popup-id="${lesson.id}" th:case="Практика" class="td-lesson ignore-height practice open-popup" th:text="${lesson.name}"></td>
+                <td th:popup-id="${lesson.id}" th:case="Консультация" class="td-lesson ignore-height consultation open-popup" th:text="${lesson.name}"></td>
+                <td th:case="*" th:text="'&#160'"></td>
+              </div>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+      </div>
+      <div class="button-add-lesson-timetable-container">
+        <button popup-id="0" class="button-add-lesson-timetable open-popup"> + </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="0" class="popup-bg none">
+  <div class="popup">
+    <img  popup-id="0" class="close-popup" src="img/close-popup.png">
+    <form action="#" onsubmit="return validationTimetable()" th:action="@{/timetable/create-lesson-timetable}" id="formQuest" th:object="${newLessonTimetable}" method="post">
+      <div class="div-form-item">
+        <label class="label_input" for="lessonName">Предмет: </label>
+        <div class="input-div">
+          <select id="lessonName" class="input-data" th:field="*{name}">
+            <option th:each="name: ${nameLessons}"
+                    th:value="${name}"
+                    th:text="${name}">
+              Name Lesson
+            </option>
+          </select>
+        </div><br/>
+      </div>
+      <div class="div-form-item">
+        <label class="label_input" for="teacher">Преподователь: </label>
+        <div class="input-div">
+          <input id="teacher" class="input-data"  type="text" th:field="*{teacher}"><br/>
+        </div>
+      </div>
+      <div class="div-form-item">
+        <label class="label_input" for="room">Аудитория: </label>
+        <div class="input-div">
+          <input id="room" class="input-data" type="text" th:field="*{room}"><br/>
+        </div>
+      </div>
+      <div class="div-form-item">
+      <label class="label_input" for="type">Тип пары: </label>
+      <div class="input-div">
+        <select id="type" class="input-data" th:field="*{type}">
+          <option th:each="type: ${typeLesson}"
+                  th:value="${type}"
+                  th:text="${type}">
+          </option>
+        </select><br/>
+      </div><br/>
+      </div>
+      <div class="div-form-item">
+      <label class="label_input" for="dayOfWeek">День недели: </label>
+      <div class="input-div">
+        <select id="dayOfWeek" class="input-data" th:field="*{dayOfWeek}">
+          <option th:each="day: ${dayOfWeek}"
+                  th:value="${day}"
+                  th:text="${day}">
+          </option>
+        </select><br/>
+      </div><br/>
+      </div>
+      <div class="div-form-item" >
+        <label class="label_input" for="shift">Смена: </label>
+        <div class="input-div">
+          <select id="shift" class="input-data">
+            <option th:each="shift: ${shiftEducation}"
+                    th:value="${shift}"
+                    th:text="${shift}">
+            </option>
+          </select><br/>
+        </div><br/>
+      </div>
+      <div class="div-form-item none" id="secondTime">
+        <label class="label_input" for="time2">Время начала: </label>
+        <div class="input-div">
+          <select id="time2" class="input-data none" th:field="*{time}">
+            <option th:each="time: ${secondTime}"
+                    th:value="${time}"
+                    th:text="${time}">
+            </option>
+          </select>
+          <select id="time1" class="input-data" th:field="*{time}">
+            <option th:each="time: ${firstTime}"
+                    th:value="${time}"
+                    th:text="${time}">
+            </option>
+          </select><br/>
+        </div><br/>
+      </div>
+      <div class="div-form-item">
+      <label class="label_input" for="numberOfWeek">Номер недели: </label>
+      <div class="input-div">
+        <select id="numberOfWeek" class="input-data" th:field="*{numberOfWeek}">
+          <option th:each="number: ${numberOfWeek}"
+                  th:value="${number}"
+                  th:text="${number}">
+          </option>
+        </select><br/>
+      </div><br/>
+          </div>
+      <div class="hidden-div"><input type="submit" class="button" value="Создать"></div>
+    </form>
+  </div>
+</div>
+<div th:each="lesson:${allLessons}">
+  <div th:id="${lesson.id}" class="popup-bg none">
+    <div class="popup">
+      <img  th:popup-id="${lesson.id}" class="close-popup" src="img/close-popup.png">
+      <form action="#" onsubmit="return validationTimetable()" th:action="@{/timetable/update-lesson-timetable/{id}(id=${lesson.getId()})}" th:id="'formQuest' + ${lesson.id}" th:object="${lesson}" method="post">
+        <div class="div-form-item">
+          <label class="label_input" th:for="'lessonName' + ${lesson.id}">Предмет: </label>
+          <div class="input-div">
+            <select th:id="'lessonName' + ${lesson.id}"  class="input-data" th:field="*{name}">
+              <option th:value="${lesson.name}"
+                      th:text="${lesson.name}"></option>
+              <option th:each="name: ${nameLessons}"
+                      th:value="${name}"
+                      th:text="${name}">
+              </option>
+            </select>
+          </div><br/>
+        </div>
+        <div class="div-form-item">
+          <label class="label_input" th:for="teacher+ ${lesson.id}">Преподователь: </label>
+          <div class="input-div">
+            <input th:id="teacher + ${lesson.id}" class="input-data" type="text" th:field="*{teacher}" th:value="${lesson.teacher}"><br/>
+          </div>
+        </div>
+        <div class="div-form-item">
+          <label class="label_input" th:for="room+ ${lesson.id}">Аудитория: </label>
+          <div class="input-div">
+            <input th:id="room+ ${lesson.id}" class="input-data" th:value="${lesson.room}" type="text" th:field="*{room}"><br/>
+          </div>
+        </div>
+        <div class="div-form-item">
+          <label class="label_input" th:for="type+ ${lesson.id}">Тип пары: </label>
+          <div class="input-div">
+            <select th:id="type+ ${lesson.id}" th:value="${lesson.type}" class="input-data" th:field="*{type}">
+              <option th:value="${lesson.type}"
+                      th:text="${lesson.type}"></option>
+              <option th:each="type: ${typeLesson}"
+                      th:value="${type}"
+                      th:text="${type}">
+              </option>
+            </select><br/>
+          </div><br/>
+        </div>
+        <div class="div-form-item">
+          <label class="label_input"  th:for="dayOfWeek+ ${lesson.id}">День недели: </label>
+          <div class="input-div">
+            <select th:id="dayOfWeek+ ${lesson.id}"  class="input-data" th:field="*{dayOfWeek}">
+              <option th:value="${lesson.dayOfWeek}"
+                      th:text="${lesson.dayOfWeek}"></option>
+              <option th:each="day: ${dayOfWeek}"
+                      th:value="${day}"
+                      th:text="${day}">
+              </option>
+            </select><br/>
+          </div><br/>
+        </div>
+        <div class="div-form-item" >
+          <label class="label_input" th:for="shift+ ${lesson.id}">Смена: </label>
+          <div class="input-div">
+            <select th:id="shift+ ${lesson.id}" class="input-data">
+              <option th:each="shift: ${shiftEducation}"
+                      th:value="${shift}"
+                      th:text="${shift}">
+              </option>
+            </select><br/>
+          </div><br/>
+        </div>
+        <div class="div-form-item none" th:id="secondTime+ ${lesson.id}">
+          <label class="label_input"  th:for="time2+ ${lesson.id}">Время начала: </label>
+          <div class="input-div">
+            <select th:id="time2+ ${lesson.id}" class="input-data none" th:field="*{time}">
+              <option th:value="${lesson.time}"
+                      th:text="${lesson.time}"></option>
+              <option th:each="time: ${secondTime}"
+                      th:value="${time}"
+                      th:text="${time}">
+              </option>
+            </select>
+            <select th:id="time1+ ${lesson.id}" th:value="${lesson.time}" class="input-data" th:field="*{time}">
+              <option th:value="${lesson.time}"
+                      th:text="${lesson.time}"></option>
+              <option th:each="time: ${firstTime}"
+                      th:value="${time}"
+                      th:text="${time}">
+              </option>
+            </select><br/>
+          </div><br/>
+        </div>
+        <div class="div-form-item">
+          <label class="label_input" th:for="numberOfWeek+ ${lesson.id}">Номер недели: </label>
+          <div class="input-div">
+            <select th:id="numberOfWeek+ ${lesson.id}"  class="input-data" th:field="*{numberOfWeek}">
+              <option th:value="${lesson.numberOfWeek}"
+                      th:text="${lesson.numberOfWeek}"></option>
+              <option th:each="number: ${numberOfWeek}"
+                      th:value="${number}"
+                      th:text="${number}">
+              </option>
+            </select><br/>
+          </div><br/>
+        </div>
+        <div class="hidden-div"><input type="submit" class="button" value="Сохранить"></div>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="js/popup-timetable.js"></script>
+</body>
+</html>
