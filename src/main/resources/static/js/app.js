@@ -21,6 +21,7 @@ function switchRListener(){
 function settingSwitchListener (){
     let value = settingSwitch.options[settingSwitch.selectedIndex].value;
     let hide2 = document.getElementById("hide2");
+
     if(value !== "Каждый день"){
         hide2.classList.remove('active');
     }else {

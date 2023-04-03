@@ -218,6 +218,7 @@
         <label class="label_input" for="lessonName">Предмет: </label>
         <div class="input-div">
           <select id="lessonName" class="input-data" th:field="*{name}">
+            <option>Выберите предмет</option>
             <option th:each="name: ${nameLessons}"
                     th:value="${name}"
                     th:text="${name}">
@@ -307,7 +308,7 @@
   <div th:id="${lesson.id}" class="popup-bg none">
     <div class="popup">
       <img  th:popup-id="${lesson.id}" class="close-popup" src="img/close-popup.png">
-      <form action="#" onsubmit="return validationTimetable()" th:action="@{/timetable/update-lesson-timetable/{id}(id=${lesson.getId()})}" th:id="'formQuest' + ${lesson.id}" th:object="${lesson}" method="post">
+      <form action="#" onsubmit="return validationTimetable()" th:action="@{/timetable/update-lesson-timetable/{id}(id=${lesson.getId()})}" th:id="'formQuest' + ${lesson.id}" th:object="${updateLessonTimetable}" method="post">
         <div class="div-form-item">
           <label class="label_input" th:for="'lessonName' + ${lesson.id}">Предмет: </label>
           <div class="input-div">

@@ -121,7 +121,7 @@
         <div class="reminder_title">
           <p>Задания</p>
         </div>
-        <a th:each="reminder:${reminders}" th:href="@{/{id}(id=${reminder.getId()})}" class="reminder">
+        <a th:each="reminder:${reminders}" th:href="@{/reminder-update/{id}(id=${reminder.getId()})}" class="reminder">
           <div class="name_container" >
             <p class="name_reminder"  th:text="${reminder.lessonName}">Предмет</p>
             <p class="name_reminder" th:text="${reminder.date}">12-04-2002</p>
@@ -142,60 +142,71 @@
                 <div class="div-form-item">
                   <label class="label_input" for="lessonName">Предмет: </label>
                   <div class="input-div">
-                    <select id="lessonName" class="input-data" th:field="*{lessonName}">
-                      <option value=""></option>
-                      <option th:each="name: ${nameLessons}"
-                              th:value="${name}"
-                              th:text="${name}">
-                        Name Lesson
-                      </option>
-                    </select>
+                    <div>
+                      <select id="lessonName" class="input-data" th:field="*{lessonName}">
+                        <option value=""></option>
+                        <option th:each="name: ${nameLessons}"
+                                th:value="${name}"
+                                th:text="${name}">
+                          Name Lesson
+                        </option>
+                      </select>
+                    </div>
                   </div><br/>
                 </div>
 
                 <div class="div-form-item">
                   <label class="label_input" for="quest">Задание: </label>
                   <div class="input-div">
-                    <input id="quest" class="input-data"  type="text" th:field="*{quest}"><br/>
+                    <div>
+                      <input id="quest" class="input-data"  type="text" th:field="*{quest}">
+                    </div>
                   </div>
                 </div>
                 <div class="div-form-item">
                   <label class="label_input" for="date">Дата сдачи: </label>
                   <div class="input-div">
-                    <input id="date" class="input-data" type="date" th:field="*{date}"><br/>
+                    <div>
+                      <input id="date" class="input-data" type="date" th:field="*{date}">
+                    </div>
                   </div>
                 </div>
-
                 <label class="label_input" for="switchR">Повторять: </label>
                 <input id="switchR" class="checkboxes" type="checkbox" th:field="*{switchR}"><br/>
                 <div id="hide1" class="hidden-div" >
                   <label class="label_input" for="settingSwitch">Как: </label>
                   <div class="input-div">
-                    <select id="settingSwitch" class="input-data" th:field="*{settingSwitch}">
-                      <option th:each="day: ${switch}"
-                              th:value="${day}"
-                              th:text="${day}">day
-                      </option>
-                    </select><br/>
+                    <div>
+                      <select id="settingSwitch" class="input-data" th:field="*{settingSwitch}">
+                        <option th:each="day: ${switch}"
+                                th:value="${day}"
+                                th:text="${day}">day
+                        </option>
+                      </select><br/>
+                    </div>
                   </div>
                 </div>
                 <div id="hide2" class="hidden-div">
                   <label class="label_input"  for="day">День: </label>
                   <div class="input-div">
-                    <select id="day" class="input-data"  th:field="*{dayOfWeek}">
-                      <option value=""></option>
-                      <option th:each="day: ${days}"
-                              th:value="${day}"
-                              th:text="${day}">
-                        day
-                      </option>
-                    </select><br/>
+                    <div>
+                      <select id="day" class="input-data"  th:field="*{dayOfWeek}">
+                        <option th:value="Невыбрано">Невыбрано</option>
+                        <option th:each="day: ${days}"
+                                th:value="${day}"
+                                th:text="${day}">
+                          day
+                        </option>
+                      </select><br/>
+                    </div>
                   </div>
                 </div>
                 <div id="hide3" class="hidden-div" >
                   <label class="label_input" for="time">Когда: </label>
                   <div class="input-div">
-                    <input id="time" class="input-time" type="time" th:field="*{time}"><br/>
+                    <div>
+                      <input id="time" class="input-time" type="time" th:field="*{time}"><br/>
+                    </div>
                   </div>
                 </div>
                 <div class="hidden-div"><input type="submit" class="button" value="Создать"></div>
@@ -206,26 +217,32 @@
                 <div style="display: flex">
                   <label class="label_input" for="lessonNameL">Предмет: </label>
                   <div class="input-div">
-                    <select id="lessonNameL" class="input-data" th:field="*{lessonName}">
-                      <option value=""></option>
-                      <option th:each="name: ${nameLessons}"
-                              th:value="${name}"
-                              th:text="${name}">
-                        Name Lesson
-                      </option>
-                    </select>
+                    <div>
+                      <select id="lessonNameL" class="input-data" th:field="*{lessonName}">
+                        <option value=""></option>
+                        <option th:each="name: ${nameLessons}"
+                                th:value="${name}"
+                                th:text="${name}">
+                          Name Lesson
+                        </option>
+                      </select>
+                    </div>
                   </div>
                 </div>
                     <div style="display: flex">
                       <label class="label_input" for="questL">Задание: </label>
                       <div class="input-div">
-                        <input id="questL" class="input-data"  type="text" th:field="*{quest}"><br/>
+                        <div>
+                          <input id="questL" class="input-data"  type="text" th:field="*{quest}">
+                        </div>
                       </div>
                     </div>
                     <div style="display: flex">
                       <label class="label_input" for="needWork">Кол-во: </label>
                       <div class="input-div">
-                        <input id="needWork" class="input-data" value="Лабораторные работы:" type="number" th:field="*{needWork}"><br/>
+                        <div>
+                          <input id="needWork" class="input-data" value="Лабораторные работы:" type="number" th:field="*{needWork}">
+                        </div>
                       </div>
                     </div>
                     <div class="hidden-div"><input type="submit" class="button" value="Создать"></div>

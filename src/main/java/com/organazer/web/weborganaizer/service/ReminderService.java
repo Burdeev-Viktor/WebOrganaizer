@@ -4,7 +4,10 @@ package com.organazer.web.weborganaizer.service;
 
 import com.organazer.web.weborganaizer.Const;
 import com.organazer.web.weborganaizer.model.Reminder;
+import com.organazer.web.weborganaizer.model.User;
 import com.organazer.web.weborganaizer.repository.ReminderRepository;
+import com.organazer.web.weborganaizer.repository.UserRepository;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -19,10 +22,12 @@ import java.util.Objects;
 @Service
 public class ReminderService {
     private  final ReminderRepository reminderRepository;
+    private  final UserRepository userRepository;
     private final LessonService lessonService;
 
-    public ReminderService(ReminderRepository reminderRepository, LessonService lessonService) {
+    public ReminderService(ReminderRepository reminderRepository, UserRepository userRepository, LessonService lessonService) {
         this.reminderRepository = reminderRepository;
+        this.userRepository = userRepository;
         this.lessonService = lessonService;
     }
 
@@ -38,8 +43,18 @@ public class ReminderService {
         }
         return null;
     }
-    public void deleteById(Long id){
+    private void deleteById(Long id){
         reminderRepository.deleteById(id);
+    }
+    public void deleteByIdForUserDetails(Long id, UserDetails userDetails){
+        User user = userRepository.findUserByLogin(userDetails.getUsername());
+        Reminder reminder = reminderRepository.findReminderById(id);
+        if(Objects.equals(user.getId(), reminder.getIdUser())){
+            reminderRepository.deleteById(id);
+        }else {
+            System.out.println("Попытка удалить не своё напоминание:\n'пользователем: " + user.getLogin() + "\nc id " + user.getId() + "\nнапоминание: " + reminder);
+        }
+
     }
     public void delete(Reminder reminder){
         reminderRepository.delete(reminder);
@@ -92,6 +107,15 @@ public class ReminderService {
         assert d1 != null;
         assert d2 != null;
         return d1.getTime() - d2.getTime();
+    }
+    public void closeOneWork(Long id,UserDetails userDetails){
+        User user = userRepository.findUserByLogin(userDetails.getUsername());
+        Reminder reminder = reminderRepository.findReminderById(id);
+        if(Objects.equals(reminder.getIdUser(), user.getId())){
+            reminder.closeOneWork();
+            reminderRepository.save(reminder);
+        }
+
     }
 
 

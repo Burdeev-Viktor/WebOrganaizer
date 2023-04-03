@@ -50,6 +50,10 @@ public class Reminder {
         this.time = time;
         this.dayOfWeek = datOfWeek;
     }
-
+    public void closeOneWork(){
+        if (closeWork < needWork){
+            closeWork++;
+        }
+    }
 
 }

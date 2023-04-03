@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:ht="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <!--<link href="style.css" rel="stylesheet">-->
@@ -28,7 +28,7 @@
     <div class="main_container">
         <div class="timetable">
             <div class="container-timetable">
-                <a href="/-" class="button-week back"  ><img src="/img/right.png" alt="Кнопка «button»"></a>
+                <a th:href="@{/reminder-update/backW/{id}(id=${updateReminder.getId()})}" class="button-week back"  ><img src="/img/right.png" alt="Кнопка «button»"></a>
                 <table class="day">
                     <th class="th-day">Понедельник</th>
                     <tbody>
@@ -114,7 +114,7 @@
                     </tbody>
                 </table>
 
-                <a href="/+" class="button-week next"><img src="/img/left.png" alt="Кнопка «button»"></a>
+                <a th:href="@{/reminder-update/nextW/{id}(id=${updateReminder.getId()})}" class="button-week next"><img src="/img/left.png" alt="Кнопка «button»"></a>
             </div>
         </div>
         <div class="second_container">
@@ -122,20 +122,21 @@
                 <div class="reminder_title">
                     <p>Задания</p>
                 </div>
-              <a th:each="reminder:${reminders}" th:href="@{/{id}(id=${reminder.getId()})}" class="reminder">
+              <a th:each="reminder:${reminders}" th:href="@{/reminder-update/{id}(id=${reminder.getId()})}" class="reminder">
                 <div class="name_container" >
                   <p class="name_reminder"  th:text="${reminder.lessonName}">Предмет</p>
                   <p class="name_reminder" th:text="${reminder.date}">12-04-2002</p>
                 </div>
                 <div class="quest_container">
-                  <p th:text="${reminder.quest}">Лабораторные работы</p>
+                  <p th:text="${reminder.quest}" class="quest_text">Лабораторные работы</p>
                 </div>
               </a>
             </div>
             <div class="tabs">
                 <div th:switch="${updateReminder.needWork}">
                     <div th:case="0">
-                        <form  th:href="@{/updete-reminde/{id}(id=${updateReminder.getId()})}" th:object="${updateReminder}" method="post">
+                        <form onsubmit="return validationRemUpdate()"  th:href="@{/reminder-update/{id}(id=${updateReminder.getId()})}"
+                              th:object="${updateReminder}" method="post">
                             <div style="display: flex">
                                 <label class="label_input" for="lessonName">Предмет: </label>
                                 <div class="input-div">
@@ -152,50 +153,62 @@
                             <div style="display: flex">
                                 <label class="label_input" for="quest">Задание: </label>
                                 <div class="input-div">
-                                    <input id="quest" class="input-data" type="text" th:field="*{quest}"><br/>
+                                    <div>
+                                        <input id="quest" class="input-data" type="text" th:field="*{quest}"><br/>
+                                    </div>
                                 </div>
                             </div>
                             <div style="display: flex">
                                 <label class="label_input" for="date">Дата сдачи: </label>
                                 <div class="input-div">
-                                    <input id="date" class="input-data" type="date" th:field="*{date}"><br/>
+                                    <div>
+                                        <input id="date" class="input-data" type="date" th:field="*{date}"><br/>
+                                    </div>
                                 </div>
                             </div>
 
-                            <label class="label_input" for="switchR">Повторять: </label>
-                            <input id="switchR" class="checkboxes" type="checkbox" th:field="*{switchR}"><br/>
-                            <div id="hide1" class="hidden-div">
+                            <label class="label_input" for="switchR-update">Повторять: </label>
+                            <input id="switchR-update" class="checkboxes" type="checkbox" th:field="*{switchR}"><br/>
+                            <div id="divSettingSwitch" class="hidden-div">
                                 <label class="label_input" for="settingSwitch">Как: </label>
                                 <div class="input-div">
-                                    <select id="settingSwitch" class="input-data" th:field="*{settingSwitch}">
-                                        <option th:each="day: ${switch}"
-                                                th:value="${day}"
-                                                th:text="${day}">day
-                                        </option>
-                                    </select><br/>
+                                    <div>
+                                        <select id="settingSwitch" class="input-data" th:field="*{settingSwitch}">
+                                            <option th:each="day: ${switch}"
+                                                    th:value="${day}"
+                                                    th:text="${day}">day
+                                            </option>
+                                        </select><br/>
+                                    </div>
                                 </div>
                             </div>
                             <div id="divSelectDay" class="hidden-div">
                                 <label class="label_input" for="day">День: </label>
                                 <div class="input-div">
-                                    <select id="day" class="input-data" th:field="*{dayOfWeek}">
-                                        <option value=""></option>
-                                        <option th:each="day: ${days}"
-                                                th:value="${day}"
-                                                th:text="${day}">
-                                            day
-                                        </option>
-                                    </select><br/>
+                                    <div>
+                                        <select id="day" class="input-data" th:field="*{dayOfWeek}">
+                                            <option th:value="${updateReminder.dayOfWeek}"
+                                                    th:text="${updateReminder.dayOfWeek}"></option>
+                                            <option th:each="day: ${days}"
+                                                    th:value="${day}"
+                                                    th:text="${day}">
+                                                day
+                                            </option>
+                                        </select><br/>
+                                    </div>
+
                                 </div>
                             </div>
-                            <div id="hide3" class="hidden-div">
+                            <div id="divTime" class="hidden-div">
                                 <label class="label_input" for="time">Когда: </label>
                                 <div class="input-div">
-                                    <input id="time" class="input-time" type="time" th:field="*{time}"><br/>
+                                    <div>
+                                        <input id="time" class="input-time" type="time" th:field="*{time}"><br/>
+                                    </div>
                                 </div>
                             </div>
                           <div style="display: flex">
-                              <a class="button a-button" th:href="@{/delete-reminder/{id}(id=${updateReminder.getId()})}" th:method="get" th:text="Удалить"></a>
+                              <a class="button a-button" th:href="@{/reminder-update/delete-reminder/{id}(id=${updateReminder.getId()})}" th:method="get" th:text="Удалить"></a>
                             <div class="input-div">
                               <input type="submit" class="button"  value="Сохранить">
                             </div>
@@ -203,36 +216,53 @@
                         </form>
                     </div>
                     <div th:case="*">
-                        <form action="#" th:action="@{/{id}(id=${updateReminder.getId()})}"
+                        <form onsubmit="return validationRemLabUpdate()" th:action="@{/reminder-update/{id}(id=${updateReminder.getId()})}"
                               th:object="${updateReminder}" method="post">
+                            <input type="hidden" readonly  th:field="*{idUser}" th:value="${updateReminder.idUser}">
                             <div style="display: flex">
                                 <label class="label_input" for="lessonNameL">Предмет: </label>
                                 <div class="input-div">
-                                    <select id="lessonNameL" class="input-data" th:field="*{lessonName}">
-                                        <option value=""></option>
-                                        <option th:each="name: ${nameLessons}"
-                                                th:value="${name}"
-                                                th:text="${name}">
-                                            Name Lesson
-                                        </option>
-                                    </select>
+                                    <div>
+                                        <select id="lessonNameL" class="input-data" th:field="*{lessonName}">
+                                            <option th:each="name: ${nameLessons}"
+                                                    th:value="${name}"
+                                                    th:text="${name}">
+                                                Name Lesson
+                                            </option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div style="display: flex">
+                            <div class="div-form-item">
                                 <label class="label_input" for="questL">Задание: </label>
                                 <div class="input-div">
-                                    <input id="questL" class="input-data" type="text" th:field="*{quest}"><br/>
+                                    <div>
+                                        <input id="questL" class="input-data" type="text" th:field="*{quest}"><br/>
+                                    </div>
                                 </div>
                             </div>
-                            <div style="display: flex">
+                            <div class="div-form-item">
+                                <p class="label_input"  th:text="'Здано: ' + ${updateReminder.closeWork} +' из ' + ${updateReminder.needWork} "></p>
+                                <div>
+                                    <a class="button a-button" th:href="@{/reminder-update/close-work/{id}(id=${updateReminder.getId()})}" method="get" >Сдать</a>
+                                </div>
+                            </div>
+                            <div class="div-form-item">
+                                <a class="a-need-work" id="aNeedWork">изменить кол-во задиний</a>
+                            </div>
+                            <div class="hidden-div active" id="divNeedWork">
                                 <label class="label_input" for="needWork">Кол-во: </label>
                                 <div class="input-div">
-                                    <input id="needWork" class="input-data" value="Лабораторные работы:" type="number"
-                                           th:field="*{needWork}"><br/>
+                                    <div>
+                                        <input id="needWork" class="input-data" value="Лабораторные работы:" type="hidden"
+                                               th:field="*{needWork}">
+                                    </div>
                                 </div>
                             </div>
-                            <div style="display: flex">
-                                <a class="button a-button" th:href="@{/delete-reminder/{id}(id=${updateReminder.getId()})}" th:method="get" th:text="Удалить"></a>
+                            <input  class="input-data" value="Лабораторные работы:" type="hidden"
+                                   th:field="*{closeWork}">
+                            <div class="div-form-item">
+                                <a class="button a-button" th:href="@{/reminder-update/delete-reminder/{id}(id=${updateReminder.getId()})}" th:method="get" th:text="Удалить"></a>
                                 <div class="input-div">
                                   <input type="submit" class="button"  value="Сохранить">
                                 </div>
@@ -245,7 +275,8 @@
         </div>
     </div>
 </div>
-<script src="js/tabs.js"></script>
-<script src="js/update-reminder.js"></script>
+</body>
+<script src="../js/tabs.js"></script>
+<script src="../js/update-reminder.js"></script>
 </body>
 </html>

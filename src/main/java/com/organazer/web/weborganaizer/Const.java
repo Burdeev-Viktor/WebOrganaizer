@@ -18,7 +18,7 @@ public interface Const {
     String[] TIME_OF_START_LESSON_SECOND = {"12:00", "13:55", "15:40","17:45"};
     String DEFAULT_VALUE_CHOICE_BOX = "Выбрать";
     String[] CHOICE_BOX_SIX_DAYS_OF_WEEK = {"Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"};
-    String[] CHOICE_BOX_SEVEN_DAYS_OF_WEEK = {"Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"};
+    String[] CHOICE_BOX_SEVEN_DAYS_OF_WEEK = {"Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота","Воскресенье"};
     String[] TYPE_OF_LESSON = {"Лекция", "Лабораторная", "Практика", "Консультация"};
     String CHOICE_BOX_NO = "НЕТ";
     String CHOICE_BOX_YES = "ДА";

@@ -15,58 +15,65 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
-public class mainController {
+@RequestMapping("/reminder-update")
+public class updateReminderController {
     private final LessonService lessonService;
     private final TimetableService timetableService;
     private final UserService userService;
     private final ReminderService reminderService;
     private int weekCount;
 
-    public mainController(LessonService lessonService, TimetableService timetableService, UserService userService, ReminderService reminderService) {
+    public updateReminderController(LessonService lessonService, TimetableService timetableService, UserService userService, ReminderService reminderService) {
         this.lessonService = lessonService;
         this.timetableService = timetableService;
         this.userService = userService;
         this.reminderService = reminderService;
         weekCount = 0;
     }
-
-    @GetMapping("/")
-    public String main(@AuthenticationPrincipal UserDetails userDetails, Model model){
+    @GetMapping("/nextW/{id}")
+    public String nextWeek(@PathVariable("id") Long id){
+        weekCount++;
+        return "redirect:/reminder-update/" + id;
+    }
+    @GetMapping("/backW/{id}")
+    public String backWeek(@PathVariable("id") Long id){
+        weekCount--;
+        return "redirect:/reminder-update/" + id;
+    }
+    @GetMapping("/{id}")
+    public String reminderUpdateForm(@AuthenticationPrincipal UserDetails userDetails, @PathVariable("id") Long id, Model model) {
         User user = userService.findUserByLogin(userDetails.getUsername());
+        Reminder reminder = reminderService.findOneByIdAndUserId(user.getId(),id);
         LessonTimetable[][] timetables = timetableService.getSortLessonsTimetableOneWeek(timetableService.getLessonsWeekByNumber(weekCount, user.getId()));
         List<Reminder> reminderList = reminderService.findAllByIdUser(user.getId());
         String[] nameLessons = lessonService.getAllLessonsNameByIdUser(user.getId());
+        model.addAttribute("updateReminder",reminder);
         model.addAttribute("lessons",timetables);
         model.addAttribute("reminders",reminderList);
-        model.addAttribute("reminder",new Reminder());
         model.addAttribute("nameLessons",nameLessons);
         model.addAttribute("days", Const.CHOICE_BOX_SEVEN_DAYS_OF_WEEK);
         model.addAttribute("switch",Const.CHOICE_BOX_SETTING_SWITCH);
-        return "main";
+        return "reminder-update";
     }
-    @GetMapping("/+")
-    public String nextWeek(){
-        weekCount++;
-        return "redirect:/";
-    }
-    @GetMapping("/-")
-    public String backWeek(){
-        weekCount--;
-        return "redirect:/";
-    }
-
-    @PostMapping("/create-reminder")
-    public String postQuest(@AuthenticationPrincipal UserDetails userDetails,Reminder reminder){
-        User user = userService.findUserByLogin(userDetails.getUsername());
-        reminder.setIdUser(user.getId());
+    @PostMapping("/{id}")
+    public String updateReminder(@PathVariable String id,Reminder reminder){
         reminderService.save(reminder);
-        System.out.println("Создание напоминания");
         return "redirect:/";
     }
-
+    @GetMapping ("/delete-reminder/{id}")
+    public String removeReminder(@AuthenticationPrincipal UserDetails userDetails,@PathVariable("id") Long id){
+        reminderService.deleteByIdForUserDetails(id,userDetails);
+        return "redirect:/";
+    }
+    @GetMapping("/close-work/{id}")
+    public String closeOneWork(@AuthenticationPrincipal UserDetails userDetails,@PathVariable Long id){
+        reminderService.closeOneWork(id,userDetails);
+        return "redirect:/reminder-update/" + id;
+    }
 
 }
