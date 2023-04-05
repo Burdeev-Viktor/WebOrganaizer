@@ -218,7 +218,7 @@
         <label class="label_input" for="lessonName">Предмет: </label>
         <div class="input-div">
           <select id="lessonName" class="input-data" th:field="*{name}">
-            <option>Выберите предмет</option>
+            <option value="Выберите предмет">Выберите предмет</option>
             <option th:each="name: ${nameLessons}"
                     th:value="${name}"
                     th:text="${name}">
@@ -304,42 +304,44 @@
     </form>
   </div>
 </div>
-<div th:each="lesson:${allLessons}">
-  <div th:id="${lesson.id}" class="popup-bg none">
+<div th:each="oneLesson:${allLessons}">
+  <div th:id="${oneLesson.id}" class="popup-bg none">
     <div class="popup">
-      <img  th:popup-id="${lesson.id}" class="close-popup" src="img/close-popup.png">
-      <form action="#" onsubmit="return validationTimetable()" th:action="@{/timetable/update-lesson-timetable/{id}(id=${lesson.getId()})}" th:id="'formQuest' + ${lesson.id}" th:object="${updateLessonTimetable}" method="post">
+      <img th:popup-id="${oneLesson.id}" class="close-popup" src="img/close-popup.png">
+      <form th:onsubmit="'return validationTimetable(' + ${oneLesson.id} + ')'" th:action="@{/timetable/update-lesson-timetable/{id}(id=${oneLesson.getId()})}"
+            th:id="'formQuest' + ${oneLesson.id}" th:object="${updateLesson}" method="post">
+        <input type="hidden" th:field="*{idUser}" th:value="${oneLesson.idUser}">
         <div class="div-form-item">
-          <label class="label_input" th:for="'lessonName' + ${lesson.id}">Предмет: </label>
+          <label class="label_input" th:for="'lessonName' + ${oneLesson.id}">Предмет: </label>
           <div class="input-div">
-            <select th:id="'lessonName' + ${lesson.id}"  class="input-data" th:field="*{name}">
-              <option th:value="${lesson.name}"
-                      th:text="${lesson.name}"></option>
+            <select th:field="*{name}" th:id="'lessonName' + ${oneLesson.id}" class="input-data" >
+              <option th:value="${oneLesson.name}"
+                      th:text="${oneLesson.name}"></option>
               <option th:each="name: ${nameLessons}"
                       th:value="${name}"
                       th:text="${name}">
               </option>
             </select>
-          </div><br/>
-        </div>
-        <div class="div-form-item">
-          <label class="label_input" th:for="teacher+ ${lesson.id}">Преподователь: </label>
-          <div class="input-div">
-            <input th:id="teacher + ${lesson.id}" class="input-data" type="text" th:field="*{teacher}" th:value="${lesson.teacher}"><br/>
           </div>
         </div>
         <div class="div-form-item">
-          <label class="label_input" th:for="room+ ${lesson.id}">Аудитория: </label>
+          <label class="label_input" th:for="teacher+ ${oneLesson.id}">Преподователь: </label>
           <div class="input-div">
-            <input th:id="room+ ${lesson.id}" class="input-data" th:value="${lesson.room}" type="text" th:field="*{room}"><br/>
+            <input th:id="teacher + ${oneLesson.id}" class="input-data" type="text" th:placeholder="${oneLesson.teacher}" th:field="*{teacher}">
           </div>
         </div>
         <div class="div-form-item">
-          <label class="label_input" th:for="type+ ${lesson.id}">Тип пары: </label>
+          <label class="label_input" th:for="room+ ${oneLesson.id}">Аудитория: </label>
           <div class="input-div">
-            <select th:id="type+ ${lesson.id}" th:value="${lesson.type}" class="input-data" th:field="*{type}">
-              <option th:value="${lesson.type}"
-                      th:text="${lesson.type}"></option>
+            <input th:id="room+ ${oneLesson.id}" class="input-data" type="text" th:placeholder="${oneLesson.room}" th:field="*{room}"><br/>
+          </div>
+        </div>
+        <div class="div-form-item">
+          <label class="label_input" th:for="type+ ${oneLesson.id}">Тип пары: </label>
+          <div class="input-div">
+            <select th:id="type+ ${oneLesson.id}" th:value="${oneLesson.type}" class="input-data" th:field="*{type}">
+              <option th:value="${oneLesson.type}"
+                      th:text="${oneLesson.type}"></option>
               <option th:each="type: ${typeLesson}"
                       th:value="${type}"
                       th:text="${type}">
@@ -348,11 +350,11 @@
           </div><br/>
         </div>
         <div class="div-form-item">
-          <label class="label_input"  th:for="dayOfWeek+ ${lesson.id}">День недели: </label>
+          <label class="label_input"  th:for="dayOfWeek+ ${oneLesson.id}">День недели: </label>
           <div class="input-div">
-            <select th:id="dayOfWeek+ ${lesson.id}"  class="input-data" th:field="*{dayOfWeek}">
-              <option th:value="${lesson.dayOfWeek}"
-                      th:text="${lesson.dayOfWeek}"></option>
+            <select th:id="dayOfWeek+ ${oneLesson.id}" class="input-data" th:field="*{dayOfWeek}">
+              <option th:value="${oneLesson.dayOfWeek}"
+                      th:text="${oneLesson.dayOfWeek}"></option>
               <option th:each="day: ${dayOfWeek}"
                       th:value="${day}"
                       th:text="${day}">
@@ -361,9 +363,9 @@
           </div><br/>
         </div>
         <div class="div-form-item" >
-          <label class="label_input" th:for="shift+ ${lesson.id}">Смена: </label>
+          <label class="label_input" th:for="shift+ ${oneLesson.id}">Смена: </label>
           <div class="input-div">
-            <select th:id="shift+ ${lesson.id}" class="input-data">
+            <select th:id="shift+ ${oneLesson.id}" class="input-data">
               <option th:each="shift: ${shiftEducation}"
                       th:value="${shift}"
                       th:text="${shift}">
@@ -371,20 +373,20 @@
             </select><br/>
           </div><br/>
         </div>
-        <div class="div-form-item none" th:id="secondTime+ ${lesson.id}">
-          <label class="label_input"  th:for="time2+ ${lesson.id}">Время начала: </label>
+        <div class="div-form-item none" th:id="secondTime+ ${oneLesson.id}">
+          <label class="label_input"  th:for="time2+ ${oneLesson.id}">Время начала: </label>
           <div class="input-div">
-            <select th:id="time2+ ${lesson.id}" class="input-data none" th:field="*{time}">
-              <option th:value="${lesson.time}"
-                      th:text="${lesson.time}"></option>
+            <select th:id="time2+ ${oneLesson.id}" class="input-data none" th:field="*{time}">
+              <option th:value="${oneLesson.time}"
+                      th:text="${oneLesson.time}"></option>
               <option th:each="time: ${secondTime}"
                       th:value="${time}"
                       th:text="${time}">
               </option>
             </select>
-            <select th:id="time1+ ${lesson.id}" th:value="${lesson.time}" class="input-data" th:field="*{time}">
-              <option th:value="${lesson.time}"
-                      th:text="${lesson.time}"></option>
+            <select th:id="time1+ ${oneLesson.id}"  class="input-data" th:field="*{time}">
+              <option th:value="${oneLesson.time}"
+                      th:text="${oneLesson.time}"></option>
               <option th:each="time: ${firstTime}"
                       th:value="${time}"
                       th:text="${time}">
@@ -393,11 +395,11 @@
           </div><br/>
         </div>
         <div class="div-form-item">
-          <label class="label_input" th:for="numberOfWeek+ ${lesson.id}">Номер недели: </label>
+          <label class="label_input" th:for="numberOfWeek+ ${oneLesson.id}">Номер недели: </label>
           <div class="input-div">
-            <select th:id="numberOfWeek+ ${lesson.id}"  class="input-data" th:field="*{numberOfWeek}">
-              <option th:value="${lesson.numberOfWeek}"
-                      th:text="${lesson.numberOfWeek}"></option>
+            <select th:id="numberOfWeek+ ${oneLesson.id}" class="input-data" th:field="*{numberOfWeek}">
+              <option th:value="${oneLesson.numberOfWeek}"
+                      th:text="${oneLesson.numberOfWeek}"></option>
               <option th:each="number: ${numberOfWeek}"
                       th:value="${number}"
                       th:text="${number}">
@@ -405,7 +407,12 @@
             </select><br/>
           </div><br/>
         </div>
-        <div class="hidden-div"><input type="submit" class="button" value="Сохранить"></div>
+        <div class="div-form-item">
+          <a class="button a-button" th:href="@{/timetable/delete-lesson/{id}(id=${oneLesson.getId()})}" th:method="get" th:text="Удалить"></a>
+          <div class="hidden-div">
+            <input type="submit" class="button" value="Сохранить">
+          </div>
+        </div>
       </form>
     </div>
   </div>

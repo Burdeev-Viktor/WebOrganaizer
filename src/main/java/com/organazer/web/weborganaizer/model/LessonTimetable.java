@@ -3,6 +3,7 @@ package com.organazer.web.weborganaizer.model;
 import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 
 @Entity

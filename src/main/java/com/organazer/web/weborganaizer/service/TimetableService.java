@@ -3,7 +3,10 @@ package com.organazer.web.weborganaizer.service;
 
 import com.organazer.web.weborganaizer.Const;
 import com.organazer.web.weborganaizer.model.LessonTimetable;
+import com.organazer.web.weborganaizer.model.User;
 import com.organazer.web.weborganaizer.repository.TimetableRepository;
+import com.organazer.web.weborganaizer.repository.UserRepository;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -14,16 +17,18 @@ import static com.organazer.web.weborganaizer.service.ReminderService.time;
 
 @Service
 public class TimetableService {
+    private static UserRepository userRepository = null;
     private static TimetableRepository timetableRepository = null;
 
-    public TimetableService(TimetableRepository timetableRepository) {
-        this.timetableRepository = timetableRepository;
+    public TimetableService(TimetableRepository timetableRepository,UserRepository userRepository) {
+        TimetableService.timetableRepository = timetableRepository;
+        TimetableService.userRepository = userRepository;
     }
 
     public void delete(LessonTimetable lessonTimetable){
         timetableRepository.delete(lessonTimetable);
     }
-    public void save(LessonTimetable lessonTimetable){
+    private static void save(LessonTimetable lessonTimetable){
         timetableRepository.save(lessonTimetable);
     }
     public List<LessonTimetable> findAllByIdUser(Long id){
@@ -61,7 +66,7 @@ public class TimetableService {
 
     public LessonTimetable[][][] getSortLessonsTimetableAll(Long id) {
         int maxSize = 0;
-        TimetableService timetableService = new TimetableService(timetableRepository);
+        TimetableService timetableService = new TimetableService(timetableRepository,userRepository);
         List<LessonTimetable> lessonTimetableList = timetableService.findAllByIdUser(id);
         LessonTimetable[][][] lessonTimetables = new LessonTimetable[2][6][];
         for (int k = 0; k < 6; k++) {
@@ -164,6 +169,25 @@ public class TimetableService {
             }
         }
     }
+    public void saveByUserDetails(LessonTimetable lessonTimetable, UserDetails userDetails){
+        User user = userRepository.findUserByLogin(userDetails.getUsername());
+        lessonTimetable.setIdUser(user.getId());
+        if(lessonTimetable.getTime().length() > 5 ){
+            splitTime(lessonTimetable);
+        }
+        save(lessonTimetable);
+    }
+    private static LessonTimetable splitTime(LessonTimetable lessonTimetable){
+        String[] times = lessonTimetable.getTime().split(",");
+        lessonTimetable.setTime(times[1]);
+        return lessonTimetable;
+    }
 
-
+    public void deleteByIdAndUserDetails(Long id, UserDetails userDetails) {
+        User user = userRepository.findUserByLogin(userDetails.getUsername());
+        LessonTimetable lessonTimetable = timetableRepository.getById(id);
+        if(Objects.equals(user.getId(), lessonTimetable.getIdUser())){
+            timetableRepository.delete(lessonTimetable);
+        }
+    }
 }

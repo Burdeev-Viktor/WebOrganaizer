@@ -79,6 +79,9 @@ a{
     border: none;
     border-bottom: 1px solid #ffdecf;
 }
+.input-data::placeholder{
+    color: #ffdecf;
+}
 .input-data.error{
     border-bottom: 1px solid red;
 }

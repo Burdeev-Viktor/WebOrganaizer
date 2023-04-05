@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -47,19 +48,26 @@ public class timetableController {
         model.addAttribute("secondTime",Const.TIME_OF_START_LESSON_SECOND);
         model.addAttribute("shiftEducation",Const.CHOICE_BOX_SHIFT_EDUCATION);
         model.addAttribute("newLessonTimetable",new LessonTimetable());
-        model.addAttribute("updateLessonTimetable",new LessonTimetable());
+        model.addAttribute("updateLesson",new LessonTimetable());
         model.addAttribute("nameLessons",nameLessons);
         model.addAttribute("reminder",new Reminder());
         return "timetable";
     }
     @PostMapping("/create-lesson-timetable")
-    public static String createLessonTimetable(){
+    public  String createLessonTimetable(LessonTimetable lessonTimetable,@AuthenticationPrincipal UserDetails userDetails){
+        timetableService.saveByUserDetails(lessonTimetable,userDetails);
         System.out.println("пара создана");
         return "redirect:/timetable";
     }
     @PostMapping("/update-lesson-timetable/{id}")
-    public static String updateLessonTimetable(LessonTimetable lessonTimetable){
+    public String updateLessonTimetable(@PathVariable Long id, LessonTimetable lessonTimetable,@AuthenticationPrincipal UserDetails userDetails){
+        timetableService.saveByUserDetails(lessonTimetable,userDetails);
         System.out.println("пара обновлена");
+        return "redirect:/timetable";
+    }
+    @GetMapping("/delete-lesson/{id}")
+    public String deleteLesson(@PathVariable Long id,@AuthenticationPrincipal UserDetails userDetails){
+        timetableService.deleteByIdAndUserDetails(id,userDetails);
         return "redirect:/timetable";
     }
 }
