@@ -1,0 +1,175 @@
+/*
+    Стили для полного расписания
+ */
+.container-timetable{
+    display: flex;
+    margin: auto;
+    height: 160px;
+}
+.number_week{
+    display: flex;
+    width: 9%;
+    height: 400px;
+}
+.span-number-week{
+    font-size: 80px;
+    margin: auto;
+    color: #ffdecf;
+}
+.week{
+    display: flex;
+    margin: 30px 30px 0 0;
+}
+.one-day{
+    width: 15%;
+}
+.day-name-div{
+    background: #ffdecf;
+    margin: 0 14px;
+    border-radius: 20px;
+    height: 40px;
+    display: flex;
+    color: #3f4441;
+}
+.day-name{
+    color: #3f4441;
+    margin: auto;
+    cursor: context-menu;
+}
+.not_border{
+    border-bottom: none;
+}
+.button-week{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 0;
+    height: 100%;
+    width: 64px;
+    align-content: center;
+}
+.lesson-div{
+    color: #ffdecf;
+    margin: 10px;
+    border-radius: 6px;
+    display: flex;
+    padding-left: 3px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.lesson-div.lab{
+    background:#c9ac4cff ;
+}
+.lesson-div.lab:hover{
+    background: #917d36;
+}
+.lesson-div.practice{
+    background: #674cc9;
+}
+.lesson-div.practice:hover{
+    background: #412f88;
+}
+.lesson-div.lecture{
+    background: #87b93c;
+}
+.lesson-div.lecture:hover{
+    background: #5d7e2a;
+}
+.lesson-div.consultation{
+    background: #4cc5c9ff;
+}
+.lesson-div.consultation:hover{
+    background: #359296;
+}
+.lesson-name-p{
+    padding: 3px;
+    margin: 0;
+    width: 100%;
+}
+.lesson-room-p{
+    margin: 0;
+    padding: 3px;
+    position: absolute;
+    bottom: 0;
+}
+.lesson-time-p{
+    font-size: 21px;
+    margin: auto;
+    padding: 20px 0;
+}
+.div-nameAndRoom{
+    position: relative;
+    width: 60%;
+    height: 67px;
+}
+.timetable-two-week-container{
+    width: 100%;
+}
+.button-add-lesson-timetable-container{
+    display: flex;
+    width: 100%;
+    height: 95px;
+}
+.button-add-lesson-timetable{
+    height: 35px;
+    width: 35px;
+    right: 0;
+    position: fixed;
+    margin: 30px;
+    font-size: 18px;
+    color: #ffdecf;
+    transition: 0.5s;
+    border: solid 1px #ffdecf;
+    background-color: #3f4441;
+}
+.button-add-lesson-timetable:hover{
+    height: 45px;
+    width: 45px;
+    margin: 25px;
+    font-size: 22px;
+    border: #3f4441;
+    color: #3f4441;
+    background-color: #ffdecf;
+}
+.popup-bg{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    background-color: rgba(0,0,0,0.8);
+}
+.popup-bg.none{
+    display: none;
+}
+.popup{
+    border-radius: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 470px;
+    background: #3f4441;
+    transform: translate(-50%,-50%);
+    padding: 60px 20px 20px;
+}
+.close-popup{
+    scale: 0.8;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    transition: 0.5s;
+}
+.close-popup:hover{
+    rotate: 180deg;
+    scale: 1.1;
+}
+.a-delete-timetable{
+    height: auto;
+    margin: 30px auto auto;
+}
+.img-delete-lesson{
+    transition: 0.25s;
+}
+.img-delete-lesson:hover{
+   transform: scale(1.2);
+}

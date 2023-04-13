@@ -64,20 +64,7 @@ function validationRemUpdate(){
     clearError(date);
     clearError(quest);
     let res = true;
-    if(quest.value === ""){
-        console.warn("Введите задание");
-        createError(quest,"Введите задание");
-        res = false;
-    }else if(quest.value.length <= 4){
-        console.warn("Не меннее 4 символов");
-        createError(quest,"Не меннее 4 символов");
-        res = false;
-    }
-    if(date.value ===""){
-        console.warn("Введите дату здачи")
-        createError(date,"Введите дату здачи")
-        res = false
-    }
+    validateQuestDate(quest,date,res);
     return res;
 }
 function hideSelectorDay() {
@@ -86,26 +73,6 @@ function hideSelectorDay() {
         divSelectDay.classList.remove('active');
     }else {
         divSelectDay.classList.add('active');
-    }
-}
-function createError (node,text){
-
-    if(!node.classList.contains('error')) {
-        let parent = node.parentNode;
-        let errorLabel = document.createElement("label");
-        errorLabel.classList.add("error-label");
-        errorLabel.textContent = text;
-        node.classList.add("error");
-        parent.append(errorLabel);
-    } else {
-        console.log('contains')
-    }
-
-}
-function clearError(node){
-    if(node.classList.contains('error')){
-        node.classList.remove("error");
-        node.parentNode.querySelector(".error-label").remove();
     }
 }
 

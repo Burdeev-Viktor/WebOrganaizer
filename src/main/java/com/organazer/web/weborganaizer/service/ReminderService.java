@@ -3,6 +3,7 @@ package com.organazer.web.weborganaizer.service;
 
 
 import com.organazer.web.weborganaizer.Const;
+import com.organazer.web.weborganaizer.model.LessonTimetable;
 import com.organazer.web.weborganaizer.model.Reminder;
 import com.organazer.web.weborganaizer.model.User;
 import com.organazer.web.weborganaizer.repository.ReminderRepository;
@@ -36,12 +37,10 @@ public class ReminderService {
     }
     public Reminder findOneByIdAndUserId(Long userId,Long id){
         List<Reminder> reminderList = reminderRepository.findAllByIdUser(userId);
-        for (Reminder value : reminderList) {
-            if (Objects.equals(value.getId(), id)) {
-                return value;
-            }
-        }
-        return null;
+         return reminderList.stream()
+                 .filter(element->Objects.equals(element.getId(),id))
+                 .findFirst()
+                 .orElse(null);
     }
     private void deleteById(Long id){
         reminderRepository.deleteById(id);
@@ -65,9 +64,9 @@ public class ReminderService {
     public List<Reminder> findAllByIdUser(Long id){
         return reminderRepository.findAllByIdUser(id);
     }
-    public static boolean time(String time1,String time2){
-        String[] time1array = time1.split(Const.COLON);
-        String[] time2array = time2.split(Const.COLON);
+    public static boolean time(LessonTimetable time1, LessonTimetable time2){
+        String[] time1array = time1.getTime().split(Const.COLON);
+        String[] time2array = time2.getTime().split(Const.COLON);
         return ((Integer.parseInt(time1array[0])) >= (Integer.parseInt(time2array[0])));
     }
     public static LocalDate getLocalDateByString(String date) {

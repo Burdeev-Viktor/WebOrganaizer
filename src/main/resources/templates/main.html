@@ -3,122 +3,178 @@
 <head>
   <meta charset="UTF-8">
   <link rel="icon" href="data:,">
-  <!--<link href="style.css" rel="stylesheet">-->
-  <link media="all" rel="stylesheet" th:href="@{/css/main-style.css}" type="text/css"/>
+  <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
+  <link media="all" rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
   <link media="all" rel="stylesheet" th:href="@{/css/timetable.css}" type="text/css"/>
-  <link media="all" rel="stylesheet" th:href="@{/css/right-menu.css}" type="text/css"/>
+  <link media="all" rel="stylesheet" th:href="@{/css/reminders.css}" type="text/css"/>
   <link media="all" rel="stylesheet" th:href="@{/css/tabs.css}" type="text/css"/>
+  <link media="all" rel="stylesheet" th:href="@{/css/form.css}" type="text/css"/>
   <title>Главная</title>
 </head>
 <body>
 <div class="vBox">
   <div class="menu">
-    <div class="title" >
-      <p >Студеньческий органайзер</p>
+    <div class="title">
+      <a href="/" class="title-a" method="get" >Студеньческий органайзер</a>
     </div>
     <div class="menu_buttons">
-      <button  class="button-menu" > Предметы </button>
+      <a href="/lessons">
+        <button  class="button-menu" > Предметы </button>
+      </a>
       <a href="/timetable">
-        <button  class="button-menu" >  Расписание </button>
+        <button class="button-menu" >  Расписание </button>
       </a>
 
+    </div>
+    <div class="div-logout">
+      <form th:action="@{/logout}" method="post">
+        <input class="button-menu" icon="/img/logout.png" type="submit" value="Выйти"/>
+      </form>
     </div>
   </div>
   <div class="main_container">
     <div class="timetable">
       <div class="container-timetable">
       <a href="/-" class="button-week back"  ><img src="/img/right.png" alt="Кнопка «button»"></a>
-      <table class="day">
-          <th class="th-day">Понедельник</th>
-        <tbody>
-          <tr th:each="lesson:${lessons[0]}" >
+        <div class="one-day">
+          <div class="day-name-div" >
+            <p class="day-name">Понедельник</p>
+          </div>
+          <div th:each="lesson:${lessons[0]}" >
             <div th:switch="${lesson.type}">
-              <td th:case="Лекция" class="td-lesson lecture" th:text="${lesson.name}"></td>
-              <td th:case="Лабораторная" class="td-lesson lab" th:text="${lesson.name}"></td>
-              <td th:case="Практика" class="td-lesson practice" th:text="${lesson.name}"></td>
-              <td th:case="Консультация" class="td-lesson consultation" th:text="${lesson.name}"></td>
-              <td th:case="*" th:text="'&#160'"></td>
+              <div th:case="Лекция" class="lesson-div lecture ">
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="Лабораторная" class="lesson-div lab ">
+                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="Практика" class="lesson-div practice ">
+                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="Консультация" class="lesson-div consultation ">
+                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="*" th:text="'&#160'"></div>
             </div>
-          </tr>
-        </tbody>
-      </table>
-      <table class="day">
-        <th class="th-day">Вторник</th>
-        <tbody>
-        <tr th:each="lesson:${lessons[1]}" >
-          <div th:switch="${lesson.type}">
-            <td th:case="Лекция" class="td-lesson lecture" th:text="${lesson.name}"></td>
-            <td th:case="Лабораторная" class="td-lesson lab" th:text="${lesson.name}"></td>
-            <td th:case="Практика" class="td-lesson practice" th:text="${lesson.name}"></td>
-            <td th:case="Консультация" class="td-lesson consultation" th:text="${lesson.name}"></td>
-            <td th:case="*" th:text="'&#160'"></td>
           </div>
-        </tr>
-        </tbody>
-      </table>
-      <table class="day">
-        <th class="th-day">Среда</th>
-        <tbody>
-        <tr th:each="lesson:${lessons[2]}" >
-          <div th:switch="${lesson.type}">
-            <td th:case="Лекция" class="td-lesson lecture" th:text="${lesson.name}"></td>
-            <td th:case="Лабораторная" class="td-lesson lab" th:text="${lesson.name}"></td>
-            <td th:case="Практика" class="td-lesson practice" th:text="${lesson.name}"></td>
-            <td th:case="Консультация" class="td-lesson consultation" th:text="${lesson.name}"></td>
-            <td th:case="*" th:text="'&#160'"></td>
+        </div>
+        <div class="one-day">
+          <div class="day-name-div" >
+            <p class="day-name">Вторник</p>
           </div>
-        </tr>
-        </tbody>
-      </table>
-      <table class="day">
-        <th class="th-day">Четверг</th>
-        <tbody>
-        <tr th:each="lesson:${lessons[3]}">
-          <div th:switch="${lesson.type}">
-            <td th:case="Лекция" class="td-lesson lecture" th:text="${lesson.name}"></td>
-            <td th:case="Лабораторная" class="td-lesson lab" th:text="${lesson.name}"></td>
-            <td th:case="Практика" class="td-lesson practice" th:text="${lesson.name}"></td>
-            <td th:case="Консультация" class="td-lesson consultation" th:text="${lesson.name}"></td>
-            <td th:case="*" th:text="'&#160'"></td>
+          <div th:each="lesson:${lessons[1]}" >
+            <div th:switch="${lesson.type}">
+              <div th:case="Лекция" class="lesson-div lecture ">
+                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="Лабораторная" class="lesson-div lab ">
+                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="Практика" class="lesson-div practice ">
+                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="Консультация" class="lesson-div consultation ">
+                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="*" th:text="'&#160'"></div>
+            </div>
           </div>
-        </tr>
-        </tbody>
-      </table>
-      <table class="day">
-        <th class="th-day">Пятница</th>
-        <tbody>
-        <tr th:each="lesson:${lessons[4]}" >
-          <div th:switch="${lesson.type}">
-            <td th:case="Лекция" class="td-lesson lecture" th:text="${lesson.name}"></td>
-            <td th:case="Лабораторная" class="td-lesson lab" th:text="${lesson.name}"></td>
-            <td th:case="Практика" class="td-lesson practice" th:text="${lesson.name}"></td>
-            <td th:case="Консультация" class="td-lesson consultation" th:text="${lesson.name}"></td>
-            <td th:case="*" th:text="'&#160'"></td>
+        </div>
+        <div class="one-day">
+          <div class="day-name-div" >
+            <p class="day-name">Среда</p>
           </div>
-        </tr>
-        </tbody>
-      </table>
-      <table class="day">
-        <th class="th-day">Суббота</th>
-        <tbody>
-        <tr th:each="lesson:${lessons[5]}" >
-          <div th:switch="${lesson.type}">
-            <td th:case="Лекция" class="td-lesson lecture" th:text="${lesson.name}"></td>
-            <td th:case="Лабораторная" class="td-lesson lab" th:text="${lesson.name}"></td>
-            <td th:case="Практика" class="td-lesson practice" th:text="${lesson.name}"></td>
-            <td th:case="Консультация" class="td-lesson consultation" th:text="${lesson.name}"></td>
-            <td th:case="*" th:text="'&#160'"></td>
+          <div th:each="lesson:${lessons[2]}" >
+            <div th:switch="${lesson.type}">
+              <div th:case="Лекция" class="lesson-div lecture ">
+                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="Лабораторная" class="lesson-div lab ">
+                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="Практика" class="lesson-div practice ">
+                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="Консультация" class="lesson-div consultation ">
+                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="*" th:text="'&#160'"></div>
+            </div>
           </div>
-        </tr>
-        </tbody>
-      </table>
+        </div>
+        <div class="one-day">
+          <div class="day-name-div" >
+            <p class="day-name">Четверг</p>
+          </div>
+          <div th:each="lesson:${lessons[3]}" >
+            <div th:switch="${lesson.type}">
+              <div th:case="Лекция" class="lesson-div lecture ">
+                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="Лабораторная" class="lesson-div lab ">
+                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="Практика" class="lesson-div practice ">
+                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="Консультация" class="lesson-div consultation ">
+                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="*" th:text="'&#160'"></div>
+            </div>
+          </div>
+        </div>
+        <div class="one-day">
+          <div class="day-name-div" >
+            <p class="day-name">Пятница</p>
+          </div>
+          <div th:each="lesson:${lessons[4]}" >
+            <div th:switch="${lesson.type}">
+              <div th:case="Лекция" class="lesson-div lecture ">
+                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="Лабораторная" class="lesson-div lab ">
+                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="Практика" class="lesson-div practice ">
+                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="Консультация" class="lesson-div consultation ">
+                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="*" th:text="'&#160'"></div>
+            </div>
+          </div>
+        </div>
+        <div class="one-day">
+          <div class="day-name-div" >
+            <p class="day-name">Суббата</p>
+          </div>
+          <div th:each="lesson:${lessons[5]}" >
+            <div th:switch="${lesson.type}">
+              <div th:case="Лекция" class="lesson-div lecture ">
+                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="Лабораторная" class="lesson-div lab ">
+                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="Практика" class="lesson-div practice ">
+                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="Консультация" class="lesson-div consultation ">
+                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+              </div>
+              <div th:case="*" th:text="'&#160'"></div>
+            </div>
+          </div>
+        </div>
 
       <a href="/+" class="button-week next"><img src="/img/left.png" alt="Кнопка «button»"></a>
     </div>
     </div>
     <div class="second_container">
       <div class="reminder_container">
-        <div class="reminder_title">
+        <div class="reminder-title">
           <p>Задания</p>
         </div>
         <a th:each="reminder:${reminders}" th:href="@{/reminder-update/{id}(id=${reminder.getId()})}" class="reminder">
@@ -132,15 +188,15 @@
         </a>
       </div>
         <div class="tabs">
-          <nav class="tabs__nav">
-            <a class="tabs__nav-btn active" data-tab="#task"> Напоминание</a>
-            <a class="tabs__nav-btn" data-tab="#lab"> Лабороторные</a>
+          <nav class="tabs-nav">
+            <a class="tabs-nav-btn task active" data-tab="#task"> Напоминание</a>
+            <a class="tabs-nav-btn lab" data-tab="#lab"> Лабороторные</a>
           </nav>
-          <div class="tabs__content">
-            <div id="task" class="tabs__item active">
-              <form action="#" onsubmit="return validationQuest()" th:action="@{/create-reminder}" id="formQuest" th:object="${reminder}" method="post">
+          <div class="tabs-content task" id="tabs-content">
+            <div id="task" class="tabs-item active">
+              <form onsubmit="return validationQuest()" th:action="@{/create-reminder}" id="formQuest" th:object="${reminder}" method="post">
                 <div class="div-form-item">
-                  <label class="label_input" for="lessonName">Предмет: </label>
+                  <label class="label-input" for="lessonName">Предмет: </label>
                   <div class="input-div">
                     <div>
                       <select id="lessonName" class="input-data" th:field="*{lessonName}">
@@ -152,11 +208,10 @@
                         </option>
                       </select>
                     </div>
-                  </div><br/>
+                  </div>
                 </div>
-
                 <div class="div-form-item">
-                  <label class="label_input" for="quest">Задание: </label>
+                  <label class="label-input" for="quest">Задание: </label>
                   <div class="input-div">
                     <div>
                       <input id="quest" class="input-data"  type="text" th:field="*{quest}">
@@ -164,17 +219,17 @@
                   </div>
                 </div>
                 <div class="div-form-item">
-                  <label class="label_input" for="date">Дата сдачи: </label>
+                  <label class="label-input" for="date">Дата сдачи: </label>
                   <div class="input-div">
                     <div>
                       <input id="date" class="input-data" type="date" th:field="*{date}">
                     </div>
                   </div>
                 </div>
-                <label class="label_input" for="switchR">Повторять: </label>
+                <label class="label-input" for="switchR">Повторять: </label>
                 <input id="switchR" class="checkboxes" type="checkbox" th:field="*{switchR}"><br/>
                 <div id="hide1" class="hidden-div" >
-                  <label class="label_input" for="settingSwitch">Как: </label>
+                  <label class="label-input" for="settingSwitch">Как: </label>
                   <div class="input-div">
                     <div>
                       <select id="settingSwitch" class="input-data" th:field="*{settingSwitch}">
@@ -182,12 +237,12 @@
                                 th:value="${day}"
                                 th:text="${day}">day
                         </option>
-                      </select><br/>
+                      </select>
                     </div>
                   </div>
                 </div>
                 <div id="hide2" class="hidden-div">
-                  <label class="label_input"  for="day">День: </label>
+                  <label class="label-input" for="day">День: </label>
                   <div class="input-div">
                     <div>
                       <select id="day" class="input-data"  th:field="*{dayOfWeek}">
@@ -197,25 +252,27 @@
                                 th:text="${day}">
                           day
                         </option>
-                      </select><br/>
+                      </select>
                     </div>
                   </div>
                 </div>
                 <div id="hide3" class="hidden-div" >
-                  <label class="label_input" for="time">Когда: </label>
+                  <label class="label-input" for="time">Когда: </label>
                   <div class="input-div">
                     <div>
                       <input id="time" class="input-time" type="time" th:field="*{time}"><br/>
                     </div>
                   </div>
                 </div>
-                <div class="hidden-div"><input type="submit" class="button" value="Создать"></div>
+                <div class="div-flex">
+                  <input type="submit" class="button" value="Создать">
+                </div>
               </form>
             </div>
-            <div id="lab" class="tabs__item">
+            <div id="lab" class="tabs-item">
               <form action="#" onsubmit="return validationLab()" th:action="@{/create-reminder}" th:object="${reminder}" method="post">
-                <div style="display: flex">
-                  <label class="label_input" for="lessonNameL">Предмет: </label>
+                <div class="div-flex">
+                  <label class="label-input" for="lessonNameL">Предмет: </label>
                   <div class="input-div">
                     <div>
                       <select id="lessonNameL" class="input-data" th:field="*{lessonName}">
@@ -229,24 +286,25 @@
                     </div>
                   </div>
                 </div>
-                    <div style="display: flex">
-                      <label class="label_input" for="questL">Задание: </label>
+                <div class="div-flex">
+                      <label class="label-input" for="questL">Задание: </label>
                       <div class="input-div">
                         <div>
                           <input id="questL" class="input-data"  type="text" th:field="*{quest}">
                         </div>
                       </div>
                     </div>
-                    <div style="display: flex">
-                      <label class="label_input" for="needWork">Кол-во: </label>
+                <div class="div-flex">
+                      <label class="label-input" for="needWork">Кол-во: </label>
                       <div class="input-div">
                         <div>
                           <input id="needWork" class="input-data" value="Лабораторные работы:" type="number" th:field="*{needWork}">
                         </div>
                       </div>
                     </div>
-                    <div class="hidden-div"><input type="submit" class="button" value="Создать"></div>
-                  <br/>
+                <div class="div-flex">
+                  <input type="submit" class="button" value="Создать">
+                </div>
               </form>
             </div>
           </div>
@@ -254,7 +312,7 @@
     </div>
   </div>
 </div>
-<script src="js/app.js"></script>
+<script src="js/script.js"></script>
 <script src="js/tabs.js"></script>
 </body>
 </html>

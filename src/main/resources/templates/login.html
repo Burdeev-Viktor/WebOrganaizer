@@ -2,15 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       lang="ru">
 <head>
-    <meta charset="UTF-8"><!--th:href="@{/css/style.css}"-->
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
+    <link media="all" rel="stylesheet" th:href="@{/css/logRegist.css}" type="text/css"/>
     <link media="all" rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
-
     <title>Вход в аккаунт</title>
-
 </head>
 <body>
     <div class="container_center">
-
         <form class="container_center" th:action="@{/login}" method="post">
             <div class="massage_fail" th:if="${param.error}">
                 Неверное имя пользователя и пароль.
@@ -18,22 +17,15 @@
                 <label class="label_input_big"> Логин : </label>
                 <br>
                 <input class="input_big" type="text" name="username"/>
-
-
                 <label class="label_input_big"> Пароль:  </label>
                 <br>
                 <input class="input_big"  type="password" name="password"/>
-
                 <div class="div_button_center">
                     <input class="button_login_big" type="submit" value="войти"/>
                     <br>
                     <a class="link_hidden" href="/registration">Зарегистрироваться</a>
-                    <br>
-                    <a class="link_hidden" href="/">Продолжить без входа</a>
                 </div>
-
         </form>
-
     </div>
 </body>
 </html>

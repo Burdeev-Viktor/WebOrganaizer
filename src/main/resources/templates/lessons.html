@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:,">
+    <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
+    <link media="all" rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
+    <link media="all" rel="stylesheet" th:href="@{/css/lessons.css}" type="text/css"/>
+    <link media="all" rel="stylesheet" th:href="@{/css/form.css}" type="text/css"/>
+    <link media="all" rel="stylesheet" th:href="@{/css/popup.css}" type="text/css"/>
+    <link media="all" rel="stylesheet" th:href="@{/css/timetable.css}" type="text/css"/>
+    <title>Предметы</title>
+</head>
+<body>
+<div class="vBox">
+    <div class="menu">
+        <div class="title">
+            <a href="/" class="title-a" method="get" >Студеньческий органайзер</a>
+        </div>
+        <div class="menu_buttons">
+            <a href="/lessons">
+                <button  class="button-menu" > Предметы </button>
+            </a>
+            <a href="/timetable">
+                <button class="button-menu" >  Расписание </button>
+            </a>
+
+        </div>
+        <div class="div-logout">
+            <form th:action="@{/logout}" method="post">
+                <input class="button-menu" icon="/img/logout.png" type="submit" value="Выйти"/>
+            </form>
+        </div>
+    </div>
+    <div class="main_container">
+        <div class="timetable">
+            <div class="container-timetable">
+                <a href="lessons/-" class="button-week back"  ><img src="/img/right.png" alt="Кнопка «button»"></a>
+                <div class="one-day">
+                    <div class="day-name-div" >
+                        <p class="day-name">Понедельник</p>
+                    </div>
+                    <div th:each="lesson:${timetables[0]}" >
+                        <div th:switch="${lesson.type}">
+                            <div th:case="Лекция" class="lesson-div ignore-height lecture ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="Лабораторная" class="lesson-div ignore-height lab ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="Практика" class="lesson-div ignore-height practice ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="Консультация" class="lesson-div ignore-height consultation ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="*" th:text="'&#160'"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="one-day">
+                    <div class="day-name-div" >
+                        <p class="day-name">Вторник</p>
+                    </div>
+                    <div th:each="lesson:${timetables[1]}" >
+                        <div th:switch="${lesson.type}">
+                            <div th:case="Лекция" class="lesson-div ignore-height lecture ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="Лабораторная" class="lesson-div ignore-height lab ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="Практика" class="lesson-div ignore-height practice ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="Консультация" class="lesson-div ignore-height consultation ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="*" th:text="'&#160'"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="one-day">
+                    <div class="day-name-div" >
+                        <p class="day-name">Среда</p>
+                    </div>
+                    <div th:each="lesson:${timetables[2]}" >
+                        <div th:switch="${lesson.type}">
+                            <div th:case="Лекция" class="lesson-div ignore-height lecture ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="Лабораторная" class="lesson-div ignore-height lab ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="Практика" class="lesson-div ignore-height practice ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="Консультация" class="lesson-div ignore-height consultation ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="*" th:text="'&#160'"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="one-day">
+                    <div class="day-name-div" >
+                        <p class="day-name">Четверг</p>
+                    </div>
+                    <div th:each="lesson:${timetables[3]}" >
+                        <div th:switch="${lesson.type}">
+                            <div th:case="Лекция" class="lesson-div ignore-height lecture ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="Лабораторная" class="lesson-div ignore-height lab ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="Практика" class="lesson-div ignore-height practice ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="Консультация" class="lesson-div ignore-height consultation ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="*" th:text="'&#160'"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="one-day">
+                    <div class="day-name-div" >
+                        <p class="day-name">Пятница</p>
+                    </div>
+                    <div th:each="lesson:${timetables[4]}" >
+                        <div th:switch="${lesson.type}">
+                            <div th:case="Лекция" class="lesson-div ignore-height lecture ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="Лабораторная" class="lesson-div ignore-height lab ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="Практика" class="lesson-div ignore-height practice ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="Консультация" class="lesson-div ignore-height consultation ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="*" th:text="'&#160'"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="one-day">
+                    <div class="day-name-div" >
+                        <p class="day-name">Суббата</p>
+                    </div>
+                    <div th:each="lesson:${timetables[5]}" >
+                        <div th:switch="${lesson.type}">
+                            <div th:case="Лекция" class="lesson-div ignore-height lecture ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="Лабораторная" class="lesson-div ignore-height lab ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="Практика" class="lesson-div ignore-height practice ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="Консультация" class="lesson-div ignore-height consultation ">
+                                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                            </div>
+                            <div th:case="*" th:text="'&#160'"></div>
+                        </div>
+                    </div>
+                </div>
+                <a href="lessons/+" class="button-week next"><img src="/img/left.png" alt="Кнопка «button»"></a>
+            </div>
+        </div>
+        <div class="second_container">
+            <div class="div-lessons">
+                <div class="div-lessons-tittle">
+                    <p class="lessons-tittle">Предметы</p>
+                </div>
+                <div class="lessons-container">
+                    <div th:each="lesson:${lessons}" >
+                        <div th:switch="${lesson.getTypeOfTest()}">
+                            <div th:case="Экзамен"  class="lesson exam">
+                                <div th:popup-id="${lesson.id}" class="lesson-name-container open-popup">
+                                    <p class="p-lesson-name" th:text="${lesson.name}"></p>
+                                </div>
+                                <form th:action="@{/lessons/delete-lesson/{id}(id=${lesson.getId()})}" method="get">
+                                    <img class="img-delete-lesson" onclick="clickDelete(this)" src="/img/delete.png">
+                                </form>
+                            </div>
+                            <div th:case="Зачёт"  class="lesson credit">
+                                <div th:popup-id="${lesson.id}" class="lesson-name-container open-popup">
+                                    <p class="p-lesson-name" th:text="${lesson.name}"></p>
+                                </div>
+                                <form th:action="@{/lessons/delete-lesson/{id}(id=${lesson.getId()})}" method="get">
+                                    <img class="img-delete-lesson" onclick="clickDelete(this)" src="/img/delete.png">
+                                </form>
+                            </div>
+                            <div th:case="Тест" class="lesson test">
+                                <div th:popup-id="${lesson.id}" class="lesson-name-container open-popup">
+                                    <p class="p-lesson-name" th:text="${lesson.name}"></p>
+                                </div>
+                                <form th:action="@{/lessons/delete-lesson/{id}(id=${lesson.getId()})}" method="get">
+                                    <img class="img-delete-lesson" onclick="clickDelete(this)" src="/img/delete.png">
+                                </form>
+                            </div>
+                            <div th:case="*" class="lesson unknown">
+                                <div th:popup-id="${lesson.id}" class="lesson-name-container open-popup">
+                                    <p class="p-lesson-name" th:text="${lesson.name}"></p>
+                                </div>
+                                <form th:action="@{/lessons/delete-lesson/{id}(id=${lesson.getId()})}" method="get">
+                                    <img class="img-delete-lesson" onclick="clickDelete(this)" src="/img/delete.png">
+                                </form>
+                            </div>
+                        </div>
+                </div>
+                </div>
+            </div>
+            <div class="div-flex" style="width: 50%">
+                <div class="form-container">
+                    <form th:action="@{lessons/create-lesson}" onsubmit="return validation(0)"  th:object="${newLesson}" method="post">
+                        <div class="div-form-item">
+                            <label class="label-input" for="name">Название:</label>
+                            <div>
+                                <input class="input-data" type="text" id="name" th:field="*{name}">
+                            </div>
+                        </div>
+                        <div class="div-form-item">
+                            <label class="label-input" for="typeOfTest">Тип тестирования:</label>
+                            <select class="input-data" id="typeOfTest" th:field="*{typeOfTest}">
+                                <option th:each="type:${typeOfTest}"
+                                        th:text="${type}"
+                                        th:value="${type}"></option>
+                            </select>
+                        </div>
+                        <div class="div-form-item">
+                            <label class="label-input label-for-area" for="condition">Условия рейтинга студентов:</label>
+                        </div>
+                        <div class="div-form-item">
+                            <textarea class="input-data textArea" id="condition" th:field="*{condition}"></textarea>
+                        </div>
+                        <div class="div-form-item">
+                            <input class="button" type="submit" value="Сохранить">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:each="oneLesson:${lessons}">
+    <div th:id="${oneLesson.id}" class="popup-bg none">
+        <div class="popup">
+            <img th:popup-id="${oneLesson.id}" class="close-popup" src="img/close-popup.png">
+            <form th:onsubmit="'return validation(' + ${oneLesson.id} + ')'" th:action="@{/lessons/update-lesson/{id}(id=${oneLesson.getId()})}"
+                  th:id="'formQuest' + ${oneLesson.id}" th:object="${newLesson}" method="post">
+                <input type="hidden" th:field="*{idUser}" th:value="${oneLesson.idUser}">
+                <input type="hidden" th:field="*{id}"  th:value="${oneLesson.id}">
+                <div class="div-form-item">
+                    <label class="label-input" for="name">Название:</label>
+                    <div>
+                        <input class="input-data" type="text"  th:id="'name'+${oneLesson.id}" th:field="*{name}" th:placeholder="${oneLesson.name}">
+                    </div>
+                </div>
+                <div class="div-form-item">
+                    <label class="label-input" for="typeOfTest">Тип тестирования:</label>
+                    <select class="input-data" th:id="'typeOfTest'+${oneLesson.id}" th:field="*{typeOfTest}">
+                        <option th:text="${oneLesson.typeOfTest}"
+                                th:value="${oneLesson.typeOfTest}"></option>
+                        <option th:each="type:${typeOfTest}"
+                                th:text="${type}"
+                                th:value="${type}"></option>
+                    </select>
+                </div>
+                <div class="div-form-item">
+                    <label class="label-input label-for-area">Условия рейтинга студентов:</label>
+                </div>
+                <div class="div-form-item">
+                    <textarea class="input-data textArea" th:id="'condition'+${oneLesson.id}" th:value="${oneLesson.condition}" th:field="*{condition}"></textarea>
+                </div>
+                <div class="div-form-item">
+                    <input class="button" type="submit" value="Сохранить">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="js/script.js"></script>
+<script src="js/lessons.js"></script>
+</body>
+</html>

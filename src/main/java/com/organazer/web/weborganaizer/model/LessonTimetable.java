@@ -1,6 +1,8 @@
 package com.organazer.web.weborganaizer.model;
 
 import javax.persistence.*;
+
+import com.organazer.web.weborganaizer.Const;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
@@ -10,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Setter
 @Getter
 @Table(name = "timetable")
-public class LessonTimetable {
+public class LessonTimetable implements Comparable<LessonTimetable> {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -69,4 +71,13 @@ public class LessonTimetable {
         this.numberOfWeek = numberOfWeek;
     }
 
+    @Override
+    public int compareTo(LessonTimetable lessonTimetable) {
+        String[] time1array = this.getTime().split(Const.COLON);
+        String[] time2array = lessonTimetable.getTime().split(Const.COLON);
+        if((Integer.parseInt(time1array[0])) >= (Integer.parseInt(time2array[0]))){
+            return 1;
+        }
+        return -1;
+    }
 }

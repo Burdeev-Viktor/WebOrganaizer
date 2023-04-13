@@ -3,16 +3,23 @@ package com.organazer.web.weborganaizer.service;
 
 import com.organazer.web.weborganaizer.Const;
 import com.organazer.web.weborganaizer.model.Lesson;
+import com.organazer.web.weborganaizer.model.User;
 import com.organazer.web.weborganaizer.repository.LessonRepository;
+import com.organazer.web.weborganaizer.repository.UserRepository;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
+
 @Service
 public class LessonService {
     private final LessonRepository lessonsRepository;
+    private final UserRepository userRepository;
 
-    public LessonService(LessonRepository lessonsRepository) {
+    public LessonService(LessonRepository lessonsRepository, UserRepository userRepository) {
         this.lessonsRepository = lessonsRepository;
+        this.userRepository = userRepository;
     }
 
 
@@ -21,13 +28,11 @@ public class LessonService {
     }
     public String[] getAllLessonsNameByIdUser(Long id){
         List<Lesson> lessonList = findAllByIdUser(id);
-        String[] names = new String[lessonList.size()];
-        for (int i = 0; i < names.length; i++){
-            names[i] = lessonList.get(i).getName();
-        }
-        return names;
+        return lessonList.stream()
+                .map(Lesson::getName)
+                .toArray(String[]::new);
     }
-    public void save(Lesson lesson){
+    private void save(Lesson lesson){
         lessonsRepository.save(lesson);
     }
     public boolean lessonIsExistsByNameAndIdUser(String name,Long id){
@@ -52,4 +57,27 @@ public class LessonService {
         return flag;
     }
 
+    public void saveByUserDetails(Lesson lesson, UserDetails userDetails) {
+        User user = userRepository.findUserByLogin(userDetails.getUsername());
+        Lesson lessonFordb;
+        if(lesson.getId() != null){
+            lessonFordb = lessonsRepository.getById(lesson.getId());
+            if(Objects.equals(lessonFordb.getIdUser(), user.getId())){
+                lesson.setIdUser(user.getId());
+                lessonsRepository.save(lesson);
+            }
+        }else {
+            lesson.setIdUser(user.getId());
+            lessonsRepository.save(lesson);
+        }
+
+    }
+
+    public void deleteByUserDetails(UserDetails userDetails, Long id) {
+        User user = userRepository.findUserByLogin(userDetails.getUsername());
+        Lesson lessonFordb = lessonsRepository.getById(id);
+        if(Objects.equals(user.getId(), lessonFordb.getIdUser())){
+            lessonsRepository.delete(lessonFordb);
+        }
+    }
 }

@@ -1,12 +1,12 @@
-const tabsBtn   = document.querySelectorAll(".tabs__nav-btn");
-const tabsItems = document.querySelectorAll(".tabs__item");
+const tabsBtn   = document.querySelectorAll(".tabs-nav-btn");
+const tabsItems = document.querySelectorAll(".tabs-item");
 
 
 switchR.click();
-//if (document.querySelector('.tabs__nav-btn') !== null) document.querySelector('.tabs__nav-btn').click();
 tabsBtn.forEach(tabListener);
 function tabListener(item) {
     item.addEventListener("click", function() {
+        let tabsContent = document.getElementById('tabs-content');
         let currentBtn = item;
         let tabId = currentBtn.getAttribute("data-tab");
         let currentTab = document.querySelector(tabId);
@@ -22,6 +22,13 @@ function tabListener(item) {
 
             currentBtn.classList.add('active');
             currentTab.classList.add('active');
+            if(currentBtn.getAttribute('data-tab') === "#lab"){
+                tabsContent.classList.remove('task');
+                tabsContent.classList.add('lab');
+            }else {
+                tabsContent.classList.remove('lab');
+                tabsContent.classList.add('task');
+            }
         }
     });
 }
@@ -34,25 +41,20 @@ function validationLab(){
     clearError(quest);
     clearError(needWork);
     if(lessonName.options[lessonName.selectedIndex].value === ""){
-        console.warn("Выберите предмет");
         createError(lessonName,"Выберите предмет");
         res = false;
     }
     if(quest.value === ""){
-        console.warn("Введите задание");
         createError(quest,"Введите задание");
         res = false;
     }else if(quest.value.length <= 4){
-        console.warn("Не меннее 4 символов");
         createError(quest,"Не меннее 4 символов");
         res = false;
     }
     if(Number(needWork.value) === 0){
-        console.warn("Введите кол-во задач");
         createError(needWork,"Введите кол-во задач");
         res = false;
     }else if(Number(needWork.value) < 0 || Number(needWork.value) > 50){
-        console.warn("Введите коректное значение (0,50)");
         createError(needWork,"Введите коректное значение (0,50)");
         res = false;
     }
@@ -70,53 +72,19 @@ function validationQuest(){
     clearError(date);
     clearError(days);
     if(lessonName.options[lessonName.selectedIndex].value === ""){
-        console.warn("Выберите предмет")
-        createError(lessonName,"Выберите предмет")
+        createError(lessonName,"Выберите предмет");
         res = false;
     }
-    if(quest.value === ""){
-        console.warn("Введите задание")
-        createError(quest,"Введите задание")
-        res = false;
-    }else if(quest.value.length <= 4){
-        console.warn("Не меннее 4 символов")
-        createError(quest,"Не меннее 4 символов")
-        res = false;
-    }
-    if(date.value ===""){
-        console.warn("Введите дату здачи")
-        createError(date,"Введите дату здачи")
-        res = false
-    }
+    validateQuestDate(quest,date,res);
     if (switchR.checked){
         if(settingSwitch.options[settingSwitch.selectedIndex].value === "Каждую неделю"){
             if(days.options[days.selectedIndex].value ===""){
-                console.warn("Выберите день")
-                createError(days,"Выберите день")
-                res = false
+                createError(days,"Выберите день");
+                res = false;
             }
         }
     }
 
-    return res
+    return res;
 }
-function createError (node,text){
-    console.log(node)
-    if(!node.classList.contains('error')) {
-        let parent = node.parentNode;
-        let errorLabel = document.createElement("label");
-        errorLabel.classList.add("error-label");
-        errorLabel.textContent = text;
-        node.classList.add("error");
-        parent.append(errorLabel);
-    } else {
-        console.log('contains')
-    }
 
-}
-function clearError(node){
-    if(node.classList.contains('error')){
-        node.classList.remove("error");
-        node.parentNode.querySelector(".error-label").remove();
-    }
-}

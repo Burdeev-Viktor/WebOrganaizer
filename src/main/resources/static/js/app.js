@@ -4,6 +4,7 @@ settingSwitch.addEventListener("click",settingSwitchListener);
 switchR.addEventListener("click",switchRListener);
 settingSwitchListener();
 switchRListener();
+
 function switchRListener(){
     let hide3 = document.getElementById("hide3");
     let hide2 = document.getElementById("hide2");

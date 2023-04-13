@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.organazer.web.weborganaizer.service.ReminderService.time;
 
@@ -69,105 +70,47 @@ public class TimetableService {
         TimetableService timetableService = new TimetableService(timetableRepository,userRepository);
         List<LessonTimetable> lessonTimetableList = timetableService.findAllByIdUser(id);
         LessonTimetable[][][] lessonTimetables = new LessonTimetable[2][6][];
-        for (int k = 0; k < 6; k++) {
-            for (int j = 0; j < 2; j++) {
-                ArrayList<LessonTimetable> lessonsList = new ArrayList<>();
-                for (LessonTimetable lessonTimetable : lessonTimetableList) {
-                    if (Objects.equals(lessonTimetable.getDayOfWeek(), Const.CHOICE_BOX_SIX_DAYS_OF_WEEK[k]) && (Objects.equals(lessonTimetable.getNumberOfWeek(), Const.CHOICE_BOX_NUMBER_OF_WEEK[j]) || Objects.equals(lessonTimetable.getNumberOfWeek(), Const.CHOICE_BOX_NUMBER_OF_WEEK[2]))) {
-                        lessonsList.add(lessonTimetable);
-                    }
-                }
+        for (byte k = 0; k < 6; k++) {
+            for (byte j = 0; j < 2; j++) {
+                byte numberDay = k;
+                byte numberWeek = j;
+                List<LessonTimetable> lessonsList = lessonTimetableList.stream()
+                        .filter(lessonTimetable ->
+                                Objects.equals(lessonTimetable.getDayOfWeek(), Const.CHOICE_BOX_SIX_DAYS_OF_WEEK[numberDay]) &&
+                                        (Objects.equals(lessonTimetable.getNumberOfWeek(), Const.CHOICE_BOX_NUMBER_OF_WEEK[numberWeek]) ||
+                                                Objects.equals(lessonTimetable.getNumberOfWeek(), Const.CHOICE_BOX_NUMBER_OF_WEEK[2])))
+                        .collect(Collectors.toList());
                 if(lessonsList.size() > maxSize) maxSize = lessonsList.size();
-                if (lessonsList.size() > 1) {
+                if (lessonsList.size() >= 1) {
                     sortLessonByTimeInDay(lessonsList);
-                    LessonTimetable[] timetables = new LessonTimetable[lessonsList.size()];
-                    for (int i = 0; i < lessonsList.size(); i++) {
-                        timetables[i] = lessonsList.get(i);
-                    }
-                    lessonTimetables[j][k] = timetables;
-                } else {
-                    if (lessonsList.size() == 1) {
-                        LessonTimetable[] timetables = new LessonTimetable[lessonsList.size()];
-                        for (int i = 0; i < lessonsList.size(); i++) {
-                            timetables[i] = lessonsList.get(i);
-                        }
-                        lessonTimetables[j][k] = timetables;
-                    } else {
-                        lessonTimetables[j][k] = null;
-                    }
-                }
-
-
-            }
-        }
-        LessonTimetable[][][] res = new LessonTimetable[2][6][maxSize];
-        for (int week = 0; week < lessonTimetables.length; week++){
-            for (int day = 0; day < lessonTimetables[week].length; day++){
-                for (int lesson = 0;lesson < maxSize ;lesson++){
-                    if(lesson < lessonTimetables[week][day].length){
-                        res[week][day][lesson] = lessonTimetables[week][day][lesson];
-                        continue;
-                    }
-                    res[week][day][lesson] = new LessonTimetable();
+                    lessonTimetables[j][k] = lessonsList.toArray(LessonTimetable[]::new);
                 }
             }
         }
-        return res;
+        return lessonTimetables;
     }
     public LessonTimetable[][] getSortLessonsTimetableOneWeek(List<LessonTimetable> lessonTimetableList) {
         int maxSize = 0;
         LessonTimetable[][] lessonTimetables = new LessonTimetable[6][];
-        for (int d = 0; d < 6; d++) {
-            ArrayList<LessonTimetable> lessonsList = new ArrayList<>();
-            for (LessonTimetable lessonTimetable : lessonTimetableList) {
-                if (Objects.equals(lessonTimetable.getDayOfWeek(), Const.CHOICE_BOX_SIX_DAYS_OF_WEEK[d]) ) {
-                    lessonsList.add(lessonTimetable);
-                }
-            }
+        for (byte d = 0; d < 6; d++) {
+            byte day = d;
+            List<LessonTimetable> lessonsList = lessonTimetableList.stream()
+                    .filter(el -> Objects.equals(el.getDayOfWeek(),Const.CHOICE_BOX_SIX_DAYS_OF_WEEK[day]))
+                    .collect(Collectors.toList());
             if(maxSize < lessonsList.size()) maxSize = lessonsList.size();
-            if (lessonsList.size() > 1) {
+            if (lessonsList.size() >= 1) {
                 sortLessonByTimeInDay(lessonsList);
-                LessonTimetable[] timetables = new LessonTimetable[lessonsList.size()];
-                for (int i = 0; i < lessonsList.size(); i++) {
-                    timetables[i] = lessonsList.get(i);
-                }
-                lessonTimetables[d] = timetables;
-            } else {
-                if (lessonsList.size() == 1) {
-                    LessonTimetable[] timetables = new LessonTimetable[lessonsList.size()];
-                    for (int i = 0; i < lessonsList.size(); i++) {
-                        timetables[i] = lessonsList.get(i);
-                    }
-                    lessonTimetables[d] = timetables;
-                } else {
-                    lessonTimetables[d] = null;
-                }
-
-
+                lessonTimetables[d] = lessonsList.toArray(LessonTimetable[]::new);
             }
         }
-        LessonTimetable[][] lessons = new LessonTimetable[6][maxSize];
-        for (int i = 0; i < 6; i++){
-            for (int j = 0; j < maxSize; j++){
-                if(j < lessonTimetables[i].length) {
-                    lessons[i][j] = lessonTimetables[i][j];
-                }else lessons[i][j] = new LessonTimetable();
-
-            }
-        }
-        return lessons;
+        return lessonTimetables;
     }
     private  void sortLessonByTimeInDay(List<LessonTimetable> lessonsList){
-        boolean flag = true;
-        while (flag) {
-            flag = false;
-            for (int i = 0; i < lessonsList.size() - 1; i++) {
-                if (time(lessonsList.get(i).getTime(), lessonsList.get(i + 1).getTime())) {
-                    flag = true;
-                    Collections.swap(lessonsList, i, i + 1);
-                }
-            }
-        }
+        List<LessonTimetable> sortedList = lessonsList.stream()
+                .sorted()
+                .toList();
+        lessonsList.clear();
+        lessonsList.addAll(sortedList);
     }
     public void saveByUserDetails(LessonTimetable lessonTimetable, UserDetails userDetails){
         User user = userRepository.findUserByLogin(userDetails.getUsername());

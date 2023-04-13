@@ -2,17 +2,7 @@
  const closePopups = document.getElementsByClassName("close-popup");
  const shiftEducation = document.getElementById('shift');
 
- for (let index = 0; index < openPopups.length; ++index){
-     console.log(openPopups[index].getAttribute('Popup-id'));
-     openPopups[index].addEventListener("click",function (){
-         document.getElementById(this.getAttribute('Popup-id')).classList.remove('none');
-     });
- }
- for (let index = 0; index < closePopups.length; ++index){
-     closePopups[index].addEventListener("click",function (){
-         document.getElementById(this.getAttribute('Popup-id')).classList.add('none');
-     });
- }
+ connectionPopupButtons(openPopups,closePopups);
  shiftEducation.addEventListener("click",function (){
      const firstTime = document.getElementById('time1');
      const secondTime = document.getElementById('time2');
@@ -47,23 +37,3 @@ function validationTimetable(id){
     }
     return res;
 }
- function createError (node,text){
-     console.log(node)
-     if(!node.classList.contains('error')) {
-         let parent = node.parentNode;
-         let errorLabel = document.createElement("label");
-         errorLabel.classList.add("error-label");
-         errorLabel.textContent = text;
-         node.classList.add("error");
-         parent.append(errorLabel);
-     } else {
-         console.log('contains')
-     }
-
- }
- function clearError(node){
-     if(node.classList.contains('error')){
-         node.classList.remove("error");
-         node.parentNode.querySelector(".error-label").remove();
-     }
- }

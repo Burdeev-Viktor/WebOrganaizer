@@ -1,33 +1,10 @@
-html, body{
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    border:0;
-    background:#3f4441;
-    font-family: Arial Rounded MT, serif;
-    font-weight: bold;
-}
-a{
-    text-decoration: none;
-}
-.vBox{
-    display: flex;
-    height: 100%;
-    width: 100%;
-}
-.second_container{
-    width: 100%;
-    display:flex;
-}
 .reminder_container{
     width: 40%;
     padding: 5px 30px 30px;
 }
-.reminder_title{
+.reminder-title{
     text-align: center;
     font-size: 35px;
-    font-weight: bold;
-    color: #ffdecf;
 }
 .reminder{
     margin: 15px;
@@ -37,22 +14,18 @@ a{
     width: 90%;
     height: 90px;
     display: flex;
-    text-decoration: none;
 }
 .name_reminder{
     margin-top: 5px;
-    color: #ffdecf;
     margin-bottom: 15px;
     margin-left: 5px;
 }
 .quest_container{
     background: #3f4441;
     border-radius: 5px;
-    color: #ffdecf;
     padding: 3px;
     margin: 5px;
     width: 70%;
-    font-size: 14px;
 }
 .quest_text{
     padding: 5px;
