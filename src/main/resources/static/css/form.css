@@ -70,7 +70,7 @@
     font-size: 20px;
     transition: 0.5s;
     border: none;
-    margin: 25px auto 0px;
+    margin: 25px auto 0;
 }
 .button:hover{
     height: 51px;

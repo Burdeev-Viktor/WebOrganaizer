@@ -32,7 +32,7 @@
             </form>
         </div>
     </div>
-    <div class="main_container">
+    <div class="main-container">
         <div class="timetable">
             <div class="container-timetable">
                 <a href="lessons/-" class="button-week back"  ><img src="/img/right.png" alt="Кнопка «button»"></a>
@@ -171,7 +171,7 @@
                 <a href="lessons/+" class="button-week next"><img src="/img/left.png" alt="Кнопка «button»"></a>
             </div>
         </div>
-        <div class="second_container">
+        <div class="second-container">
             <div class="div-lessons">
                 <div class="div-lessons-tittle">
                     <p class="lessons-tittle">Предметы</p>
@@ -184,7 +184,7 @@
                                     <p class="p-lesson-name" th:text="${lesson.name}"></p>
                                 </div>
                                 <form th:action="@{/lessons/delete-lesson/{id}(id=${lesson.getId()})}" method="get">
-                                    <img class="img-delete-lesson" onclick="clickDelete(this)" src="/img/delete.png">
+                                    <img class="img-delete-lesson" onclick="clickDelete(this)" src="/img/delete.png" alt="">
                                 </form>
                             </div>
                             <div th:case="Зачёт"  class="lesson credit">
@@ -192,7 +192,7 @@
                                     <p class="p-lesson-name" th:text="${lesson.name}"></p>
                                 </div>
                                 <form th:action="@{/lessons/delete-lesson/{id}(id=${lesson.getId()})}" method="get">
-                                    <img class="img-delete-lesson" onclick="clickDelete(this)" src="/img/delete.png">
+                                    <img class="img-delete-lesson" onclick="clickDelete(this)" src="/img/delete.png" alt="">
                                 </form>
                             </div>
                             <div th:case="Тест" class="lesson test">
@@ -200,7 +200,7 @@
                                     <p class="p-lesson-name" th:text="${lesson.name}"></p>
                                 </div>
                                 <form th:action="@{/lessons/delete-lesson/{id}(id=${lesson.getId()})}" method="get">
-                                    <img class="img-delete-lesson" onclick="clickDelete(this)" src="/img/delete.png">
+                                    <img class="img-delete-lesson" onclick="clickDelete(this)" src="/img/delete.png" alt="">
                                 </form>
                             </div>
                             <div th:case="*" class="lesson unknown">
@@ -208,7 +208,7 @@
                                     <p class="p-lesson-name" th:text="${lesson.name}"></p>
                                 </div>
                                 <form th:action="@{/lessons/delete-lesson/{id}(id=${lesson.getId()})}" method="get">
-                                    <img class="img-delete-lesson" onclick="clickDelete(this)" src="/img/delete.png">
+                                    <img class="img-delete-lesson" onclick="clickDelete(this)" src="/img/delete.png" alt="">
                                 </form>
                             </div>
                         </div>
@@ -250,29 +250,29 @@
 <div th:each="oneLesson:${lessons}">
     <div th:id="${oneLesson.id}" class="popup-bg none">
         <div class="popup">
-            <img th:popup-id="${oneLesson.id}" class="close-popup" src="img/close-popup.png">
+            <img th:popup-id="${oneLesson.id}" class="close-popup" th:src="@{img/close-popup.png}" alt="" src="">
             <form th:onsubmit="'return validation(' + ${oneLesson.id} + ')'" th:action="@{/lessons/update-lesson/{id}(id=${oneLesson.getId()})}"
                   th:id="'formQuest' + ${oneLesson.id}" th:object="${newLesson}" method="post">
                 <input type="hidden" th:field="*{idUser}" th:value="${oneLesson.idUser}">
                 <input type="hidden" th:field="*{id}"  th:value="${oneLesson.id}">
                 <div class="div-form-item">
-                    <label class="label-input" for="name">Название:</label>
+                    <label class="label-input" th:for="'name'+${oneLesson.id}">Название:</label>
                     <div>
                         <input class="input-data" type="text"  th:id="'name'+${oneLesson.id}" th:field="*{name}" th:placeholder="${oneLesson.name}">
                     </div>
                 </div>
                 <div class="div-form-item">
                     <label class="label-input" for="typeOfTest">Тип тестирования:</label>
-                    <select class="input-data" th:id="'typeOfTest'+${oneLesson.id}" th:field="*{typeOfTest}">
-                        <option th:text="${oneLesson.typeOfTest}"
-                                th:value="${oneLesson.typeOfTest}"></option>
-                        <option th:each="type:${typeOfTest}"
-                                th:text="${type}"
-                                th:value="${type}"></option>
-                    </select>
+                        <select class="input-data" th:id="'typeOfTest'+${oneLesson.id}" th:field="*{typeOfTest}">
+                            <option th:text="${oneLesson.typeOfTest}"
+                                    th:value="${oneLesson.typeOfTest}"></option>
+                            <option th:each="type:${typeOfTest}"
+                                    th:text="${type}"
+                                    th:value="${type}"></option>
+                        </select>
                 </div>
                 <div class="div-form-item">
-                    <label class="label-input label-for-area">Условия рейтинга студентов:</label>
+                    <label class="label-input label-for-area" th:for="'condition'+${oneLesson.id}">Условия рейтинга студентов:</label>
                 </div>
                 <div class="div-form-item">
                     <textarea class="input-data textArea" th:id="'condition'+${oneLesson.id}" th:value="${oneLesson.condition}" th:field="*{condition}"></textarea>
@@ -284,7 +284,7 @@
         </div>
     </div>
 </div>
-<script src="js/script.js"></script>
-<script src="js/lessons.js"></script>
+<script th:src="@{js/script.js}"></script>
+<script th:src="@{js/lessons.js}"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-.container_center{
+.container-center{
     width: 400px;
     position: absolute;
     left: 0;
@@ -7,15 +7,15 @@
     top: 45%;
     transform: translate(0,-45%);
 }
-.massage_fail{
+.massage-fail{
     color: red;
     font-size: 13px;
 }
-.label_input_big{
+.label-input-big{
     margin:3px;
     font-size: 20px;
 }
-.input_big{
+.input-big{
     margin:3px 0 ;
     width: 350px;
     height: 40px;
@@ -29,17 +29,17 @@
     border-radius: 5px;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-.input_big:focus{
+.input-big:focus{
     color: #212529;
     background-color: #fff;
     border-color: #bdbdbd;
     outline: 0;
     box-shadow: 0 0 0 5px rgba(158, 158, 158, 0.25);
 }
-.div_button_center{
+.div-button-center{
     text-align: center;
 }
-.button_login_big {
+.button-login-big {
     width: 210px;
     margin: 10px 0;
     border: none;
@@ -56,12 +56,12 @@
     font-weight: 600;
 
 }
-.button_login_big:hover {
+.button-login-big:hover {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     background: #cccccc;
     border:2px #3f4441;
     color: #3f4441;
 }
-.link_hidden{
+.link-hidden{
     color: #9d9d9d;
 }

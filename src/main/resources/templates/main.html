@@ -32,7 +32,7 @@
       </form>
     </div>
   </div>
-  <div class="main_container">
+  <div class="main-container">
     <div class="timetable">
       <div class="container-timetable">
       <a href="/-" class="button-week back"  ><img src="/img/right.png" alt="Кнопка «button»"></a>
@@ -172,20 +172,22 @@
       <a href="/+" class="button-week next"><img src="/img/left.png" alt="Кнопка «button»"></a>
     </div>
     </div>
-    <div class="second_container">
-      <div class="reminder_container">
+    <div class="second-container">
+      <div class="reminder-container">
         <div class="reminder-title">
           <p>Задания</p>
         </div>
-        <a th:each="reminder:${reminders}" th:href="@{/reminder-update/{id}(id=${reminder.getId()})}" class="reminder">
-          <div class="name_container" >
-            <p class="name_reminder"  th:text="${reminder.lessonName}">Предмет</p>
-            <p class="name_reminder" th:text="${reminder.date}">12-04-2002</p>
-          </div>
-          <div class="quest_container">
-            <p class="quest_text" th:text="${reminder.quest}">Лабораторные работы</p>
-          </div>
-        </a>
+        <div class="reminders-container">
+          <a th:each="reminder:${reminders}" th:href="@{/reminder-update/{id}(id=${reminder.getId()})}" class="reminder">
+            <div class="name-container" >
+              <p class="name-reminder" th:text="${reminder.lessonName}">Предмет</p>
+              <p class="name-reminder" th:text="${reminder.date}">12-04-2002</p>
+            </div>
+            <div class="quest-container">
+              <p class="quest-text" th:text="${reminder.quest}">Лабораторные работы</p>
+            </div>
+          </a>
+        </div>
       </div>
         <div class="tabs">
           <nav class="tabs-nav">
@@ -312,7 +314,7 @@
     </div>
   </div>
 </div>
-<script src="js/script.js"></script>
-<script src="js/tabs.js"></script>
+<script th:src="@{js/script.js}"></script>
+<script th:src="@{js/tabs.js}"></script>
 </body>
 </html>

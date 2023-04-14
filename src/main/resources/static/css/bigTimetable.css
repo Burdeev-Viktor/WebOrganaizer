@@ -6,7 +6,7 @@
     margin: auto;
     height: 160px;
 }
-.number_week{
+.number-week{
     display: flex;
     width: 9%;
     height: 400px;
@@ -36,7 +36,7 @@
     margin: auto;
     cursor: context-menu;
 }
-.not_border{
+.not-border{
     border-bottom: none;
 }
 .button-week{

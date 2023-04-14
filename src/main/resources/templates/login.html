@@ -9,21 +9,21 @@
     <title>Вход в аккаунт</title>
 </head>
 <body>
-    <div class="container_center">
-        <form class="container_center" th:action="@{/login}" method="post">
-            <div class="massage_fail" th:if="${param.error}">
+    <div class="container-center">
+        <form class="container-center" th:action="@{/login}" method="post">
+            <div class="massage-fail" th:if="${param.error}">
                 Неверное имя пользователя и пароль.
             </div>
-                <label class="label_input_big"> Логин : </label>
+                <label class="label-input-big"> Логин : </label>
                 <br>
-                <input class="input_big" type="text" name="username"/>
-                <label class="label_input_big"> Пароль:  </label>
+                <input class="input-big" type="text" name="username"/>
+                <label class="label-input-big"> Пароль:  </label>
                 <br>
-                <input class="input_big"  type="password" name="password"/>
-                <div class="div_button_center">
-                    <input class="button_login_big" type="submit" value="войти"/>
+                <input class="input-big" type="password" name="password"/>
+                <div class="div-button-center">
+                    <input class="button-login-big" type="submit" value="войти"/>
                     <br>
-                    <a class="link_hidden" href="/registration">Зарегистрироваться</a>
+                    <a class="link-hidden" href="/registration">Зарегистрироваться</a>
                 </div>
         </form>
     </div>

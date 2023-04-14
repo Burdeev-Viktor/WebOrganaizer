@@ -1,4 +1,4 @@
-.reminder_container{
+.reminder-container{
     width: 40%;
     padding: 5px 30px 30px;
 }
@@ -15,26 +15,30 @@
     height: 90px;
     display: flex;
 }
-.name_reminder{
+.name-reminder{
     margin-top: 5px;
     margin-bottom: 15px;
     margin-left: 5px;
 }
-.quest_container{
+.quest-container{
     background: #3f4441;
     border-radius: 5px;
     padding: 3px;
     margin: 5px;
     width: 70%;
 }
-.quest_text{
+.quest-text{
     padding: 5px;
     margin: 0;
     font-size: 18px;
 }
-.name_container{
+.name-container{
     width: 30%;
     font-size: 16px;
+}
+.reminders-container{
+    overflow-y: auto;
+    max-height: 690px;
 }
 
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:ht="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="data:,">
@@ -32,7 +32,7 @@
             </form>
         </div>
     </div>
-    <div class="main_container">
+    <div class="main-container">
         <div class="timetable">
             <div class="container-timetable">
                 <a th:href="@{/reminder-update/backW/{id}(id=${updateReminder.getId()})}" class="button-week back"  ><img src="/img/right.png" alt="Кнопка «button»"></a>
@@ -171,20 +171,22 @@
                 <a th:href="@{/reminder-update/nextW/{id}(id=${updateReminder.getId()})}" class="button-week next"><img src="/img/left.png" alt="Кнопка «button»"></a>
             </div>
         </div>
-        <div class="second_container">
-            <div class="reminder_container">
+        <div class="second-container">
+            <div class="reminder-container">
                 <div class="reminder-title">
                     <p>Задания</p>
                 </div>
-              <a th:each="reminder:${reminders}" th:href="@{/reminder-update/{id}(id=${reminder.getId()})}" class="reminder">
-                <div class="name_container" >
-                  <p class="name_reminder"  th:text="${reminder.lessonName}">Предмет</p>
-                  <p class="name_reminder" th:text="${reminder.date}">12-04-2002</p>
+                <div class="reminders-container">
+                    <a th:each="reminder:${reminders}" th:href="@{/reminder-update/{id}(id=${reminder.getId()})}" class="reminder">
+                        <div class="name-container" >
+                            <p class="name-reminder" th:text="${reminder.lessonName}">Предмет</p>
+                            <p class="name-reminder" th:text="${reminder.date}">12-04-2002</p>
+                        </div>
+                        <div class="quest-container">
+                            <p th:text="${reminder.quest}" class="quest-text">Лабораторные работы</p>
+                        </div>
+                    </a>
                 </div>
-                <div class="quest_container">
-                  <p th:text="${reminder.quest}" class="quest_text">Лабораторные работы</p>
-                </div>
-              </a>
             </div>
             <div class="form-reminder-update">
                 <div th:switch="${updateReminder.needWork}">
@@ -265,7 +267,7 @@
                                 <input type="submit" class="button"  value="Сохранить">
                                 <div class="input-div">
                                     <a class="a-delete-timetable" th:href="@{/reminder-update/delete-reminder/{id}(id=${updateReminder.getId()})}" th:method="get">
-                                        <img class="img-delete-lesson" src="/img/delete.png">
+                                        <img class="img-delete-lesson" src="/img/delete.png" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -321,7 +323,7 @@
                                 <input type="submit" class="button"  value="Сохранить">
                                 <div class="input-div">
                                     <a class="a-delete-timetable" th:href="@{/reminder-update/delete-reminder/{id}(id=${updateReminder.getId()})}" th:method="get">
-                                        <img class="img-delete-lesson" src="/img/delete.png">
+                                        <img class="img-delete-lesson" src="/img/delete.png" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -334,7 +336,6 @@
     </div>
 </div>
 </body>
-<script src="../js/tabs.js"></script>
-<script src="../js/update-reminder.js"></script>
-</body>
+<script th:src="@{../js/tabs.js}"></script>
+<script th:src="@{../js/update-reminder.js}"></script>
 </html>

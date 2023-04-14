@@ -11,20 +11,20 @@
 <body>
 
 
-<form class="container_center" th:action="@{/registration}" method="post">
-    <div class="massage_fail" th:if="${param.error}">
+<form class="container-center" th:action="@{/registration}" method="post">
+    <div class="massage-fail" th:if="${param.error}">
         Неверное имя пользователя и пароль.
     </div>
-    <div class="massage_fail" th:if="${massageUserIsExist}">
+    <div class="massage-fail" th:if="${massageUserIsExist}">
         Такой пользователь существует!
     </div>
-    <div class="massage_fail" th:if="${massagePasswordsNotMatch}">
+    <div class="massage-fail" th:if="${massagePasswordsNotMatch}">
         Пороли не совпадают!
     </div>
-    <div><label class="label_input_big"> Логин: <input class="input_big" type="text" name="login"/> </label></div>
-    <div><label class="label_input_big"> Пароль: <input class="input_big"  type="password" name="password"/> </label></div>
-    <div><label class="label_input_big"> Повторите пароль: <input class="input_big"  type="password" name="confPassword"/> </label></div>
-    <div class="div_button_center"><input class="button_login_big" type="submit" value="Зарегистрироваться"/></div>
+    <div><label class="label-input-big"> Логин: <input class="input-big" type="text" name="login"/> </label></div>
+    <div><label class="label-input-big"> Пароль: <input class="input-big" type="password" name="password"/> </label></div>
+    <div><label class="label-input-big"> Повторите пароль: <input class="input-big" type="password" name="confPassword"/> </label></div>
+    <div class="div-button-center"><input class="button-login-big" type="submit" value="Зарегистрироваться"/></div>
 </form>
 </body>
 </html>

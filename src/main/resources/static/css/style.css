@@ -23,16 +23,31 @@ a,p,button{
     height: 100%;
     width: 100%;
 }
-.main_container{
+.main-container{
     height: 100%;
     width: 100%;
 }
-.second_container{
+.second-container{
     display: flex;
     width: 100%;
 }
 .div-flex{
     display: flex;
+}
+::-webkit-scrollbar{
+    width: 10px;
+}
+::-webkit-scrollbar-track{
+    background: #4e5451;
+    border-radius:8px;
+}
+::-webkit-scrollbar-thumb{
+    background: #5e6f64;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+::-webkit-scrollbar-thumb:hover{
+    background: #ffdecf;
 }
 /**
     Стили бокового меню
@@ -59,7 +74,7 @@ a,p,button{
     position: relative;
 }
 
-.main_container{
+.main-container{
     background: #3f4441;
     height: 100%;
     width: 100%;

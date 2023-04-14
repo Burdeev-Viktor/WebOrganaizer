@@ -31,11 +31,11 @@
       </form>
     </div>
   </div>
-  <div class="main_container">
+  <div class="main-container">
       <div>
         <div class="timetable-two-week-container">
         <div class="week">
-        <div class="number_week">
+        <div class="number-week">
           <span class="span-number-week">I</span>
         </div>
           <div class="one-day">
@@ -268,7 +268,7 @@
           </div>
         </div >
         <div class="week">
-          <div class="number_week">
+          <div class="number-week">
             <span class="span-number-week">II</span>
           </div>
           <div class="one-day">
@@ -510,7 +510,7 @@
 
 <div id="0" class="popup-bg none">
   <div class="popup">
-    <img  popup-id="0" class="close-popup" src="img/close-popup.png">
+    <img  popup-id="0" class="close-popup" th:src="@{img/close-popup.png}" alt="" src="">
     <form action="#" onsubmit="return validationTimetable()" th:action="@{/timetable/create-lesson-timetable}" id="formQuest" th:object="${newLessonTimetable}" method="post">
       <div class="div-form-item">
         <label class="label-input" for="lessonName">Предмет: </label>
@@ -605,7 +605,7 @@
 <div th:each="oneLesson:${allLessons}">
   <div th:id="${oneLesson.id}" class="popup-bg none">
     <div class="popup">
-      <img th:popup-id="${oneLesson.id}" class="close-popup" src="img/close-popup.png">
+      <img th:popup-id="${oneLesson.id}" class="close-popup" th:src="@{img/close-popup.png}" alt="" src="">
       <form th:onsubmit="'return validationTimetable(' + ${oneLesson.id} + ')'" th:action="@{/timetable/update-lesson-timetable/{id}(id=${oneLesson.getId()})}"
             th:id="'formQuest' + ${oneLesson.id}" th:object="${updateLesson}" method="post">
         <input type="hidden" th:field="*{idUser}" th:value="${oneLesson.idUser}">
@@ -709,7 +709,7 @@
           <input type="submit" class="button" value="Сохранить">
           <div class="div-flex">
             <a class="a-delete-timetable" th:href="@{/timetable/delete-lesson/{id}(id=${oneLesson.getId()})}" th:method="get">
-              <img class="img-delete-lesson" src="/img/delete.png">
+              <img class="img-delete-lesson" th:src="@{/img/delete.png}" alt="" src="">
             </a>
           </div>
         </div>
@@ -717,7 +717,7 @@
     </div>
   </div>
 </div>
-<script src="js/script.js"></script>
-<script src="js/timetable.js"></script>
+<script th:src="@{js/script.js}"></script>
+<script th:src="@{js/timetable.js}"></script>
 </body>
 </html>
