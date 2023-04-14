@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -35,7 +34,7 @@ public class mainController {
     }
 
     @GetMapping("/")
-    public String main(@AuthenticationPrincipal UserDetails userDetails, Model model){
+    public String getMain(@AuthenticationPrincipal UserDetails userDetails, Model model){
         User user = userService.findUserByLogin(userDetails.getUsername());
         LessonTimetable[][] timetables = timetableService.getSortLessonsTimetableOneWeek(timetableService.getLessonsWeekByNumber(weekCount, user.getId()));
         List<Reminder> reminderList = reminderService.findAllByIdUser(user.getId());
@@ -64,7 +63,6 @@ public class mainController {
         User user = userService.findUserByLogin(userDetails.getUsername());
         reminder.setIdUser(user.getId());
         reminderService.save(reminder);
-        System.out.println("Создание напоминания");
         return "redirect:/";
     }
 

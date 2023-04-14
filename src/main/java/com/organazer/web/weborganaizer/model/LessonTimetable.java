@@ -5,7 +5,6 @@ import javax.persistence.*;
 import com.organazer.web.weborganaizer.Const;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
 
 
 @Entity
@@ -37,40 +36,6 @@ public class LessonTimetable implements Comparable<LessonTimetable> {
     public LessonTimetable() {
 
     }
-
-    public LessonTimetable(Long id, Long idUser, String name, String teacher, String room, String time, String type, String dayOfWeek, String numberOfWeek) {
-        this.id = id;
-        this.idUser = idUser;
-        this.name = name;
-        this.teacher = teacher;
-        this.room = room;
-        this.time = time;
-        this.type = type;
-        this.dayOfWeek = dayOfWeek;
-        this.numberOfWeek = numberOfWeek;
-    }
-
-    public LessonTimetable(String name, String teacher, String room, String time, String type, String dayOfWeek, String numberOfWeek) {
-        this.name = name;
-        this.teacher = teacher;
-        this.room = room;
-        this.time = time;
-        this.type = type;
-        this.dayOfWeek = dayOfWeek;
-        this.numberOfWeek = numberOfWeek;
-    }
-
-    public LessonTimetable(Long id, String name, String teacher, String room, String time, String type, String dayOfWeek, String numberOfWeek) {
-        this.id = id;
-        this.name = name;
-        this.teacher = teacher;
-        this.room = room;
-        this.time = time;
-        this.type = type;
-        this.dayOfWeek = dayOfWeek;
-        this.numberOfWeek = numberOfWeek;
-    }
-
     @Override
     public int compareTo(LessonTimetable lessonTimetable) {
         String[] time1array = this.getTime().split(Const.COLON);

@@ -24,16 +24,11 @@ public class UserService {
     public void delete(User user){
         userRepository.delete(user);
     }
-    public User getUserById(Long id){
-        return userRepository.findById(id).orElse(new User());
-    }
     public User findUserByLogin(String login){
         return userRepository.findUserByLogin(login);
     }
     public boolean userIsExistsByLoginAndPassword(User user){
         return userRepository.existsByLoginAndPassword(user.getLogin(), user.getPassword());
     }
-    public boolean userIsExistsByLogin(String login){
-        return userRepository.existsByLogin(login);
-    }
+
 }

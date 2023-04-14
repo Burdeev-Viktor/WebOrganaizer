@@ -4,7 +4,6 @@ import com.organazer.web.weborganaizer.model.User;
 import com.organazer.web.weborganaizer.service.UserService;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -25,7 +24,7 @@ public class signIn {
         return "registration";
     }
     @PostMapping("/registration")
-    public String registration(User user, Model model){
+    public String registration(User user){
         if(userService.userIsExistsByLoginAndPassword(user)){
             return "registration";
         }

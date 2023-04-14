@@ -35,21 +35,6 @@ public class Reminder {
     @Column(name = "dayOfWeek")
     private String dayOfWeek;
     public Reminder() {}
-    public Reminder(String lessonName, String quest, String date, boolean switchR) {
-        this.lessonName = lessonName;
-        this.quest = quest;
-        this.date = date;
-        this.switchR = switchR;
-    }
-    public Reminder(String lessonName, String quest, String date, boolean switchR, String settingSwitch, String time, String datOfWeek) {
-        this.lessonName = lessonName;
-        this.quest = quest;
-        this.date = date;
-        this.switchR = switchR;
-        this.settingSwitch = settingSwitch;
-        this.time = time;
-        this.dayOfWeek = datOfWeek;
-    }
     public void closeOneWork(){
         if (closeWork < needWork){
             closeWork++;

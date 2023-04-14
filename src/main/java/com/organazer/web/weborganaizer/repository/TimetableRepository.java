@@ -1,7 +1,6 @@
 package com.organazer.web.weborganaizer.repository;
 
 
-import com.organazer.web.weborganaizer.Const;
 import com.organazer.web.weborganaizer.model.LessonTimetable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

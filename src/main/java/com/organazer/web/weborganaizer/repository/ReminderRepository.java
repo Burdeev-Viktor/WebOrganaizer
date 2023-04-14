@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface ReminderRepository extends JpaRepository<Reminder,Long> {
-   List<Reminder> findAllBySwitchRAndIdUser(boolean switchR, Long idUser);
+
    List<Reminder> findAllByIdUser(Long idUser);
 
     Reminder findReminderById(Long id);

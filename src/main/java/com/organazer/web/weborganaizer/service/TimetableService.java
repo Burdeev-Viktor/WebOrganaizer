@@ -14,7 +14,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.organazer.web.weborganaizer.service.ReminderService.time;
 
 @Service
 public class TimetableService {
@@ -48,21 +47,6 @@ public class TimetableService {
         }
         System.out.println(ChronoUnit.WEEKS.between(firstSeptember, localeDate));
         return lessonsList;
-    }
-    public static String getTodayDayOfWeek() {
-        final Calendar c = Calendar.getInstance();
-        String result = null;
-        int i = c.get(Calendar.DAY_OF_WEEK);
-        switch (i) {
-            case 1 -> result = Const.CHOICE_BOX_SEVEN_DAYS_OF_WEEK[6];
-            case 2 -> result = Const.CHOICE_BOX_SEVEN_DAYS_OF_WEEK[0];
-            case 3 -> result = Const.CHOICE_BOX_SEVEN_DAYS_OF_WEEK[1];
-            case 4 -> result = Const.CHOICE_BOX_SEVEN_DAYS_OF_WEEK[2];
-            case 5 -> result = Const.CHOICE_BOX_SEVEN_DAYS_OF_WEEK[3];
-            case 6 -> result = Const.CHOICE_BOX_SEVEN_DAYS_OF_WEEK[4];
-            case 7 -> result = Const.CHOICE_BOX_SEVEN_DAYS_OF_WEEK[5];
-        }
-        return result;
     }
 
     public LessonTimetable[][][] getSortLessonsTimetableAll(Long id) {
@@ -120,10 +104,9 @@ public class TimetableService {
         }
         save(lessonTimetable);
     }
-    private static LessonTimetable splitTime(LessonTimetable lessonTimetable){
+    private static void splitTime(LessonTimetable lessonTimetable){
         String[] times = lessonTimetable.getTime().split(",");
         lessonTimetable.setTime(times[1]);
-        return lessonTimetable;
     }
 
     public void deleteByIdAndUserDetails(Long id, UserDetails userDetails) {

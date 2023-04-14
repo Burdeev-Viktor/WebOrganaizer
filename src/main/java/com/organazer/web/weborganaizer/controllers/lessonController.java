@@ -67,7 +67,6 @@ public class lessonController {
     }
     @GetMapping("/delete-lesson/{id}")
     public String deleteLesson(@AuthenticationPrincipal UserDetails userDetails, @PathVariable Long id){
-        System.out.println("Удаляю будильник " + id);
         lessonService.deleteByUserDetails(userDetails,id);
         return "redirect:/lessons";
     }

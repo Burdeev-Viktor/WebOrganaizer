@@ -5,7 +5,6 @@ import com.organazer.web.weborganaizer.model.LessonTimetable;
 import com.organazer.web.weborganaizer.model.Reminder;
 import com.organazer.web.weborganaizer.model.User;
 import com.organazer.web.weborganaizer.service.LessonService;
-import com.organazer.web.weborganaizer.service.ReminderService;
 import com.organazer.web.weborganaizer.service.TimetableService;
 import com.organazer.web.weborganaizer.service.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -25,13 +24,11 @@ public class timetableController {
     private final LessonService lessonService;
     private final TimetableService timetableService;
     private final UserService userService;
-    private final ReminderService reminderService;
 
-    public timetableController(LessonService lessonService, TimetableService timetableService, UserService userService, ReminderService reminderService) {
+    public timetableController(LessonService lessonService, TimetableService timetableService, UserService userService) {
         this.lessonService = lessonService;
         this.timetableService = timetableService;
         this.userService = userService;
-        this.reminderService = reminderService;
     }
     @GetMapping("")
     public String getTimetable(@AuthenticationPrincipal UserDetails userDetails, Model model){
@@ -56,13 +53,11 @@ public class timetableController {
     @PostMapping("/create-lesson-timetable")
     public  String createLessonTimetable(LessonTimetable lessonTimetable,@AuthenticationPrincipal UserDetails userDetails){
         timetableService.saveByUserDetails(lessonTimetable,userDetails);
-        System.out.println("пара создана");
         return "redirect:/timetable";
     }
     @PostMapping("/update-lesson-timetable/{id}")
-    public String updateLessonTimetable(@PathVariable Long id, LessonTimetable lessonTimetable,@AuthenticationPrincipal UserDetails userDetails){
+    public String updateLessonTimetable( LessonTimetable lessonTimetable,@AuthenticationPrincipal UserDetails userDetails){
         timetableService.saveByUserDetails(lessonTimetable,userDetails);
-        System.out.println("пара обновлена");
         return "redirect:/timetable";
     }
     @GetMapping("/delete-lesson/{id}")

@@ -1,7 +1,6 @@
 package com.organazer.web.weborganaizer.service;
 
 
-import com.organazer.web.weborganaizer.Const;
 import com.organazer.web.weborganaizer.model.Lesson;
 import com.organazer.web.weborganaizer.model.User;
 import com.organazer.web.weborganaizer.repository.LessonRepository;
@@ -35,36 +34,20 @@ public class LessonService {
     private void save(Lesson lesson){
         lessonsRepository.save(lesson);
     }
-    public boolean lessonIsExistsByNameAndIdUser(String name,Long id){
-        return lessonsRepository.existsByNameAndIdUser(name,id);
-    }
+
     public void delete(Lesson lesson){
         lessonsRepository.delete(lesson);
     }
 
 
-
-    /**
-     * Метод проверяет больше ли время1 или время2
-     * @param time1 - время1
-     * @param time2  - время2
-     * @return
-     */
-    public static boolean time(String time1,String time2){
-        String[] time1array = time1.split(Const.COLON);
-        String[] time2array = time2.split(Const.COLON);
-        boolean flag = ((Integer.parseInt(time1array[0])) >= (Integer.parseInt(time2array[0])));
-        return flag;
-    }
-
     public void saveByUserDetails(Lesson lesson, UserDetails userDetails) {
         User user = userRepository.findUserByLogin(userDetails.getUsername());
-        Lesson lessonFordb;
+        Lesson lessonFor_db;
         if(lesson.getId() != null){
-            lessonFordb = lessonsRepository.getById(lesson.getId());
-            if(Objects.equals(lessonFordb.getIdUser(), user.getId())){
+            lessonFor_db = lessonsRepository.getById(lesson.getId());
+            if(Objects.equals(lessonFor_db.getIdUser(), user.getId())){
                 lesson.setIdUser(user.getId());
-                lessonsRepository.save(lesson);
+                save(lesson);
             }
         }else {
             lesson.setIdUser(user.getId());
@@ -75,9 +58,9 @@ public class LessonService {
 
     public void deleteByUserDetails(UserDetails userDetails, Long id) {
         User user = userRepository.findUserByLogin(userDetails.getUsername());
-        Lesson lessonFordb = lessonsRepository.getById(id);
-        if(Objects.equals(user.getId(), lessonFordb.getIdUser())){
-            lessonsRepository.delete(lessonFordb);
+        Lesson lessonFor_db = lessonsRepository.getById(id);
+        if(Objects.equals(user.getId(), lessonFor_db.getIdUser())){
+            lessonsRepository.delete(lessonFor_db);
         }
     }
 }

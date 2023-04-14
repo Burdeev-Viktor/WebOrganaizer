@@ -61,7 +61,7 @@ public class updateReminderController {
         return "reminder-update";
     }
     @PostMapping("/{id}")
-    public String updateReminder(@PathVariable String id,Reminder reminder){
+    public String updateReminder(Reminder reminder){
         reminderService.save(reminder);
         return "redirect:/";
     }

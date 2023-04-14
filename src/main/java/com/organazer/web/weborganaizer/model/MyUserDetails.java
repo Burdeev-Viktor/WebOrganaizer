@@ -6,8 +6,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-import java.util.Set;
 
 public class MyUserDetails implements UserDetails {
 
@@ -20,9 +18,7 @@ public class MyUserDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-
-        return authorities;
+        return new ArrayList<SimpleGrantedAuthority>();
     }
 
     @Override
