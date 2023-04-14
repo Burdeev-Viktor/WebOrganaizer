@@ -99,14 +99,18 @@ public class TimetableService {
     public void saveByUserDetails(LessonTimetable lessonTimetable, UserDetails userDetails){
         User user = userRepository.findUserByLogin(userDetails.getUsername());
         lessonTimetable.setIdUser(user.getId());
-        if(lessonTimetable.getTime().length() > 5 ){
-            splitTime(lessonTimetable);
-        }
+        splitTime(lessonTimetable);
         save(lessonTimetable);
     }
     private static void splitTime(LessonTimetable lessonTimetable){
-        String[] times = lessonTimetable.getTime().split(",");
-        lessonTimetable.setTime(times[1]);
+        if(lessonTimetable.getTime().length() <= 6 ){
+            lessonTimetable.setTime(lessonTimetable.getTime().replaceAll(",",""));
+        }else {
+            String[] times = lessonTimetable.getTime().split(",");
+            lessonTimetable.setTime(times[1]);
+        }
+
+
     }
 
     public void deleteByIdAndUserDetails(Long id, UserDetails userDetails) {

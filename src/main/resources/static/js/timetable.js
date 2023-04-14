@@ -1,6 +1,7 @@
  const openPopups = document.getElementsByClassName("open-popup");
  const closePopups = document.getElementsByClassName("close-popup");
  const shiftEducation = document.getElementById('shift');
+ let bufTime;
 
  connectionPopupButtons(openPopups,closePopups);
  shiftEducation.addEventListener("click",function (){
@@ -8,11 +9,23 @@
      const secondTime = document.getElementById('time2');
      let shiftValue = shiftEducation.value;
      if (shiftValue ==="Первая"){
+         if(bufTime !== ""){
+             firstTime.options[firstTime.selectedIndex].value = bufTime;
+         }
         firstTime.classList.remove('none');
         secondTime.classList.add('none');
+
+        bufTime = secondTime.options[secondTime.selectedIndex].value
+        secondTime.options[secondTime.selectedIndex].value = "";
      }else {
+         if(bufTime !== ""){
+             secondTime.options[secondTime.selectedIndex].value = bufTime;
+         }
          firstTime.classList.add('none');
          secondTime.classList.remove('none');
+
+         bufTime = firstTime.options[firstTime.selectedIndex].value
+         firstTime.options[firstTime.selectedIndex].value = "";
      }
  });
 function validationTimetable(id){
