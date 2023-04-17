@@ -20,22 +20,28 @@ public class TimetableService {
     private static UserRepository userRepository = null;
     private static TimetableRepository timetableRepository = null;
 
-    public TimetableService(TimetableRepository timetableRepository,UserRepository userRepository) {
+    public TimetableService(TimetableRepository timetableRepository, UserRepository userRepository) {
         TimetableService.timetableRepository = timetableRepository;
         TimetableService.userRepository = userRepository;
     }
 
-    public void delete(LessonTimetable lessonTimetable){
+    public void delete(LessonTimetable lessonTimetable) {
         timetableRepository.delete(lessonTimetable);
     }
-    private static void save(LessonTimetable lessonTimetable){
+
+    private static void save(LessonTimetable lessonTimetable) {
         timetableRepository.save(lessonTimetable);
     }
-    public List<LessonTimetable> findAllByIdUser(Long id){
+
+    public List<LessonTimetable> findAllByIdUser(Long id) {
         return timetableRepository.findAllByIdUser(id);
     }
-    public List<LessonTimetable> findAllByIdUserAndNumberOfWeek(Long id, String week){return  timetableRepository.findAllByIdUserAndNumberOfWeek(id,week);}
-    public List<LessonTimetable> getLessonsWeekByNumber(int week ,Long id) {
+
+    public List<LessonTimetable> findAllByIdUserAndNumberOfWeek(Long id, String week) {
+        return timetableRepository.findAllByIdUserAndNumberOfWeek(id, week);
+    }
+
+    public List<LessonTimetable> getLessonsWeekByNumber(int week, Long id) {
         LocalDateTime localeDate = LocalDateTime.now();
         localeDate = localeDate.plusWeeks(week);
         LocalDateTime firstSeptember = LocalDateTime.of(LocalDateTime.now().getYear(), 9, 1, 1, 1);
@@ -45,26 +51,20 @@ public class TimetableService {
         } else {
             lessonsList = findAllByIdUserAndNumberOfWeek(id, Const.CHOICE_BOX_NUMBER_OF_WEEK[1]);
         }
-        System.out.println(ChronoUnit.WEEKS.between(firstSeptember, localeDate));
         return lessonsList;
     }
 
     public LessonTimetable[][][] getSortLessonsTimetableAll(Long id) {
         int maxSize = 0;
-        TimetableService timetableService = new TimetableService(timetableRepository,userRepository);
+        TimetableService timetableService = new TimetableService(timetableRepository, userRepository);
         List<LessonTimetable> lessonTimetableList = timetableService.findAllByIdUser(id);
         LessonTimetable[][][] lessonTimetables = new LessonTimetable[2][6][];
         for (byte k = 0; k < 6; k++) {
             for (byte j = 0; j < 2; j++) {
                 byte numberDay = k;
                 byte numberWeek = j;
-                List<LessonTimetable> lessonsList = lessonTimetableList.stream()
-                        .filter(lessonTimetable ->
-                                Objects.equals(lessonTimetable.getDayOfWeek(), Const.CHOICE_BOX_SIX_DAYS_OF_WEEK[numberDay]) &&
-                                        (Objects.equals(lessonTimetable.getNumberOfWeek(), Const.CHOICE_BOX_NUMBER_OF_WEEK[numberWeek]) ||
-                                                Objects.equals(lessonTimetable.getNumberOfWeek(), Const.CHOICE_BOX_NUMBER_OF_WEEK[2])))
-                        .collect(Collectors.toList());
-                if(lessonsList.size() > maxSize) maxSize = lessonsList.size();
+                List<LessonTimetable> lessonsList = lessonTimetableList.stream().filter(lessonTimetable -> Objects.equals(lessonTimetable.getDayOfWeek(), Const.CHOICE_BOX_SIX_DAYS_OF_WEEK[numberDay]) && (Objects.equals(lessonTimetable.getNumberOfWeek(), Const.CHOICE_BOX_NUMBER_OF_WEEK[numberWeek]) || Objects.equals(lessonTimetable.getNumberOfWeek(), Const.CHOICE_BOX_NUMBER_OF_WEEK[2]))).collect(Collectors.toList());
+                if (lessonsList.size() > maxSize) maxSize = lessonsList.size();
                 if (lessonsList.size() >= 1) {
                     sortLessonByTimeInDay(lessonsList);
                     lessonTimetables[j][k] = lessonsList.toArray(LessonTimetable[]::new);
@@ -73,15 +73,14 @@ public class TimetableService {
         }
         return lessonTimetables;
     }
+
     public LessonTimetable[][] getSortLessonsTimetableOneWeek(List<LessonTimetable> lessonTimetableList) {
         int maxSize = 0;
         LessonTimetable[][] lessonTimetables = new LessonTimetable[6][];
         for (byte d = 0; d < 6; d++) {
             byte day = d;
-            List<LessonTimetable> lessonsList = lessonTimetableList.stream()
-                    .filter(el -> Objects.equals(el.getDayOfWeek(),Const.CHOICE_BOX_SIX_DAYS_OF_WEEK[day]))
-                    .collect(Collectors.toList());
-            if(maxSize < lessonsList.size()) maxSize = lessonsList.size();
+            List<LessonTimetable> lessonsList = lessonTimetableList.stream().filter(el -> Objects.equals(el.getDayOfWeek(), Const.CHOICE_BOX_SIX_DAYS_OF_WEEK[day])).collect(Collectors.toList());
+            if (maxSize < lessonsList.size()) maxSize = lessonsList.size();
             if (lessonsList.size() >= 1) {
                 sortLessonByTimeInDay(lessonsList);
                 lessonTimetables[d] = lessonsList.toArray(LessonTimetable[]::new);
@@ -89,34 +88,33 @@ public class TimetableService {
         }
         return lessonTimetables;
     }
-    private  void sortLessonByTimeInDay(List<LessonTimetable> lessonsList){
-        List<LessonTimetable> sortedList = lessonsList.stream()
-                .sorted()
-                .toList();
+
+    private void sortLessonByTimeInDay(List<LessonTimetable> lessonsList) {
+        List<LessonTimetable> sortedList = lessonsList.stream().sorted().toList();
         lessonsList.clear();
         lessonsList.addAll(sortedList);
     }
-    public void saveByUserDetails(LessonTimetable lessonTimetable, UserDetails userDetails){
+
+    public void saveByUserDetails(LessonTimetable lessonTimetable, UserDetails userDetails) {
         User user = userRepository.findUserByLogin(userDetails.getUsername());
         lessonTimetable.setIdUser(user.getId());
         splitTime(lessonTimetable);
         save(lessonTimetable);
     }
-    private static void splitTime(LessonTimetable lessonTimetable){
-        if(lessonTimetable.getTime().length() <= 6 ){
-            lessonTimetable.setTime(lessonTimetable.getTime().replaceAll(",",""));
-        }else {
+
+    private static void splitTime(LessonTimetable lessonTimetable) {
+        if (lessonTimetable.getTime().length() <= 6) {
+            lessonTimetable.setTime(lessonTimetable.getTime().replaceAll(",", ""));
+        } else {
             String[] times = lessonTimetable.getTime().split(",");
             lessonTimetable.setTime(times[1]);
         }
-
-
     }
 
     public void deleteByIdAndUserDetails(Long id, UserDetails userDetails) {
         User user = userRepository.findUserByLogin(userDetails.getUsername());
         LessonTimetable lessonTimetable = timetableRepository.getById(id);
-        if(Objects.equals(user.getId(), lessonTimetable.getIdUser())){
+        if (Objects.equals(user.getId(), lessonTimetable.getIdUser())) {
             timetableRepository.delete(lessonTimetable);
         }
     }

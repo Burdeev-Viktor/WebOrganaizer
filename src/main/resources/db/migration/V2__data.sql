@@ -1,4 +1,4 @@
-INSERT INTO users (login, name, password) values ('viktor', 'viktor', '$2a$08$whBRq7LJ4/o9gX6TiCgIcOSBpZu0YRfIb9opVgsy82IRMB.qEL/XW');
+INSERT INTO users (login, name, password) values ('viktor', 'viktor', '[32, 44, -71, 98, -84, 89, 7, 91, -106, 75, 7, 21, 45, 35, 75, 112]');
 INSERT INTO lessons (conditions, id_user, name, type_of_test) values ('Лабораторные', 1, 'БЖЧ', 'Экзамен');
 INSERT INTO lessons (conditions, id_user, name, type_of_test) values ('Контрольные', 1, 'Методы машинного обучения', 'Зачёт');
 INSERT INTO lessons (conditions, id_user, name, type_of_test) values ('', 1, 'Экономика', 'Зачёт');
