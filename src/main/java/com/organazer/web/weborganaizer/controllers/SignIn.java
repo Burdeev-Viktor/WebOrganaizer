@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class signIn {
+public class SignIn {
     private final UserService userService;
 
-    public signIn(UserService userService) {
+    public SignIn(UserService userService) {
         this.userService = userService;
     }
 

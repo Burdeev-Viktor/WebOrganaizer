@@ -11,29 +11,26 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 @RequestMapping("/lessons")
-public class lessonController {
+public class LessonController {
     private final TimetableService timetableService;
     private final UserService userService;
     private final LessonService lessonService;
     private int weekCount;
 
-    public lessonController(TimetableService timetableService, UserService userService, LessonService lessonService) {
+    public LessonController(TimetableService timetableService, UserService userService, LessonService lessonService) {
         this.timetableService = timetableService;
         this.userService = userService;
         this.lessonService = lessonService;
         weekCount = 0;
     }
 
-    @GetMapping()
+    @RequestMapping(method = RequestMethod.GET)
     public String getLessons(@AuthenticationPrincipal UserDetails userDetails, Model model){
         User user = userService.findUserByLogin(userDetails.getUsername());
         List<Lesson> lessonList = lessonService.findAllByIdUser(user.getId());
@@ -44,28 +41,28 @@ public class lessonController {
         model.addAttribute("newLesson",new Lesson());
         return "lessons";
     }
-    @GetMapping("/+")
+    @RequestMapping(value = "/+", method = RequestMethod.GET)
     public String nextWeek(){
         weekCount++;
         return "redirect:/lessons";
     }
-    @GetMapping("/-")
+    @RequestMapping(value = "/-", method = RequestMethod.GET)
     public String backWeek(){
         weekCount--;
         return "redirect:/lessons";
     }
-    @PostMapping("/create-lesson")
+    @RequestMapping(method = RequestMethod.POST)
     public String createLesson(@AuthenticationPrincipal UserDetails userDetails,Lesson lesson){
         lessonService.saveByUserDetails(lesson,userDetails);
         return "redirect:/lessons";
     }
-    @PostMapping("/update-lesson/{id}")
+    @RequestMapping (value = "/{id}",method = RequestMethod.PUT)
     public String updateLesson(@AuthenticationPrincipal UserDetails userDetails,@PathVariable Long id,Lesson lesson){
         lesson.setId(id);
         lessonService.saveByUserDetails(lesson,userDetails);
         return "redirect:/lessons";
     }
-    @GetMapping("/delete-lesson/{id}")
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public String deleteLesson(@AuthenticationPrincipal UserDetails userDetails, @PathVariable Long id){
         lessonService.deleteByUserDetails(userDetails,id);
         return "redirect:/lessons";

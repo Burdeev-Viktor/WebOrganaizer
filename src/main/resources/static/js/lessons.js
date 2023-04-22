@@ -4,7 +4,7 @@ const closePopups = document.getElementsByClassName("close-popup");
 connectionPopupButtons(openPopups,closePopups);
 function clickDelete(img){
     const form = img.parentElement;
-    let flag = confirm("Вы действительно хотите удалить передмет?");
+    let flag = confirm("Вы действительно хотите удалить?");
     if(flag){
         form.submit();
     }

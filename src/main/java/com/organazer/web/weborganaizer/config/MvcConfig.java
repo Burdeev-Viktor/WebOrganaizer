@@ -13,9 +13,7 @@ public class MvcConfig implements WebMvcConfigurer {
     public PasswordEncoder getPasswordEncoder() {
         return new Encoder();
     }
-
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("login");
     }
-
 }

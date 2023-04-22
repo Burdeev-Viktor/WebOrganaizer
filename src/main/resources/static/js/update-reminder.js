@@ -75,4 +75,12 @@ function hideSelectorDay() {
         divSelectDay.classList.add('active');
     }
 }
+function closeWork(button){
+    document.getElementById('closeWorkForm').submit();
+}
+function deleteReminder(button){
+    if(confirm("Вы действительно хотите удалить напоминание?")){
+        document.getElementById('deleteReminderForm').submit();
+    }
+}
 

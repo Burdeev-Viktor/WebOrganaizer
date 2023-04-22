@@ -11,26 +11,23 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 @RequestMapping("/timetable")
-public class timetableController {
+public class TimetableController {
     private final LessonService lessonService;
     private final TimetableService timetableService;
     private final UserService userService;
 
-    public timetableController(LessonService lessonService, TimetableService timetableService, UserService userService) {
+    public TimetableController(LessonService lessonService, TimetableService timetableService, UserService userService) {
         this.lessonService = lessonService;
         this.timetableService = timetableService;
         this.userService = userService;
     }
-    @GetMapping("")
+    @RequestMapping(method = RequestMethod.GET)
     public String getTimetable(@AuthenticationPrincipal UserDetails userDetails, Model model){
         User user = userService.findUserByLogin(userDetails.getUsername());
         String[] nameLessons = lessonService.getAllLessonsNameByIdUser(user.getId());
@@ -50,17 +47,17 @@ public class timetableController {
         model.addAttribute("reminder",new Reminder());
         return "timetable";
     }
-    @PostMapping("/create-lesson-timetable")
+    @RequestMapping( method = RequestMethod.POST)
     public  String createLessonTimetable(LessonTimetable lessonTimetable,@AuthenticationPrincipal UserDetails userDetails){
         timetableService.saveByUserDetails(lessonTimetable,userDetails);
         return "redirect:/timetable";
     }
-    @PostMapping("/update-lesson-timetable/{id}")
+    @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
     public String updateLessonTimetable( LessonTimetable lessonTimetable,@AuthenticationPrincipal UserDetails userDetails){
         timetableService.saveByUserDetails(lessonTimetable,userDetails);
         return "redirect:/timetable";
     }
-    @GetMapping("/delete-lesson/{id}")
+    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
     public String deleteLesson(@PathVariable Long id,@AuthenticationPrincipal UserDetails userDetails){
         timetableService.deleteByIdAndUserDetails(id,userDetails);
         return "redirect:/timetable";

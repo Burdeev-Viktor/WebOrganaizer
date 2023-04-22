@@ -183,32 +183,32 @@
                                 <div th:popup-id="${lesson.id}" class="lesson-name-container open-popup">
                                     <p class="p-lesson-name" th:text="${lesson.name}"></p>
                                 </div>
-                                <form th:action="@{/lessons/delete-lesson/{id}(id=${lesson.getId()})}" method="get">
-                                    <img class="img-delete-lesson" onclick="clickDelete(this)" src="/img/delete.png" alt="">
+                                <form th:action="@{/lessons/{id}(id=${lesson.getId()})}" th:method="delete" method="get">
+                                    <img class="img-delete-lesson" onclick="clickDelete(this)" src="/img/delete.png" alt="" >
                                 </form>
                             </div>
                             <div th:case="Зачёт"  class="lesson credit">
                                 <div th:popup-id="${lesson.id}" class="lesson-name-container open-popup">
                                     <p class="p-lesson-name" th:text="${lesson.name}"></p>
                                 </div>
-                                <form th:action="@{/lessons/delete-lesson/{id}(id=${lesson.getId()})}" method="get">
-                                    <img class="img-delete-lesson" onclick="clickDelete(this)" src="/img/delete.png" alt="">
+                                <form th:action="@{/lessons/{id}(id=${lesson.getId()})}" th:method="delete">
+                                    <img class="img-delete-lesson" onclick="clickDelete(this)" src="/img/delete.png" alt="" >
                                 </form>
                             </div>
                             <div th:case="Тест" class="lesson test">
                                 <div th:popup-id="${lesson.id}" class="lesson-name-container open-popup">
                                     <p class="p-lesson-name" th:text="${lesson.name}"></p>
                                 </div>
-                                <form th:action="@{/lessons/delete-lesson/{id}(id=${lesson.getId()})}" method="get">
-                                    <img class="img-delete-lesson" onclick="clickDelete(this)" src="/img/delete.png" alt="">
+                                <form th:action="@{/lessons/{id}(id=${lesson.getId()})}" method="get" th:method="delete">
+                                    <img class="img-delete-lesson" onclick="clickDelete(this)" src="/img/delete.png" alt="" >
                                 </form>
                             </div>
                             <div th:case="*" class="lesson unknown">
                                 <div th:popup-id="${lesson.id}" class="lesson-name-container open-popup">
                                     <p class="p-lesson-name" th:text="${lesson.name}"></p>
                                 </div>
-                                <form th:action="@{/lessons/delete-lesson/{id}(id=${lesson.getId()})}" method="get">
-                                    <img class="img-delete-lesson" onclick="clickDelete(this)" src="/img/delete.png" alt="">
+                                <form th:action="@{/lessons/{id}(id=${lesson.getId()})}" th:method="delete">
+                                    <img class="img-delete-lesson" onclick="clickDelete(this)" src="/img/delete.png" alt="" >
                                 </form>
                             </div>
                         </div>
@@ -217,7 +217,7 @@
             </div>
             <div class="div-flex" style="width: 50%">
                 <div class="form-container">
-                    <form th:action="@{lessons/create-lesson}" onsubmit="return validation(0)"  th:object="${newLesson}" method="post">
+                    <form th:action="@{lessons}" onsubmit="return validation(0)"  th:object="${newLesson}" method="post">
                         <div class="div-form-item">
                             <label class="label-input" for="name">Название:</label>
                             <div>
@@ -251,8 +251,8 @@
     <div th:id="${oneLesson.id}" class="popup-bg none">
         <div class="popup">
             <img th:popup-id="${oneLesson.id}" class="close-popup" th:src="@{img/close-popup.png}" alt="" src="">
-            <form th:onsubmit="'return validation(' + ${oneLesson.id} + ')'" th:action="@{/lessons/update-lesson/{id}(id=${oneLesson.getId()})}"
-                  th:id="'formQuest' + ${oneLesson.id}" th:object="${newLesson}" method="post">
+            <form th:onsubmit="'return validation(' + ${oneLesson.id} + ')'" th:action="@{/lessons/{id}(id=${oneLesson.getId()})}"
+                  th:id="'formQuest' + ${oneLesson.id}" th:object="${newLesson}" th:method="PUT">
                 <input type="hidden" th:field="*{idUser}" th:value="${oneLesson.idUser}">
                 <input type="hidden" th:field="*{id}"  th:value="${oneLesson.id}">
                 <div class="div-form-item">

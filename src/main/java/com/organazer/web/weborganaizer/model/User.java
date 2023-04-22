@@ -11,7 +11,6 @@ import java.io.Serializable;
 @Entity
 @Setter
 @Getter
-
 @Table(name = "users")
 public class User implements Serializable {
     @Id

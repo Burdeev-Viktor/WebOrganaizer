@@ -28,6 +28,13 @@
          firstTime.options[firstTime.selectedIndex].value = "";
      }
  });
+ function clickDeleteTimetable(img) {
+     let form = document.getElementById('formDel' + img.getAttribute('id').split('img').join(''));
+     if(confirm("Вы действительно хотите удалить пару?")){
+         form.submit();
+     }
+
+ }
 function validationTimetable(id){
     let res = true;
     const teacher = document.getElementById('teacher'+id);
