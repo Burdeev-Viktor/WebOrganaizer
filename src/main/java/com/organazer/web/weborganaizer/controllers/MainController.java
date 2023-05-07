@@ -1,9 +1,7 @@
 package com.organazer.web.weborganaizer.controllers;
 
 import com.organazer.web.weborganaizer.Const;
-import com.organazer.web.weborganaizer.model.LessonTimetable;
-import com.organazer.web.weborganaizer.model.Reminder;
-import com.organazer.web.weborganaizer.model.User;
+import com.organazer.web.weborganaizer.model.*;
 import com.organazer.web.weborganaizer.service.LessonService;
 import com.organazer.web.weborganaizer.service.ReminderService;
 import com.organazer.web.weborganaizer.service.TimetableService;
@@ -44,8 +42,9 @@ public class MainController {
         model.addAttribute("reminders",reminderList);
         model.addAttribute("reminder",new Reminder());
         model.addAttribute("nameLessons",nameLessons);
-        model.addAttribute("days", Const.CHOICE_BOX_SEVEN_DAYS_OF_WEEK);
-        model.addAttribute("switch",Const.CHOICE_BOX_SETTING_SWITCH);
+        model.addAttribute("typeLesson", TypeOfLesson.values());
+        model.addAttribute("days", DayOfWeek.values());
+        model.addAttribute("switch",SettingSwitch.values());
         return "main";
     }
     @RequestMapping(value = "/+",method = RequestMethod.GET)

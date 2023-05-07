@@ -42,16 +42,16 @@
                     </div>
                     <div th:each="lesson:${timetables[0]}" >
                         <div th:switch="${lesson.type}">
-                            <div th:case="Лекция" class="lesson-div ignore-height lecture ">
+                            <div th:case="${typeLesson[0]}" class="lesson-div lecture ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
-                            <div th:case="Лабораторная" class="lesson-div ignore-height lab ">
+                            <div th:case="${typeLesson[1]}" class="lesson-div lab ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
-                            <div th:case="Практика" class="lesson-div ignore-height practice ">
+                            <div th:case="${typeLesson[2]}" class="lesson-div practice ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
-                            <div th:case="Консультация" class="lesson-div ignore-height consultation ">
+                            <div th:case="${typeLesson[3]}" class="lesson-div consultation ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
                             <div th:case="*" th:text="'&#160'"></div>
@@ -64,16 +64,16 @@
                     </div>
                     <div th:each="lesson:${timetables[1]}" >
                         <div th:switch="${lesson.type}">
-                            <div th:case="Лекция" class="lesson-div ignore-height lecture ">
+                            <div th:case="${typeLesson[0]}" class="lesson-div lecture ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
-                            <div th:case="Лабораторная" class="lesson-div ignore-height lab ">
+                            <div th:case="${typeLesson[1]}" class="lesson-div lab ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
-                            <div th:case="Практика" class="lesson-div ignore-height practice ">
+                            <div th:case="${typeLesson[2]}" class="lesson-div practice ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
-                            <div th:case="Консультация" class="lesson-div ignore-height consultation ">
+                            <div th:case="${typeLesson[3]}" class="lesson-div consultation ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
                             <div th:case="*" th:text="'&#160'"></div>
@@ -86,16 +86,16 @@
                     </div>
                     <div th:each="lesson:${timetables[2]}" >
                         <div th:switch="${lesson.type}">
-                            <div th:case="Лекция" class="lesson-div ignore-height lecture ">
+                            <div th:case="${typeLesson[0]}" class="lesson-div lecture ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
-                            <div th:case="Лабораторная" class="lesson-div ignore-height lab ">
+                            <div th:case="${typeLesson[1]}" class="lesson-div lab ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
-                            <div th:case="Практика" class="lesson-div ignore-height practice ">
+                            <div th:case="${typeLesson[2]}" class="lesson-div practice ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
-                            <div th:case="Консультация" class="lesson-div ignore-height consultation ">
+                            <div th:case="${typeLesson[3]}" class="lesson-div consultation ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
                             <div th:case="*" th:text="'&#160'"></div>
@@ -108,16 +108,16 @@
                     </div>
                     <div th:each="lesson:${timetables[3]}" >
                         <div th:switch="${lesson.type}">
-                            <div th:case="Лекция" class="lesson-div ignore-height lecture ">
+                            <div th:case="${typeLesson[0]}" class="lesson-div lecture ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
-                            <div th:case="Лабораторная" class="lesson-div ignore-height lab ">
+                            <div th:case="${typeLesson[1]}" class="lesson-div lab ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
-                            <div th:case="Практика" class="lesson-div ignore-height practice ">
+                            <div th:case="${typeLesson[2]}" class="lesson-div practice ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
-                            <div th:case="Консультация" class="lesson-div ignore-height consultation ">
+                            <div th:case="${typeLesson[3]}" class="lesson-div consultation ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
                             <div th:case="*" th:text="'&#160'"></div>
@@ -130,16 +130,16 @@
                     </div>
                     <div th:each="lesson:${timetables[4]}" >
                         <div th:switch="${lesson.type}">
-                            <div th:case="Лекция" class="lesson-div ignore-height lecture ">
+                            <div th:case="${typeLesson[0]}" class="lesson-div lecture ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
-                            <div th:case="Лабораторная" class="lesson-div ignore-height lab ">
+                            <div th:case="${typeLesson[1]}" class="lesson-div lab ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
-                            <div th:case="Практика" class="lesson-div ignore-height practice ">
+                            <div th:case="${typeLesson[2]}" class="lesson-div practice ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
-                            <div th:case="Консультация" class="lesson-div ignore-height consultation ">
+                            <div th:case="${typeLesson[3]}" class="lesson-div consultation ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
                             <div th:case="*" th:text="'&#160'"></div>
@@ -148,20 +148,20 @@
                 </div>
                 <div class="one-day">
                     <div class="day-name-div" >
-                        <p class="day-name">Суббата</p>
+                        <p class="day-name">Суббота</p>
                     </div>
                     <div th:each="lesson:${timetables[5]}" >
                         <div th:switch="${lesson.type}">
-                            <div th:case="Лекция" class="lesson-div ignore-height lecture ">
+                            <div th:case="${typeLesson[0]}" class="lesson-div lecture ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
-                            <div th:case="Лабораторная" class="lesson-div ignore-height lab ">
+                            <div th:case="${typeLesson[1]}" class="lesson-div lab ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
-                            <div th:case="Практика" class="lesson-div ignore-height practice ">
+                            <div th:case="${typeLesson[2]}" class="lesson-div practice ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
-                            <div th:case="Консультация" class="lesson-div ignore-height consultation ">
+                            <div th:case="${typeLesson[3]}" class="lesson-div consultation ">
                                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
                             </div>
                             <div th:case="*" th:text="'&#160'"></div>
@@ -178,7 +178,7 @@
                 </div>
                 <div class="lessons-container">
                     <div th:each="lesson:${lessons}" >
-                        <div th:switch="${lesson.getTypeOfTest()}">
+                        <div th:switch="${lesson.getTypeOfTest().getType()}">
                             <div th:case="Экзамен"  class="lesson exam">
                                 <div th:popup-id="${lesson.id}" class="lesson-name-container open-popup">
                                     <p class="p-lesson-name" th:text="${lesson.name}"></p>
@@ -228,7 +228,7 @@
                             <label class="label-input" for="typeOfTest">Тип тестирования:</label>
                             <select class="input-data" id="typeOfTest" th:field="*{typeOfTest}">
                                 <option th:each="type:${typeOfTest}"
-                                        th:text="${type}"
+                                        th:text="${type.getType()}"
                                         th:value="${type}"></option>
                             </select>
                         </div>

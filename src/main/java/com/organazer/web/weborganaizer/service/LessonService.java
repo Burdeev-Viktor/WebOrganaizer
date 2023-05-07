@@ -58,7 +58,7 @@ public class LessonService {
 
     public void deleteByUserDetails(UserDetails userDetails, Long id) {
         User user = userRepository.findUserByLogin(userDetails.getUsername());
-        Lesson lessonFor_db = lessonsRepository.getById(id);
+        Lesson lessonFor_db = lessonsRepository.findLessonById(id);
         if(Objects.equals(user.getId(), lessonFor_db.getIdUser())){
             lessonsRepository.delete(lessonFor_db);
         }

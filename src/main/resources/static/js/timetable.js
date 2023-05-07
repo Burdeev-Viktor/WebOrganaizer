@@ -36,6 +36,7 @@
 
  }
 function validationTimetable(id){
+     if (id === 0) id = '';
     let res = true;
     const teacher = document.getElementById('teacher'+id);
     const room = document.getElementById('room'+id);

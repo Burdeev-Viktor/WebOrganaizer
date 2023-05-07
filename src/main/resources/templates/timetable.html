@@ -44,28 +44,28 @@
             </div>
             <div th:each="lesson:${lessons[0][0]}">
               <div th:switch="${lesson.type}">
-                <div th:popup-id="${lesson.id}" th:case="Лекция" class="lesson-div ignore-height lecture open-popup">
+                <div th:case="${typeLesson[0]}" th:popup-id="${lesson.id}"  class="lesson-div ignore-height lecture open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
                   </div>
                   <p class="lesson-time-p" th:text="${lesson.time}"></p>
                 </div>
-                <div th:popup-id="${lesson.id}" th:case="Лабораторная" class="lesson-div ignore-height lab open-popup">
+                <div th:case="${typeLesson[1]}" th:popup-id="${lesson.id}"  class="lesson-div ignore-height lab open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
                   </div>
                   <p class="lesson-time-p" th:text="${lesson.time}"></p>
                 </div>
-                <div th:popup-id="${lesson.id}" th:case="Практика" class="lesson-div ignore-height practice open-popup">
+                <div th:case="${typeLesson[2]}" th:popup-id="${lesson.id}"  class="lesson-div ignore-height practice open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
                   </div>
                   <p class="lesson-time-p" th:text="${lesson.time}"></p>
                 </div>
-                <div th:popup-id="${lesson.id}" th:case="Консультация" class="lesson-div ignore-height consultation open-popup">
+                <div th:case="${typeLesson[3]}" th:popup-id="${lesson.id}" class="lesson-div ignore-height consultation open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
@@ -82,28 +82,28 @@
             </div>
             <div th:each="lesson:${lessons[0][1]}">
               <div th:switch="${lesson.type}">
-                <div th:popup-id="${lesson.id}" th:case="Лекция" class="lesson-div ignore-height lecture open-popup">
+                <div th:popup-id="${lesson.id}" th:case="${typeLesson[0]}" class="lesson-div ignore-height lecture open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
                   </div>
                   <p class="lesson-time-p" th:text="${lesson.time}"></p>
                 </div>
-                <div th:popup-id="${lesson.id}" th:case="Лабораторная" class="lesson-div ignore-height lab open-popup">
+                <div th:popup-id="${lesson.id}" th:case="${typeLesson[1]}" class="lesson-div ignore-height lab open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
                   </div>
                   <p class="lesson-time-p" th:text="${lesson.time}"></p>
                 </div>
-                <div th:popup-id="${lesson.id}" th:case="Практика" class="lesson-div ignore-height practice open-popup">
+                <div th:popup-id="${lesson.id}" th:case="${typeLesson[2]}" class="lesson-div ignore-height practice open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
                   </div>
                   <p class="lesson-time-p" th:text="${lesson.time}"></p>
                 </div>
-                <div th:popup-id="${lesson.id}" th:case="Консультация" class="lesson-div ignore-height consultation open-popup">
+                <div th:popup-id="${lesson.id}" th:case="${typeLesson[3]}" class="lesson-div ignore-height consultation open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
@@ -120,28 +120,28 @@
             </div>
             <div th:each="lesson:${lessons[0][2]}">
               <div th:switch="${lesson.type}">
-                <div th:popup-id="${lesson.id}" th:case="Лекция" class="lesson-div ignore-height lecture open-popup">
+                <div th:popup-id="${lesson.id}" th:case="${typeLesson[0]}" class="lesson-div ignore-height lecture open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
                   </div>
                   <p class="lesson-time-p" th:text="${lesson.time}"></p>
                 </div>
-                <div th:popup-id="${lesson.id}" th:case="Лабораторная" class="lesson-div ignore-height lab open-popup">
+                <div th:popup-id="${lesson.id}" th:case="${typeLesson[1]}" class="lesson-div ignore-height lab open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
                   </div>
                   <p class="lesson-time-p" th:text="${lesson.time}"></p>
                 </div>
-                <div th:popup-id="${lesson.id}" th:case="Практика" class="lesson-div ignore-height practice open-popup">
+                <div th:popup-id="${lesson.id}" th:case="${typeLesson[2]}" class="lesson-div ignore-height practice open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
                   </div>
                   <p class="lesson-time-p" th:text="${lesson.time}"></p>
                 </div>
-                <div th:popup-id="${lesson.id}" th:case="Консультация" class="lesson-div ignore-height consultation open-popup">
+                <div th:popup-id="${lesson.id}" th:case="${typeLesson[3]}" class="lesson-div ignore-height consultation open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
@@ -158,28 +158,28 @@
             </div>
             <div th:each="lesson:${lessons[0][3]}">
               <div th:switch="${lesson.type}">
-                <div th:popup-id="${lesson.id}" th:case="Лекция" class="lesson-div ignore-height lecture open-popup">
+                <div th:popup-id="${lesson.id}" th:case="${typeLesson[0]}" class="lesson-div ignore-height lecture open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
                   </div>
                   <p class="lesson-time-p" th:text="${lesson.time}"></p>
                 </div>
-                <div th:popup-id="${lesson.id}" th:case="Лабораторная" class="lesson-div ignore-height lab open-popup">
+                <div th:popup-id="${lesson.id}" th:case="${typeLesson[1]}" class="lesson-div ignore-height lab open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
                   </div>
                   <p class="lesson-time-p" th:text="${lesson.time}"></p>
                 </div>
-                <div th:popup-id="${lesson.id}" th:case="Практика" class="lesson-div ignore-height practice open-popup">
+                <div th:popup-id="${lesson.id}" th:case="${typeLesson[2]}" class="lesson-div ignore-height practice open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
                   </div>
                   <p class="lesson-time-p" th:text="${lesson.time}"></p>
                 </div>
-                <div th:popup-id="${lesson.id}" th:case="Консультация" class="lesson-div ignore-height consultation open-popup">
+                <div th:popup-id="${lesson.id}" th:case="${typeLesson[3]}" class="lesson-div ignore-height consultation open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
@@ -196,28 +196,28 @@
             </div>
             <div th:each="lesson:${lessons[0][4]}">
               <div th:switch="${lesson.type}">
-                <div th:popup-id="${lesson.id}" th:case="Лекция" class="lesson-div ignore-height lecture open-popup">
+                <div th:popup-id="${lesson.id}" th:case="${typeLesson[0]}" class="lesson-div ignore-height lecture open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
                   </div>
                   <p class="lesson-time-p" th:text="${lesson.time}"></p>
                 </div>
-                <div th:popup-id="${lesson.id}" th:case="Лабораторная" class="lesson-div ignore-height lab open-popup">
+                <div th:popup-id="${lesson.id}" th:case="${typeLesson[1]}" class="lesson-div ignore-height lab open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
                   </div>
                   <p class="lesson-time-p" th:text="${lesson.time}"></p>
                 </div>
-                <div th:popup-id="${lesson.id}" th:case="Практика" class="lesson-div ignore-height practice open-popup">
+                <div th:popup-id="${lesson.id}" th:case="${typeLesson[2]}" class="lesson-div ignore-height practice open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
                   </div>
                   <p class="lesson-time-p" th:text="${lesson.time}"></p>
                 </div>
-                <div th:popup-id="${lesson.id}" th:case="Консультация" class="lesson-div ignore-height consultation open-popup">
+                <div th:popup-id="${lesson.id}" th:case="${typeLesson[3]}" class="lesson-div ignore-height consultation open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
@@ -234,28 +234,28 @@
             </div>
             <div th:each="lesson:${lessons[0][5]}">
               <div th:switch="${lesson.type}">
-                <div th:popup-id="${lesson.id}" th:case="Лекция" class="lesson-div ignore-height lecture open-popup">
+                <div th:popup-id="${lesson.id}" th:case="${typeLesson[0]}" class="lesson-div ignore-height lecture open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
                   </div>
                   <p class="lesson-time-p" th:text="${lesson.time}"></p>
                 </div>
-                <div th:popup-id="${lesson.id}" th:case="Лабораторная" class="lesson-div ignore-height lab open-popup">
+                <div th:popup-id="${lesson.id}" th:case="${typeLesson[1]}" class="lesson-div ignore-height lab open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
                   </div>
                   <p class="lesson-time-p" th:text="${lesson.time}"></p>
                 </div>
-                <div th:popup-id="${lesson.id}" th:case="Практика" class="lesson-div ignore-height practice open-popup">
+                <div th:popup-id="${lesson.id}" th:case="${typeLesson[2]}" class="lesson-div ignore-height practice open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
                   </div>
                   <p class="lesson-time-p" th:text="${lesson.time}"></p>
                 </div>
-                <div th:popup-id="${lesson.id}" th:case="Консультация" class="lesson-div ignore-height consultation open-popup">
+                <div th:popup-id="${lesson.id}" th:case="${typeLesson[3]}" class="lesson-div ignore-height consultation open-popup">
                   <div class="div-nameAndRoom">
                     <p class="lesson-name-p" th:text="${lesson.name}"></p>
                     <p class="lesson-room-p" th:text="${lesson.room}"></p>
@@ -267,228 +267,38 @@
             </div>
           </div>
         </div >
-        <div class="week">
-          <div class="number-week">
-            <span class="span-number-week">II</span>
-          </div>
-          <div class="one-day">
-            <div class="day-name-div" >
-              <p class="day-name">Понедельник</p>
+          <div class="week">
+            <div class="number-week">
+              <span class="span-number-week">I</span>
             </div>
-            <div th:each="lesson:${lessons[1][0]}">
-              <div th:switch="${lesson.type}">
-                <div th:popup-id="${lesson.id}" th:case="Лекция" class="lesson-div ignore-height lecture open-popup">
-                  <div class="div-nameAndRoom">
-                    <p class="lesson-name-p" th:text="${lesson.name}"></p>
-                    <p class="lesson-room-p" th:text="${lesson.room}"></p>
-                  </div>
-                  <p class="lesson-time-p" th:text="${lesson.time}"></p>
-                </div>
-                <div th:popup-id="${lesson.id}" th:case="Лабораторная" class="lesson-div ignore-height lab open-popup">
-                  <div class="div-nameAndRoom">
-                    <p class="lesson-name-p" th:text="${lesson.name}"></p>
-                    <p class="lesson-room-p" th:text="${lesson.room}"></p>
-                  </div>
-                  <p class="lesson-time-p" th:text="${lesson.time}"></p>
-                </div>
-                <div th:popup-id="${lesson.id}" th:case="Практика" class="lesson-div ignore-height practice open-popup">
-                  <div class="div-nameAndRoom">
-                    <p class="lesson-name-p" th:text="${lesson.name}"></p>
-                    <p class="lesson-room-p" th:text="${lesson.room}"></p>
-                  </div>
-                  <p class="lesson-time-p" th:text="${lesson.time}"></p>
-                </div>
-                <div th:popup-id="${lesson.id}" th:case="Консультация" class="lesson-div ignore-height consultation open-popup">
-                  <div class="div-nameAndRoom">
-                    <p class="lesson-name-p" th:text="${lesson.name}"></p>
-                    <p class="lesson-room-p" th:text="${lesson.room}"></p>
-                  </div>
-                  <p class="lesson-time-p" th:text="${lesson.time}"></p>
-                </div>
-                <div th:case="*" th:text="'&#160'"></div>
+            <div class="one-day">
+              <div class="day-name-div" >
+                <p class="day-name">Понедельник</p>
               </div>
-          </div>
-          </div>
-          <div class="one-day">
-            <div class="day-name-div" >
-              <p class="day-name">Вторник</p>
-            </div>
-            <div th:each="lesson:${lessons[1][1]}">
-              <div th:switch="${lesson.type}">
-                <div th:popup-id="${lesson.id}" th:case="Лекция" class="lesson-div ignore-height lecture open-popup">
-                  <div class="div-nameAndRoom">
-                    <p class="lesson-name-p" th:text="${lesson.name}"></p>
-                    <p class="lesson-room-p" th:text="${lesson.room}"></p>
-                  </div>
-                  <p class="lesson-time-p" th:text="${lesson.time}"></p>
-                </div>
-                <div th:popup-id="${lesson.id}" th:case="Лабораторная" class="lesson-div ignore-height lab open-popup">
-                  <div class="div-nameAndRoom">
-                    <p class="lesson-name-p" th:text="${lesson.name}"></p>
-                    <p class="lesson-room-p" th:text="${lesson.room}"></p>
-                  </div>
-                  <p class="lesson-time-p" th:text="${lesson.time}"></p>
-                </div>
-                <div th:popup-id="${lesson.id}" th:case="Практика" class="lesson-div ignore-height practice open-popup">
-                  <div class="div-nameAndRoom">
-                    <p class="lesson-name-p" th:text="${lesson.name}"></p>
-                    <p class="lesson-room-p" th:text="${lesson.room}"></p>
-                  </div>
-                  <p class="lesson-time-p" th:text="${lesson.time}"></p>
-                </div>
-                <div th:popup-id="${lesson.id}" th:case="Консультация" class="lesson-div ignore-height consultation open-popup">
-                  <div class="div-nameAndRoom">
-                    <p class="lesson-name-p" th:text="${lesson.name}"></p>
-                    <p class="lesson-room-p" th:text="${lesson.room}"></p>
-                  </div>
-                  <p class="lesson-time-p" th:text="${lesson.time}"></p>
-                </div>
-                <div th:case="*" th:text="'&#160'"></div>
-              </div>
-            </div>
-          </div>
-          <div class="one-day">
-            <div class="day-name-div" >
-              <p class="day-name">Среда</p>
-            </div>
-            <div th:each="lesson:${lessons[1][2]}">
-              <div th:switch="${lesson.type}">
-                <div th:popup-id="${lesson.id}" th:case="Лекция" class="lesson-div ignore-height lecture open-popup">
-                  <div class="div-nameAndRoom">
-                    <p class="lesson-name-p" th:text="${lesson.name}"></p>
-                    <p class="lesson-room-p" th:text="${lesson.room}"></p>
-                  </div>
-                  <p class="lesson-time-p" th:text="${lesson.time}"></p>
-                </div>
-                <div th:popup-id="${lesson.id}" th:case="Лабораторная" class="lesson-div ignore-height lab open-popup">
-                  <div class="div-nameAndRoom">
-                    <p class="lesson-name-p" th:text="${lesson.name}"></p>
-                    <p class="lesson-room-p" th:text="${lesson.room}"></p>
-                  </div>
-                  <p class="lesson-time-p" th:text="${lesson.time}"></p>
-                </div>
-                <div th:popup-id="${lesson.id}" th:case="Практика" class="lesson-div ignore-height practice open-popup">
-                  <div class="div-nameAndRoom">
-                    <p class="lesson-name-p" th:text="${lesson.name}"></p>
-                    <p class="lesson-room-p" th:text="${lesson.room}"></p>
-                  </div>
-                  <p class="lesson-time-p" th:text="${lesson.time}"></p>
-                </div>
-                <div th:popup-id="${lesson.id}" th:case="Консультация" class="lesson-div ignore-height consultation open-popup">
-                  <div class="div-nameAndRoom">
-                    <p class="lesson-name-p" th:text="${lesson.name}"></p>
-                    <p class="lesson-room-p" th:text="${lesson.room}"></p>
-                  </div>
-                  <p class="lesson-time-p" th:text="${lesson.time}"></p>
-                </div>
-                <div th:case="*" th:text="'&#160'"></div>
-              </div>
-            </div>
-          </div>
-          <div class="one-day">
-            <div class="day-name-div" >
-              <p class="day-name">Четверг</p>
-            </div>
-            <div th:each="lesson:${lessons[1][3]}">
-              <div th:switch="${lesson.type}">
-                <div th:popup-id="${lesson.id}" th:case="Лекция" class="lesson-div ignore-height lecture open-popup">
-                  <div class="div-nameAndRoom">
-                    <p class="lesson-name-p" th:text="${lesson.name}"></p>
-                    <p class="lesson-room-p" th:text="${lesson.room}"></p>
-                  </div>
-                  <p class="lesson-time-p" th:text="${lesson.time}"></p>
-                </div>
-                <div th:popup-id="${lesson.id}" th:case="Лабораторная" class="lesson-div ignore-height lab open-popup">
-                  <div class="div-nameAndRoom">
-                    <p class="lesson-name-p" th:text="${lesson.name}"></p>
-                    <p class="lesson-room-p" th:text="${lesson.room}"></p>
-                  </div>
-                  <p class="lesson-time-p" th:text="${lesson.time}"></p>
-                </div>
-                <div th:popup-id="${lesson.id}" th:case="Практика" class="lesson-div ignore-height practice open-popup">
-                  <div class="div-nameAndRoom">
-                    <p class="lesson-name-p" th:text="${lesson.name}"></p>
-                    <p class="lesson-room-p" th:text="${lesson.room}"></p>
-                  </div>
-                  <p class="lesson-time-p" th:text="${lesson.time}"></p>
-                </div>
-                <div th:popup-id="${lesson.id}" th:case="Консультация" class="lesson-div ignore-height consultation open-popup">
-                  <div class="div-nameAndRoom">
-                    <p class="lesson-name-p" th:text="${lesson.name}"></p>
-                    <p class="lesson-room-p" th:text="${lesson.room}"></p>
-                  </div>
-                  <p class="lesson-time-p" th:text="${lesson.time}"></p>
-                </div>
-                <div th:case="*" th:text="'&#160'"></div>
-              </div>
-            </div>
-          </div>
-          <div class="one-day">
-            <div class="day-name-div" >
-              <p class="day-name">Пятница</p>
-            </div>
-            <div th:each="lesson:${lessons[1][4]}">
-              <div th:switch="${lesson.type}">
-                <div th:popup-id="${lesson.id}" th:case="Лекция" class="lesson-div ignore-height lecture open-popup">
-                  <div class="div-nameAndRoom">
-                    <p class="lesson-name-p" th:text="${lesson.name}"></p>
-                    <p class="lesson-room-p" th:text="${lesson.room}"></p>
-                  </div>
-                  <p class="lesson-time-p" th:text="${lesson.time}"></p>
-                </div>
-                <div th:popup-id="${lesson.id}" th:case="Лабораторная" class="lesson-div ignore-height lab open-popup">
-                  <div class="div-nameAndRoom">
-                    <p class="lesson-name-p" th:text="${lesson.name}"></p>
-                    <p class="lesson-room-p" th:text="${lesson.room}"></p>
-                  </div>
-                  <p class="lesson-time-p" th:text="${lesson.time}"></p>
-                </div>
-                <div th:popup-id="${lesson.id}" th:case="Практика" class="lesson-div ignore-height practice open-popup">
-                  <div class="div-nameAndRoom">
-                    <p class="lesson-name-p" th:text="${lesson.name}"></p>
-                    <p class="lesson-room-p" th:text="${lesson.room}"></p>
-                  </div>
-                  <p class="lesson-time-p" th:text="${lesson.time}"></p>
-                </div>
-                <div th:popup-id="${lesson.id}" th:case="Консультация" class="lesson-div ignore-height consultation open-popup">
-                  <div class="div-nameAndRoom">
-                    <p class="lesson-name-p" th:text="${lesson.name}"></p>
-                    <p class="lesson-room-p" th:text="${lesson.room}"></p>
-                  </div>
-                  <p class="lesson-time-p" th:text="${lesson.time}"></p>
-                </div>
-                <div th:case="*" th:text="'&#160'"></div>
-              </div>
-            </div>
-          </div>
-          <div class="one-day">
-            <div class="day-name-div" >
-              <p class="day-name">Субота</p>
-            </div>
-              <div th:each="lesson:${lessons[1][5]}" >
+              <div th:each="lesson:${lessons[1][0]}">
                 <div th:switch="${lesson.type}">
-                  <div th:popup-id="${lesson.id}" th:case="Лекция" class="lesson-div ignore-height lecture open-popup">
+                  <div th:case="${typeLesson[0]}" th:popup-id="${lesson.id}"  class="lesson-div ignore-height lecture open-popup">
                     <div class="div-nameAndRoom">
                       <p class="lesson-name-p" th:text="${lesson.name}"></p>
                       <p class="lesson-room-p" th:text="${lesson.room}"></p>
                     </div>
                     <p class="lesson-time-p" th:text="${lesson.time}"></p>
                   </div>
-                  <div th:popup-id="${lesson.id}" th:case="Лабораторная" class="lesson-div ignore-height lab open-popup">
+                  <div th:case="${typeLesson[1]}" th:popup-id="${lesson.id}"  class="lesson-div ignore-height lab open-popup">
                     <div class="div-nameAndRoom">
                       <p class="lesson-name-p" th:text="${lesson.name}"></p>
                       <p class="lesson-room-p" th:text="${lesson.room}"></p>
                     </div>
                     <p class="lesson-time-p" th:text="${lesson.time}"></p>
                   </div>
-                  <div th:popup-id="${lesson.id}" th:case="Практика" class="lesson-div ignore-height practice open-popup">
+                  <div th:case="${typeLesson[2]}" th:popup-id="${lesson.id}"  class="lesson-div ignore-height practice open-popup">
                     <div class="div-nameAndRoom">
                       <p class="lesson-name-p" th:text="${lesson.name}"></p>
                       <p class="lesson-room-p" th:text="${lesson.room}"></p>
                     </div>
                     <p class="lesson-time-p" th:text="${lesson.time}"></p>
                   </div>
-                  <div th:popup-id="${lesson.id}" th:case="Консультация" class="lesson-div ignore-height consultation open-popup">
+                  <div th:case="${typeLesson[3]}" th:popup-id="${lesson.id}" class="lesson-div ignore-height consultation open-popup">
                     <div class="div-nameAndRoom">
                       <p class="lesson-name-p" th:text="${lesson.name}"></p>
                       <p class="lesson-room-p" th:text="${lesson.room}"></p>
@@ -498,8 +308,198 @@
                   <div th:case="*" th:text="'&#160'"></div>
                 </div>
               </div>
-          </div>
-        </div>
+            </div>
+            <div class="one-day">
+              <div class="day-name-div" >
+                <p class="day-name">Вторник</p>
+              </div>
+              <div th:each="lesson:${lessons[1][1]}">
+                <div th:switch="${lesson.type}">
+                  <div th:popup-id="${lesson.id}" th:case="${typeLesson[0]}" class="lesson-div ignore-height lecture open-popup">
+                    <div class="div-nameAndRoom">
+                      <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                      <p class="lesson-room-p" th:text="${lesson.room}"></p>
+                    </div>
+                    <p class="lesson-time-p" th:text="${lesson.time}"></p>
+                  </div>
+                  <div th:popup-id="${lesson.id}" th:case="${typeLesson[1]}" class="lesson-div ignore-height lab open-popup">
+                    <div class="div-nameAndRoom">
+                      <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                      <p class="lesson-room-p" th:text="${lesson.room}"></p>
+                    </div>
+                    <p class="lesson-time-p" th:text="${lesson.time}"></p>
+                  </div>
+                  <div th:popup-id="${lesson.id}" th:case="${typeLesson[2]}" class="lesson-div ignore-height practice open-popup">
+                    <div class="div-nameAndRoom">
+                      <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                      <p class="lesson-room-p" th:text="${lesson.room}"></p>
+                    </div>
+                    <p class="lesson-time-p" th:text="${lesson.time}"></p>
+                  </div>
+                  <div th:popup-id="${lesson.id}" th:case="${typeLesson[3]}" class="lesson-div ignore-height consultation open-popup">
+                    <div class="div-nameAndRoom">
+                      <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                      <p class="lesson-room-p" th:text="${lesson.room}"></p>
+                    </div>
+                    <p class="lesson-time-p" th:text="${lesson.time}"></p>
+                  </div>
+                  <div th:case="*" th:text="'&#160'"></div>
+                </div>
+              </div>
+            </div>
+            <div class="one-day">
+              <div class="day-name-div" >
+                <p class="day-name">Среда</p>
+              </div>
+              <div th:each="lesson:${lessons[1][2]}">
+                <div th:switch="${lesson.type}">
+                  <div th:popup-id="${lesson.id}" th:case="${typeLesson[0]}" class="lesson-div ignore-height lecture open-popup">
+                    <div class="div-nameAndRoom">
+                      <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                      <p class="lesson-room-p" th:text="${lesson.room}"></p>
+                    </div>
+                    <p class="lesson-time-p" th:text="${lesson.time}"></p>
+                  </div>
+                  <div th:popup-id="${lesson.id}" th:case="${typeLesson[1]}" class="lesson-div ignore-height lab open-popup">
+                    <div class="div-nameAndRoom">
+                      <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                      <p class="lesson-room-p" th:text="${lesson.room}"></p>
+                    </div>
+                    <p class="lesson-time-p" th:text="${lesson.time}"></p>
+                  </div>
+                  <div th:popup-id="${lesson.id}" th:case="${typeLesson[2]}" class="lesson-div ignore-height practice open-popup">
+                    <div class="div-nameAndRoom">
+                      <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                      <p class="lesson-room-p" th:text="${lesson.room}"></p>
+                    </div>
+                    <p class="lesson-time-p" th:text="${lesson.time}"></p>
+                  </div>
+                  <div th:popup-id="${lesson.id}" th:case="${typeLesson[3]}" class="lesson-div ignore-height consultation open-popup">
+                    <div class="div-nameAndRoom">
+                      <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                      <p class="lesson-room-p" th:text="${lesson.room}"></p>
+                    </div>
+                    <p class="lesson-time-p" th:text="${lesson.time}"></p>
+                  </div>
+                  <div th:case="*" th:text="'&#160'"></div>
+                </div>
+              </div>
+            </div>
+            <div class="one-day">
+              <div class="day-name-div" >
+                <p class="day-name">Четверг</p>
+              </div>
+              <div th:each="lesson:${lessons[1][3]}">
+                <div th:switch="${lesson.type}">
+                  <div th:popup-id="${lesson.id}" th:case="${typeLesson[0]}" class="lesson-div ignore-height lecture open-popup">
+                    <div class="div-nameAndRoom">
+                      <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                      <p class="lesson-room-p" th:text="${lesson.room}"></p>
+                    </div>
+                    <p class="lesson-time-p" th:text="${lesson.time}"></p>
+                  </div>
+                  <div th:popup-id="${lesson.id}" th:case="${typeLesson[1]}" class="lesson-div ignore-height lab open-popup">
+                    <div class="div-nameAndRoom">
+                      <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                      <p class="lesson-room-p" th:text="${lesson.room}"></p>
+                    </div>
+                    <p class="lesson-time-p" th:text="${lesson.time}"></p>
+                  </div>
+                  <div th:popup-id="${lesson.id}" th:case="${typeLesson[2]}" class="lesson-div ignore-height practice open-popup">
+                    <div class="div-nameAndRoom">
+                      <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                      <p class="lesson-room-p" th:text="${lesson.room}"></p>
+                    </div>
+                    <p class="lesson-time-p" th:text="${lesson.time}"></p>
+                  </div>
+                  <div th:popup-id="${lesson.id}" th:case="${typeLesson[3]}" class="lesson-div ignore-height consultation open-popup">
+                    <div class="div-nameAndRoom">
+                      <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                      <p class="lesson-room-p" th:text="${lesson.room}"></p>
+                    </div>
+                    <p class="lesson-time-p" th:text="${lesson.time}"></p>
+                  </div>
+                  <div th:case="*" th:text="'&#160'"></div>
+                </div>
+              </div>
+            </div>
+            <div class="one-day">
+              <div class="day-name-div" >
+                <p class="day-name">Пятница</p>
+              </div>
+              <div th:each="lesson:${lessons[1][4]}">
+                <div th:switch="${lesson.type}">
+                  <div th:popup-id="${lesson.id}" th:case="${typeLesson[0]}" class="lesson-div ignore-height lecture open-popup">
+                    <div class="div-nameAndRoom">
+                      <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                      <p class="lesson-room-p" th:text="${lesson.room}"></p>
+                    </div>
+                    <p class="lesson-time-p" th:text="${lesson.time}"></p>
+                  </div>
+                  <div th:popup-id="${lesson.id}" th:case="${typeLesson[1]}" class="lesson-div ignore-height lab open-popup">
+                    <div class="div-nameAndRoom">
+                      <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                      <p class="lesson-room-p" th:text="${lesson.room}"></p>
+                    </div>
+                    <p class="lesson-time-p" th:text="${lesson.time}"></p>
+                  </div>
+                  <div th:popup-id="${lesson.id}" th:case="${typeLesson[2]}" class="lesson-div ignore-height practice open-popup">
+                    <div class="div-nameAndRoom">
+                      <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                      <p class="lesson-room-p" th:text="${lesson.room}"></p>
+                    </div>
+                    <p class="lesson-time-p" th:text="${lesson.time}"></p>
+                  </div>
+                  <div th:popup-id="${lesson.id}" th:case="${typeLesson[3]}" class="lesson-div ignore-height consultation open-popup">
+                    <div class="div-nameAndRoom">
+                      <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                      <p class="lesson-room-p" th:text="${lesson.room}"></p>
+                    </div>
+                    <p class="lesson-time-p" th:text="${lesson.time}"></p>
+                  </div>
+                  <div th:case="*" th:text="'&#160'"></div>
+                </div>
+              </div>
+            </div>
+            <div class="one-day">
+              <div class="day-name-div" >
+                <p class="day-name">Суббота</p>
+              </div>
+              <div th:each="lesson:${lessons[1][5]}">
+                <div th:switch="${lesson.type}">
+                  <div th:popup-id="${lesson.id}" th:case="${typeLesson[0]}" class="lesson-div ignore-height lecture open-popup">
+                    <div class="div-nameAndRoom">
+                      <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                      <p class="lesson-room-p" th:text="${lesson.room}"></p>
+                    </div>
+                    <p class="lesson-time-p" th:text="${lesson.time}"></p>
+                  </div>
+                  <div th:popup-id="${lesson.id}" th:case="${typeLesson[1]}" class="lesson-div ignore-height lab open-popup">
+                    <div class="div-nameAndRoom">
+                      <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                      <p class="lesson-room-p" th:text="${lesson.room}"></p>
+                    </div>
+                    <p class="lesson-time-p" th:text="${lesson.time}"></p>
+                  </div>
+                  <div th:popup-id="${lesson.id}" th:case="${typeLesson[2]}" class="lesson-div ignore-height practice open-popup">
+                    <div class="div-nameAndRoom">
+                      <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                      <p class="lesson-room-p" th:text="${lesson.room}"></p>
+                    </div>
+                    <p class="lesson-time-p" th:text="${lesson.time}"></p>
+                  </div>
+                  <div th:popup-id="${lesson.id}" th:case="${typeLesson[3]}" class="lesson-div ignore-height consultation open-popup">
+                    <div class="div-nameAndRoom">
+                      <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                      <p class="lesson-room-p" th:text="${lesson.room}"></p>
+                    </div>
+                    <p class="lesson-time-p" th:text="${lesson.time}"></p>
+                  </div>
+                  <div th:case="*" th:text="'&#160'"></div>
+                </div>
+              </div>
+            </div>
+          </div >
         </div>
         <div class="button-add-lesson-timetable-container">
           <button popup-id="0" class="button-add-lesson-timetable open-popup"> + </button>
@@ -511,30 +511,36 @@
 <div id="0" class="popup-bg none">
   <div class="popup">
     <img  popup-id="0" class="close-popup" th:src="@{img/close-popup.png}" alt="" src="">
-    <form action="#" onsubmit="return validationTimetable()" th:action="@{/timetable}" id="formQuest" th:object="${newLessonTimetable}" th:method="POST">
+    <form action="#" onsubmit="return validationTimetable(0)" th:action="@{/timetable}" id="formQuest" th:object="${newLessonTimetable}" th:method="POST">
       <div class="div-form-item">
         <label class="label-input" for="lessonName">Предмет: </label>
         <div class="input-div">
-          <select id="lessonName" class="input-data" th:field="*{name}">
-            <option value="Выберите предмет">Выберите предмет</option>
-            <option th:each="name: ${nameLessons}"
-                    th:value="${name}"
-                    th:text="${name}">
-              Name Lesson
-            </option>
-          </select>
-        </div><br/>
+          <div>
+            <select id="lessonName" class="input-data" th:field="*{name}">
+              <option value="Выберите предмет">Выберите предмет</option>
+              <option th:each="name: ${nameLessons}"
+                      th:value="${name}"
+                      th:text="${name}">
+                Name Lesson
+              </option>
+            </select>
+          </div>
+        </div>
       </div>
       <div class="div-form-item">
         <label class="label-input" for="teacher">Преподователь: </label>
         <div class="input-div">
-          <input id="teacher" class="input-data"  type="text" th:field="*{teacher}"><br/>
+          <div>
+            <input id="teacher" class="input-data"  type="text" th:field="*{teacher}">
+          </div>
         </div>
       </div>
       <div class="div-form-item">
         <label class="label-input" for="room">Аудитория: </label>
         <div class="input-div">
-          <input id="room" class="input-data" type="text" th:field="*{room}"><br/>
+          <div>
+            <input id="room" class="input-data" type="text" th:field="*{room}">
+          </div>
         </div>
       </div>
       <div class="div-form-item">
@@ -543,10 +549,10 @@
         <select id="type" class="input-data" th:field="*{type}">
           <option th:each="type: ${typeLesson}"
                   th:value="${type}"
-                  th:text="${type}">
+                  th:text="${type.getType()}">
           </option>
-        </select><br/>
-      </div><br/>
+        </select>
+      </div>
       </div>
       <div class="div-form-item">
       <label class="label-input" for="dayOfWeek">День недели: </label>
@@ -554,7 +560,7 @@
         <select id="dayOfWeek" class="input-data" th:field="*{dayOfWeek}">
           <option th:each="day: ${dayOfWeek}"
                   th:value="${day}"
-                  th:text="${day}">
+                  th:text="${day.getDay()}">
           </option>
         </select><br/>
       </div><br/>
@@ -612,26 +618,32 @@
         <div class="div-form-item">
           <label class="label-input" th:for="'lessonName' + ${oneLesson.id}">Предмет: </label>
           <div class="input-div">
-            <select th:field="*{name}" th:id="'lessonName' + ${oneLesson.id}" class="input-data" >
-              <option th:value="${oneLesson.name}"
-                      th:text="${oneLesson.name}"></option>
-              <option th:each="name: ${nameLessons}"
-                      th:value="${name}"
-                      th:text="${name}">
-              </option>
-            </select>
+            <div>
+              <select th:field="*{name}" th:id="'lessonName' + ${oneLesson.id}" class="input-data" >
+                <option th:value="${oneLesson.name}"
+                        th:text="${oneLesson.name}"></option>
+                <option th:each="name: ${nameLessons}"
+                        th:value="${name}"
+                        th:text="${name}">
+                </option>
+              </select>
+            </div>
           </div>
         </div>
         <div class="div-form-item">
           <label class="label-input" th:for="teacher+ ${oneLesson.id}">Преподователь: </label>
           <div class="input-div">
-            <input th:id="teacher + ${oneLesson.id}" class="input-data" type="text" th:placeholder="${oneLesson.teacher}" th:field="*{teacher}">
+            <div>
+              <input th:id="teacher + ${oneLesson.id}" class="input-data" type="text" th:placeholder="${oneLesson.teacher}" th:field="*{teacher}">
+            </div>
           </div>
         </div>
         <div class="div-form-item">
           <label class="label-input" th:for="room+ ${oneLesson.id}">Аудитория: </label>
           <div class="input-div">
-            <input th:id="room+ ${oneLesson.id}" class="input-data" type="text" th:placeholder="${oneLesson.room}" th:field="*{room}"><br/>
+            <div>
+              <input th:id="room+ ${oneLesson.id}" class="input-data" type="text" th:placeholder="${oneLesson.room}" th:field="*{room}">
+            </div>
           </div>
         </div>
         <div class="div-form-item">
@@ -639,26 +651,26 @@
           <div class="input-div">
             <select th:id="type+ ${oneLesson.id}" th:value="${oneLesson.type}" class="input-data" th:field="*{type}">
               <option th:value="${oneLesson.type}"
-                      th:text="${oneLesson.type}"></option>
+                      th:text="${oneLesson.type.getType()}"></option>
               <option th:each="type: ${typeLesson}"
                       th:value="${type}"
-                      th:text="${type}">
+                      th:text="${type.getType()}">
               </option>
-            </select><br/>
-          </div><br/>
+            </select>
+          </div>
         </div>
         <div class="div-form-item">
           <label class="label-input" th:for="dayOfWeek+ ${oneLesson.id}">День недели: </label>
           <div class="input-div">
             <select th:id="dayOfWeek+ ${oneLesson.id}" class="input-data" th:field="*{dayOfWeek}">
               <option th:value="${oneLesson.dayOfWeek}"
-                      th:text="${oneLesson.dayOfWeek}"></option>
+                      th:text="${oneLesson.dayOfWeek.getDay()}"></option>
               <option th:each="day: ${dayOfWeek}"
                       th:value="${day}"
-                      th:text="${day}">
+                      th:text="${day.getDay()}">
               </option>
-            </select><br/>
-          </div><br/>
+            </select>
+          </div>
         </div>
         <div class="div-form-item" >
           <label class="label-input" th:for="shift+ ${oneLesson.id}">Смена: </label>
@@ -668,7 +680,7 @@
                       th:value="${shift}"
                       th:text="${shift}">
               </option>
-            </select><br/>
+            </select>
           </div>
         </div>
         <div class="div-form-item none" th:id="secondTime+ ${oneLesson.id}">
@@ -707,9 +719,11 @@
         </div>
         <div class="div-form-item">
           <input type="submit" class="button" value="Сохранить">
-          <div class="div-flex">
-              <img class="img-delete-lesson" th:id="img+${oneLesson.id}" onclick="clickDeleteTimetable(this)" th:src="@{/img/delete.png}" alt="" src="">
-          </div>
+            <div class="input-div">
+              <a class="a-delete-timetable" >
+                <img class="img-delete-lesson" th:id="img+${oneLesson.id}" onclick="clickDeleteTimetable(this)" th:src="@{/img/delete.png}" alt="" src="">
+              </a>
+            </div>
         </div>
       </form>
       <form th:id="formDel+${oneLesson.id}" th:action="@{/timetable/{id}(id=${oneLesson.getId()})}" th:method="DELETE"></form>

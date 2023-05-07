@@ -24,16 +24,18 @@ public class Reminder {
     private String date;
     @Column(name = "switch")
     private boolean switchR;
-    @Column(name = "settingSwitch")
-    private String settingSwitch;
+    @Column(name = "setting_switch")
+    @Enumerated(EnumType.STRING)
+    private SettingSwitch settingSwitch;
     @Column(name = "time")
     private String time;
     @Column(name = "need_work")
     private int needWork;
     @Column(name = "close_work")
     private int closeWork;
-    @Column(name = "dayOfWeek")
-    private String dayOfWeek;
+    @Column(name = "day_of_week")
+    @Enumerated(EnumType.STRING)
+    private DayOfWeek dayOfWeek;
     public Reminder() {}
     public void closeOneWork(){
         if (closeWork < needWork){

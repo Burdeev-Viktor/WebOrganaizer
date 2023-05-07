@@ -2,7 +2,9 @@ package com.organazer.web.weborganaizer.service;
 
 
 import com.organazer.web.weborganaizer.Const;
+import com.organazer.web.weborganaizer.model.DayOfWeek;
 import com.organazer.web.weborganaizer.model.LessonTimetable;
+import com.organazer.web.weborganaizer.model.NumberWeek;
 import com.organazer.web.weborganaizer.model.User;
 import com.organazer.web.weborganaizer.repository.TimetableRepository;
 import com.organazer.web.weborganaizer.repository.UserRepository;
@@ -47,9 +49,9 @@ public class TimetableService {
         LocalDateTime firstSeptember = LocalDateTime.of(LocalDateTime.now().getYear(), 9, 1, 1, 1);
         List<LessonTimetable> lessonsList;
         if (ChronoUnit.WEEKS.between(firstSeptember, localeDate) % 2 == 0) {
-            lessonsList = findAllByIdUserAndNumberOfWeek(id, Const.CHOICE_BOX_NUMBER_OF_WEEK[0]);
+            lessonsList = findAllByIdUserAndNumberOfWeek(id, NumberWeek.FIRST.toString());
         } else {
-            lessonsList = findAllByIdUserAndNumberOfWeek(id, Const.CHOICE_BOX_NUMBER_OF_WEEK[1]);
+            lessonsList = findAllByIdUserAndNumberOfWeek(id, NumberWeek.SECOND.toString());
         }
         return lessonsList;
     }
@@ -63,7 +65,13 @@ public class TimetableService {
             for (byte j = 0; j < 2; j++) {
                 byte numberDay = k;
                 byte numberWeek = j;
-                List<LessonTimetable> lessonsList = lessonTimetableList.stream().filter(lessonTimetable -> Objects.equals(lessonTimetable.getDayOfWeek(), Const.CHOICE_BOX_SIX_DAYS_OF_WEEK[numberDay]) && (Objects.equals(lessonTimetable.getNumberOfWeek(), Const.CHOICE_BOX_NUMBER_OF_WEEK[numberWeek]) || Objects.equals(lessonTimetable.getNumberOfWeek(), Const.CHOICE_BOX_NUMBER_OF_WEEK[2]))).collect(Collectors.toList());
+                List<LessonTimetable> lessonsList = lessonTimetableList
+                        .stream()
+                        .filter(lessonTimetable ->
+                                Objects.equals(lessonTimetable.getDayOfWeek(),DayOfWeek.getSixDay()[numberDay]) &&
+                                        (Objects.equals(lessonTimetable.getNumberOfWeek(), NumberWeek.values()[numberWeek]) ||
+                                                Objects.equals(lessonTimetable.getNumberOfWeek(), NumberWeek.ALL)))
+                        .collect(Collectors.toList());
                 if (lessonsList.size() > maxSize) maxSize = lessonsList.size();
                 if (lessonsList.size() >= 1) {
                     sortLessonByTimeInDay(lessonsList);
@@ -79,7 +87,9 @@ public class TimetableService {
         LessonTimetable[][] lessonTimetables = new LessonTimetable[6][];
         for (byte d = 0; d < 6; d++) {
             byte day = d;
-            List<LessonTimetable> lessonsList = lessonTimetableList.stream().filter(el -> Objects.equals(el.getDayOfWeek(), Const.CHOICE_BOX_SIX_DAYS_OF_WEEK[day])).collect(Collectors.toList());
+            List<LessonTimetable> lessonsList = lessonTimetableList.stream()
+                    .filter(el -> Objects.equals(el.getDayOfWeek(), DayOfWeek.getSixDay()[day]))
+                    .collect(Collectors.toList());
             if (maxSize < lessonsList.size()) maxSize = lessonsList.size();
             if (lessonsList.size() >= 1) {
                 sortLessonByTimeInDay(lessonsList);
@@ -113,9 +123,11 @@ public class TimetableService {
 
     public void deleteByIdAndUserDetails(Long id, UserDetails userDetails) {
         User user = userRepository.findUserByLogin(userDetails.getUsername());
-        LessonTimetable lessonTimetable = timetableRepository.getById(id);
-        if (Objects.equals(user.getId(), lessonTimetable.getIdUser())) {
-            timetableRepository.delete(lessonTimetable);
+        Optional<LessonTimetable> lessonTimetable = timetableRepository.findById(id);
+        if(lessonTimetable.isPresent()){
+            if (Objects.equals(user.getId(), lessonTimetable.get().getIdUser())) {
+                timetableRepository.delete(lessonTimetable.get());
+            }
         }
     }
 }

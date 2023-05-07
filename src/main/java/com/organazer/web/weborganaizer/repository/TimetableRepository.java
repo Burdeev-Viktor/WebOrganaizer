@@ -12,7 +12,7 @@ import java.util.List;
 public interface TimetableRepository extends JpaRepository<LessonTimetable,Long> {
     List<LessonTimetable> findAllByIdUser(Long idUser);
 
-    @Query( value = "SELECT * FROM timetable u WHERE u.id_user = ?1 AND u.number_of_week = ?2 OR u.number_of_week = 'Каждую' " ,
+    @Query( value = "SELECT * FROM timetable u WHERE u.id_user = ?1 AND u.number_of_week = ?2 OR u.number_of_week = 'ALL' " ,
     nativeQuery = true)
     List<LessonTimetable> findAllByIdUserAndNumberOfWeek(Long id,String week);
 

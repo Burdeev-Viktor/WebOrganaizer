@@ -1,9 +1,7 @@
 package com.organazer.web.weborganaizer.controllers;
 
 import com.organazer.web.weborganaizer.Const;
-import com.organazer.web.weborganaizer.model.Lesson;
-import com.organazer.web.weborganaizer.model.LessonTimetable;
-import com.organazer.web.weborganaizer.model.User;
+import com.organazer.web.weborganaizer.model.*;
 import com.organazer.web.weborganaizer.service.LessonService;
 import com.organazer.web.weborganaizer.service.TimetableService;
 import com.organazer.web.weborganaizer.service.UserService;
@@ -36,7 +34,8 @@ public class LessonController {
         List<Lesson> lessonList = lessonService.findAllByIdUser(user.getId());
         LessonTimetable[][] timetables = timetableService.getSortLessonsTimetableOneWeek(timetableService.getLessonsWeekByNumber(weekCount, user.getId()));
         model.addAttribute("timetables",timetables);
-        model.addAttribute("typeOfTest", Const.CHOICE_BOX_TYPE_OF_TEST);
+        model.addAttribute("typeLesson", TypeOfLesson.values());
+        model.addAttribute("typeOfTest", TypeOfTest.values());
         model.addAttribute("lessons",lessonList);
         model.addAttribute("newLesson",new Lesson());
         return "lessons";

@@ -42,16 +42,16 @@
           </div>
           <div th:each="lesson:${lessons[0]}" >
             <div th:switch="${lesson.type}">
-              <div th:case="Лекция" class="lesson-div lecture ">
+              <div th:case="${typeLesson[0]}" class="lesson-div lecture ">
                   <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
-              <div th:case="Лабораторная" class="lesson-div lab ">
+              <div th:case="${typeLesson[1]}" class="lesson-div lab ">
                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
-              <div th:case="Практика" class="lesson-div practice ">
+              <div th:case="${typeLesson[2]}" class="lesson-div practice ">
                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
-              <div th:case="Консультация" class="lesson-div consultation ">
+              <div th:case="${typeLesson[3]}" class="lesson-div consultation ">
                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
               <div th:case="*" th:text="'&#160'"></div>
@@ -64,16 +64,16 @@
           </div>
           <div th:each="lesson:${lessons[1]}" >
             <div th:switch="${lesson.type}">
-              <div th:case="Лекция" class="lesson-div lecture ">
+              <div th:case="${typeLesson[0]}" class="lesson-div lecture ">
                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
-              <div th:case="Лабораторная" class="lesson-div lab ">
+              <div th:case="${typeLesson[1]}" class="lesson-div lab ">
                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
-              <div th:case="Практика" class="lesson-div practice ">
+              <div th:case="${typeLesson[2]}" class="lesson-div practice ">
                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
-              <div th:case="Консультация" class="lesson-div consultation ">
+              <div th:case="${typeLesson[3]}" class="lesson-div consultation ">
                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
               <div th:case="*" th:text="'&#160'"></div>
@@ -86,16 +86,16 @@
           </div>
           <div th:each="lesson:${lessons[2]}" >
             <div th:switch="${lesson.type}">
-              <div th:case="Лекция" class="lesson-div lecture ">
+              <div th:case="${typeLesson[0]}" class="lesson-div lecture ">
                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
-              <div th:case="Лабораторная" class="lesson-div lab ">
+              <div th:case="${typeLesson[1]}" class="lesson-div lab ">
                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
-              <div th:case="Практика" class="lesson-div practice ">
+              <div th:case="${typeLesson[2]}" class="lesson-div practice ">
                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
-              <div th:case="Консультация" class="lesson-div consultation ">
+              <div th:case="${typeLesson[3]}" class="lesson-div consultation ">
                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
               <div th:case="*" th:text="'&#160'"></div>
@@ -108,16 +108,16 @@
           </div>
           <div th:each="lesson:${lessons[3]}" >
             <div th:switch="${lesson.type}">
-              <div th:case="Лекция" class="lesson-div lecture ">
+              <div th:case="${typeLesson[0]}" class="lesson-div lecture ">
                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
-              <div th:case="Лабораторная" class="lesson-div lab ">
+              <div th:case="${typeLesson[1]}" class="lesson-div lab ">
                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
-              <div th:case="Практика" class="lesson-div practice ">
+              <div th:case="${typeLesson[2]}" class="lesson-div practice ">
                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
-              <div th:case="Консультация" class="lesson-div consultation ">
+              <div th:case="${typeLesson[3]}" class="lesson-div consultation ">
                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
               <div th:case="*" th:text="'&#160'"></div>
@@ -130,16 +130,16 @@
           </div>
           <div th:each="lesson:${lessons[4]}" >
             <div th:switch="${lesson.type}">
-              <div th:case="Лекция" class="lesson-div lecture ">
+              <div th:case="${typeLesson[0]}" class="lesson-div lecture ">
                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
-              <div th:case="Лабораторная" class="lesson-div lab ">
+              <div th:case="${typeLesson[1]}" class="lesson-div lab ">
                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
-              <div th:case="Практика" class="lesson-div practice ">
+              <div th:case="${typeLesson[2]}" class="lesson-div practice ">
                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
-              <div th:case="Консультация" class="lesson-div consultation ">
+              <div th:case="${typeLesson[3]}" class="lesson-div consultation ">
                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
               <div th:case="*" th:text="'&#160'"></div>
@@ -148,20 +148,20 @@
         </div>
         <div class="one-day">
           <div class="day-name-div" >
-            <p class="day-name">Суббата</p>
+            <p class="day-name">Суббота</p>
           </div>
           <div th:each="lesson:${lessons[5]}" >
             <div th:switch="${lesson.type}">
-              <div th:case="Лекция" class="lesson-div lecture ">
+              <div th:case="${typeLesson[0]}" class="lesson-div lecture ">
                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
-              <div th:case="Лабораторная" class="lesson-div lab ">
+              <div th:case="${typeLesson[1]}" class="lesson-div lab ">
                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
-              <div th:case="Практика" class="lesson-div practice ">
+              <div th:case="${typeLesson[2]}" class="lesson-div practice ">
                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
-              <div th:case="Консультация" class="lesson-div consultation ">
+              <div th:case="${typeLesson[3]}" class="lesson-div consultation ">
                 <p class="lesson-name-p" th:text="${lesson.name}"></p>
               </div>
               <div th:case="*" th:text="'&#160'"></div>
@@ -235,9 +235,9 @@
                   <div class="input-div">
                     <div>
                       <select id="settingSwitch" class="input-data" th:field="*{settingSwitch}">
-                        <option th:each="day: ${switch}"
-                                th:value="${day}"
-                                th:text="${day}">day
+                        <option th:each="value: ${switch}"
+                                th:value="${value}"
+                                th:text="${value.getSetting()}">
                         </option>
                       </select>
                     </div>
@@ -251,8 +251,7 @@
                         <option th:value="Невыбрано">Невыбрано</option>
                         <option th:each="day: ${days}"
                                 th:value="${day}"
-                                th:text="${day}">
-                          day
+                                th:text="${day.getDay()}">
                         </option>
                       </select>
                     </div>
