@@ -3,6 +3,9 @@ package com.organazer.web.weborganaizer.model;
 import javax.persistence.*;
 
 import com.organazer.web.weborganaizer.Const;
+import com.organazer.web.weborganaizer.model.enums.DayOfWeek;
+import com.organazer.web.weborganaizer.model.enums.NumberWeek;
+import com.organazer.web.weborganaizer.model.enums.TypeOfLesson;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,9 +39,7 @@ public class LessonTimetable implements Comparable<LessonTimetable> {
     @Enumerated(EnumType.STRING)
     private NumberWeek numberOfWeek;
 
-    public LessonTimetable() {
-
-    }
+    public LessonTimetable() {}
     @Override
     public int compareTo(LessonTimetable lessonTimetable) {
         String[] time1array = this.getTime().split(Const.COLON);

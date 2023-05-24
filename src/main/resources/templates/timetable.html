@@ -14,10 +14,10 @@
 <div class="vBox">
   <div class="menu">
     <div class="title">
-      <a href="/" class="title-a" method="get" >Студеньческий органайзер</a>
+      <a href="/set-week-count" class="title-a" method="get" >Студеньческий органайзер</a>
     </div>
     <div class="menu_buttons">
-      <a href="/lessons">
+      <a href="/lessons/set-week-count">
         <button  class="button-menu" > Предметы </button>
       </a>
       <a href="/timetable">
@@ -709,10 +709,10 @@
           <div class="input-div">
             <select th:id="numberOfWeek+ ${oneLesson.id}" class="input-data" th:field="*{numberOfWeek}">
               <option th:value="${oneLesson.numberOfWeek}"
-                      th:text="${oneLesson.numberOfWeek}"></option>
+                      th:text="${oneLesson.numberOfWeek.getNumber()}"></option>
               <option th:each="number: ${numberOfWeek}"
                       th:value="${number}"
-                      th:text="${number}">
+                      th:text="${number.getNumber()}">
               </option>
             </select><br/>
           </div><br/>

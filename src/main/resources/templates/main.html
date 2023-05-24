@@ -15,10 +15,10 @@
 <div class="vBox">
   <div class="menu">
     <div class="title">
-      <a href="/" class="title-a" method="get" >Студеньческий органайзер</a>
+      <a href="/set-week-count" class="title-a" method="get" >Студеньческий органайзер</a>
     </div>
     <div class="menu_buttons">
-      <a href="/lessons">
+      <a href="/lessons/set-week-count">
         <button  class="button-menu" > Предметы </button>
       </a>
       <a href="/timetable">
@@ -178,7 +178,7 @@
           <p>Задания</p>
         </div>
         <div class="reminders-container">
-          <a th:each="reminder:${reminders}" th:href="@{/reminder-update/{id}(id=${reminder.getId()})}" class="reminder">
+          <a th:each="reminder:${reminders}" th:href="@{/reminder-update/set-week-count/{id}(id=${reminder.getId()})}" class="reminder">
             <div class="name-container" >
               <p class="name-reminder" th:text="${reminder.lessonName}">Предмет</p>
               <p class="name-reminder" th:text="${reminder.date}">12-04-2002</p>

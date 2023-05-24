@@ -2,9 +2,10 @@ package com.organazer.web.weborganaizer.model;
 
 
 import javax.persistence.*;
+
+import com.organazer.web.weborganaizer.model.enums.TypeOfTest;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 
 
 @Entity
@@ -39,12 +40,4 @@ public class Lesson {
         this.typeOfTest = TypeOfTest.valueOf(typeOfTest);
         this.condition = condition;
     }
-
-    public void setTypeOfTest(String typeOfTest) {
-        this.typeOfTest = TypeOfTest.valueOf(typeOfTest);
-    }
-    public void setTypeOfTest(TypeOfTest typeOfTest) {
-        this.typeOfTest = typeOfTest;
-    }
-
 }

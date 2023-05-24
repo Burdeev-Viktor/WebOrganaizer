@@ -35,4 +35,10 @@ create table users (
     login varchar(55),
     name varchar(55),
     password varchar(255),
-    primary key (id_user)) engine=InnoDB
+    primary key (id_user)) engine=InnoDB;
+
+create table grades (
+    id bigint not null auto_increment,
+    id_reminder bigint not null,
+    grade smallint not null,
+    primary key (id));

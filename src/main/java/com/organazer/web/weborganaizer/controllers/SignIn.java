@@ -30,7 +30,7 @@ public class SignIn {
         }
         user.setName(user.getLogin());
         userService.save(user);
-        return "redirect:/";
+        return "redirect:/set-week-count";
     }
 
 }

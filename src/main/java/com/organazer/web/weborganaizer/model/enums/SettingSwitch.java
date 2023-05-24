@@ -1,4 +1,4 @@
-package com.organazer.web.weborganaizer.model;
+package com.organazer.web.weborganaizer.model.enums;
 
 public enum SettingSwitch {
     EVERYDAY("Каждый день"),

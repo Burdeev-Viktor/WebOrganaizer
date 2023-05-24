@@ -2,6 +2,9 @@ package com.organazer.web.weborganaizer.controllers;
 
 import com.organazer.web.weborganaizer.Const;
 import com.organazer.web.weborganaizer.model.*;
+import com.organazer.web.weborganaizer.model.enums.DayOfWeek;
+import com.organazer.web.weborganaizer.model.enums.NumberWeek;
+import com.organazer.web.weborganaizer.model.enums.TypeOfLesson;
 import com.organazer.web.weborganaizer.service.LessonService;
 import com.organazer.web.weborganaizer.service.TimetableService;
 import com.organazer.web.weborganaizer.service.UserService;
@@ -35,7 +38,7 @@ public class TimetableController {
         model.addAttribute("typeLesson", TypeOfLesson.values());
         model.addAttribute("allLessons",allLesson);
         model.addAttribute("dayOfWeek", DayOfWeek.getSixDay());
-        model.addAttribute("numberOfWeek",Const.CHOICE_BOX_NUMBER_OF_WEEK);
+        model.addAttribute("numberOfWeek", NumberWeek.values());
         model.addAttribute("firstTime",Const.TIME_OF_START_LESSON_FIRST);
         model.addAttribute("secondTime",Const.TIME_OF_START_LESSON_SECOND);
         model.addAttribute("shiftEducation",Const.CHOICE_BOX_SHIFT_EDUCATION);

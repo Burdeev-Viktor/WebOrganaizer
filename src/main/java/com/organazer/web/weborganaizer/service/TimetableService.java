@@ -1,10 +1,9 @@
 package com.organazer.web.weborganaizer.service;
 
 
-import com.organazer.web.weborganaizer.Const;
-import com.organazer.web.weborganaizer.model.DayOfWeek;
+import com.organazer.web.weborganaizer.model.enums.DayOfWeek;
 import com.organazer.web.weborganaizer.model.LessonTimetable;
-import com.organazer.web.weborganaizer.model.NumberWeek;
+import com.organazer.web.weborganaizer.model.enums.NumberWeek;
 import com.organazer.web.weborganaizer.model.User;
 import com.organazer.web.weborganaizer.repository.TimetableRepository;
 import com.organazer.web.weborganaizer.repository.UserRepository;

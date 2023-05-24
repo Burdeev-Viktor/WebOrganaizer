@@ -1,7 +1,8 @@
 package com.organazer.web.weborganaizer.controllers;
 
-import com.organazer.web.weborganaizer.Const;
 import com.organazer.web.weborganaizer.model.*;
+import com.organazer.web.weborganaizer.model.enums.TypeOfLesson;
+import com.organazer.web.weborganaizer.model.enums.TypeOfTest;
 import com.organazer.web.weborganaizer.service.LessonService;
 import com.organazer.web.weborganaizer.service.TimetableService;
 import com.organazer.web.weborganaizer.service.UserService;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -19,20 +21,18 @@ public class LessonController {
     private final TimetableService timetableService;
     private final UserService userService;
     private final LessonService lessonService;
-    private int weekCount;
 
     public LessonController(TimetableService timetableService, UserService userService, LessonService lessonService) {
         this.timetableService = timetableService;
         this.userService = userService;
         this.lessonService = lessonService;
-        weekCount = 0;
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String getLessons(@AuthenticationPrincipal UserDetails userDetails, Model model){
+    public String getLessons(@AuthenticationPrincipal UserDetails userDetails, Model model,HttpSession session){
         User user = userService.findUserByLogin(userDetails.getUsername());
         List<Lesson> lessonList = lessonService.findAllByIdUser(user.getId());
-        LessonTimetable[][] timetables = timetableService.getSortLessonsTimetableOneWeek(timetableService.getLessonsWeekByNumber(weekCount, user.getId()));
+        LessonTimetable[][] timetables = timetableService.getSortLessonsTimetableOneWeek(timetableService.getLessonsWeekByNumber((int)session.getAttribute("weekCount"), user.getId()));
         model.addAttribute("timetables",timetables);
         model.addAttribute("typeLesson", TypeOfLesson.values());
         model.addAttribute("typeOfTest", TypeOfTest.values());
@@ -40,14 +40,19 @@ public class LessonController {
         model.addAttribute("newLesson",new Lesson());
         return "lessons";
     }
+    @RequestMapping(value = "/set-week-count",method = RequestMethod.GET)
+    public String weekCount(HttpSession session){
+        session.setAttribute("weekCount",0);
+        return "redirect:/lessons";
+    }
     @RequestMapping(value = "/+", method = RequestMethod.GET)
-    public String nextWeek(){
-        weekCount++;
+    public String nextWeek(HttpSession session){
+        session.setAttribute("weekCount",((int)session.getAttribute("weekCount")) + 1);
         return "redirect:/lessons";
     }
     @RequestMapping(value = "/-", method = RequestMethod.GET)
-    public String backWeek(){
-        weekCount--;
+    public String backWeek(HttpSession session){
+        session.setAttribute("weekCount",((int)session.getAttribute("weekCount")) - 1);
         return "redirect:/lessons";
     }
     @RequestMapping(method = RequestMethod.POST)

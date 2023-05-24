@@ -1,6 +1,9 @@
 package com.organazer.web.weborganaizer.model;
 
 import javax.persistence.*;
+
+import com.organazer.web.weborganaizer.model.enums.DayOfWeek;
+import com.organazer.web.weborganaizer.model.enums.SettingSwitch;
 import lombok.Getter;
 import lombok.Setter;
 
