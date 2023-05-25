@@ -38,4 +38,7 @@ public class StatisticService {
     public static GradeStatistic gradeStatistic(Reminder reminder){
         return new GradeStatistic(gradeRepository.getGradesOfReminderId(reminder.getId()), reminder.getLessonName());
     }
+    public void save(Grade grade){
+        gradeRepository.addGrade(grade.getIdReminder(), grade.getGrade());
+    }
 }

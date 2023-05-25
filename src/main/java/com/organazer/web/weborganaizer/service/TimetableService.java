@@ -103,6 +103,8 @@ public class TimetableService {
             }
         }
         for (LessonTimetable[] days:lessonTimetables) {
+            if(days == null)
+                continue;
             for (LessonTimetable lesson: days) {
                 if(lesson.getType() == TypeOfLesson.LAB){
                     Reminder reminder = reminderRepository.getLabsByUserAndLesson(lesson.getIdUser(), lesson.getName());

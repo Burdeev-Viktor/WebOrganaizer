@@ -4,10 +4,7 @@ import com.organazer.web.weborganaizer.model.*;
 import com.organazer.web.weborganaizer.model.enums.DayOfWeek;
 import com.organazer.web.weborganaizer.model.enums.SettingSwitch;
 import com.organazer.web.weborganaizer.model.enums.TypeOfLesson;
-import com.organazer.web.weborganaizer.service.LessonService;
-import com.organazer.web.weborganaizer.service.ReminderService;
-import com.organazer.web.weborganaizer.service.TimetableService;
-import com.organazer.web.weborganaizer.service.UserService;
+import com.organazer.web.weborganaizer.service.*;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -21,12 +18,14 @@ import java.util.List;
 @RequestMapping("/reminder-update")
 public class UpdateReminderController {
     private final LessonService lessonService;
+    private final StatisticService statisticService;
     private final TimetableService timetableService;
     private final UserService userService;
     private final ReminderService reminderService;
 
-    public UpdateReminderController(LessonService lessonService, TimetableService timetableService, UserService userService, ReminderService reminderService) {
+    public UpdateReminderController(LessonService lessonService, StatisticService statisticService, TimetableService timetableService, UserService userService, ReminderService reminderService) {
         this.lessonService = lessonService;
+        this.statisticService = statisticService;
         this.timetableService = timetableService;
         this.userService = userService;
         this.reminderService = reminderService;
@@ -54,6 +53,7 @@ public class UpdateReminderController {
         List<Reminder> reminderList = reminderService.findAllByIdUser(user.getId());
         String[] nameLessons = lessonService.getAllLessonsNameByIdUser(user.getId());
         model.addAttribute("updateReminder",reminder);
+        model.addAttribute("Grade",new Grade());
         model.addAttribute("typeLesson", TypeOfLesson.values());
         model.addAttribute("lessons",timetables);
         model.addAttribute("reminders",reminderList);
@@ -73,7 +73,9 @@ public class UpdateReminderController {
         return "redirect:/";
     }
     @RequestMapping(value = "/close-work/{id}",method = RequestMethod.PUT)
-    public String closeOneWork(@AuthenticationPrincipal UserDetails userDetails,@PathVariable Long id){
+    public String closeOneWork(@AuthenticationPrincipal UserDetails userDetails,@PathVariable Long id,Grade grade){
+        grade.setIdReminder(id);
+        statisticService.save(grade);
         reminderService.closeOneWork(id,userDetails);
         return "redirect:/reminder-update/" + id;
     }

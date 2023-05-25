@@ -7,7 +7,7 @@ import java.util.List;
 public class GradeStatistic {
 
     private final String name;
-    private final float mean;
+    private  float mean;
     private final float percent;
     private final String color;
     public GradeStatistic(List<Grade> grades,String name){
@@ -16,6 +16,8 @@ public class GradeStatistic {
             long sum = grades.stream().mapToLong(Grade::getGrade).sum();
             mean = (float) sum / grades.size();
             percent = mean * 10;
+            float scale = (float) Math.pow(10, 2);
+            mean = (float) (Math.ceil(mean * scale) / scale);
             if(0 <= mean && mean <= 2.5){
                 color = "#bd2525";
             }else if(2.5 < mean && mean <= 5){

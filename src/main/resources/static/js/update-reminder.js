@@ -76,7 +76,15 @@ function hideSelectorDay() {
     }
 }
 function closeWork(button){
-    document.getElementById('closeWorkForm').submit();
+    let form = document.getElementById('closeWorkForm');
+    let grade = prompt("Введите оценку (0;10):");
+    if((grade < 0) || (grade > 10)){
+        alert("Оценка не верна");
+        return;
+    }
+    let gradeInput = document.getElementById('grade');
+    gradeInput.value = grade;
+    form.submit();
 }
 function deleteReminder(button){
     if(confirm("Вы действительно хотите удалить напоминание?")){

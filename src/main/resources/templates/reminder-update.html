@@ -328,7 +328,14 @@
                                 </div>
                             </div>
                         </form>
-                        <form id="closeWorkForm"  th:action="@{/reminder-update/close-work/{id}(id=${updateReminder.getId()})}" th:method="PUT"></form>
+                        <form id="closeWorkForm"  th:action="@{/reminder-update/close-work/{id}(id=${updateReminder.getId()})}" th:object="${Grade}" th:method="PUT">
+                            <label>
+                                <input th:type="hidden" th:value="${updateReminder.getId()}" th:field="*{idReminder}">
+                            </label>
+                            <label>
+                                <input id = "grade" th:type="hidden" th:value="5" th:field="*{grade}">
+                            </label>
+                        </form>
                     </div>
                     <form id="deleteReminderForm"  th:action="@{/reminder-update/{id}(id=${updateReminder.getId()})}" th:method="DELETE"></form>
                 </div>
@@ -340,4 +347,5 @@
 </body>
 <script th:src="@{../js/tabs.js}"></script>
 <script th:src="@{../js/update-reminder.js}"></script>
+<script th:src="@{../../js/update-reminder.js}"></script>
 </html>
