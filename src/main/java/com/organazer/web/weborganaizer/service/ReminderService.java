@@ -51,6 +51,9 @@ public class ReminderService {
     public List<Reminder> findAllByIdUser(Long id){
         return reminderRepository.findAllByIdUser(id);
     }
+    public List<Reminder> getLabs(Long id){
+        return reminderRepository.getLabs(id);
+    }
     public static boolean time(LessonTimetable time1, LessonTimetable time2){
         String[] time1array = time1.getTime().split(Const.COLON);
         String[] time2array = time2.getTime().split(Const.COLON);

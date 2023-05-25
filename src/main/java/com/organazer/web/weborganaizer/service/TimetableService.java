@@ -1,12 +1,16 @@
 package com.organazer.web.weborganaizer.service;
 
 
+import com.organazer.web.weborganaizer.model.Reminder;
 import com.organazer.web.weborganaizer.model.enums.DayOfWeek;
 import com.organazer.web.weborganaizer.model.LessonTimetable;
 import com.organazer.web.weborganaizer.model.enums.NumberWeek;
 import com.organazer.web.weborganaizer.model.User;
+import com.organazer.web.weborganaizer.model.enums.TypeOfLesson;
+import com.organazer.web.weborganaizer.repository.ReminderRepository;
 import com.organazer.web.weborganaizer.repository.TimetableRepository;
 import com.organazer.web.weborganaizer.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +24,13 @@ import java.util.stream.Collectors;
 public class TimetableService {
     private static UserRepository userRepository = null;
     private static TimetableRepository timetableRepository = null;
+    private static  ReminderRepository reminderRepository = null;
 
-    public TimetableService(TimetableRepository timetableRepository, UserRepository userRepository) {
+
+    public TimetableService(TimetableRepository timetableRepository, UserRepository userRepository,ReminderRepository reminderRepository) {
         TimetableService.timetableRepository = timetableRepository;
         TimetableService.userRepository = userRepository;
+        TimetableService.reminderRepository = reminderRepository;
     }
 
     public void delete(LessonTimetable lessonTimetable) {
@@ -57,7 +64,7 @@ public class TimetableService {
 
     public LessonTimetable[][][] getSortLessonsTimetableAll(Long id) {
         int maxSize = 0;
-        TimetableService timetableService = new TimetableService(timetableRepository, userRepository);
+        TimetableService timetableService = new TimetableService(timetableRepository, userRepository,reminderRepository);
         List<LessonTimetable> lessonTimetableList = timetableService.findAllByIdUser(id);
         LessonTimetable[][][] lessonTimetables = new LessonTimetable[2][6][];
         for (byte k = 0; k < 6; k++) {
@@ -93,6 +100,17 @@ public class TimetableService {
             if (lessonsList.size() >= 1) {
                 sortLessonByTimeInDay(lessonsList);
                 lessonTimetables[d] = lessonsList.toArray(LessonTimetable[]::new);
+            }
+        }
+        for (LessonTimetable[] days:lessonTimetables) {
+            for (LessonTimetable lesson: days) {
+                if(lesson.getType() == TypeOfLesson.LAB){
+                    Reminder reminder = reminderRepository.getLabsByUserAndLesson(lesson.getIdUser(), lesson.getName());
+                    if(reminder != null){
+                        lesson.calLabStatistic(reminder);
+                        lesson.setGradeStatistic(StatisticService.gradeStatistic(reminder));
+                    }
+                }
             }
         }
         return lessonTimetables;

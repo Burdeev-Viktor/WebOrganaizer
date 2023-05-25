@@ -24,6 +24,9 @@
       <a href="/timetable">
         <button class="button-menu" >  Расписание </button>
       </a>
+      <a href="/statistic">
+        <button class="button-menu" >  Статистика </button>
+      </a>
 
     </div>
     <div class="div-logout">
@@ -43,16 +46,32 @@
           <div th:each="lesson:${lessons[0]}" >
             <div th:switch="${lesson.type}">
               <div th:case="${typeLesson[0]}" class="lesson-div lecture ">
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
                   <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
               </div>
               <div th:case="${typeLesson[1]}" class="lesson-div lab ">
-                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                <div th:switch="${lesson.existsLabStatistic()}" th:case=1 class="circle-lab" th:style="'display: block' + ';background:' + ${lesson.getLabStatistic().getColor()}">
+                </div>
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
+                <div th:switch="${lesson.existsGradeStatistic()}" th:case=1 class="circle-lab" th:style="'display: block' + ';background:' + ${lesson.getGradeStatistic().getColor()}">
+                </div>
               </div>
               <div th:case="${typeLesson[2]}" class="lesson-div practice ">
-                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
               </div>
               <div th:case="${typeLesson[3]}" class="lesson-div consultation ">
-                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
               </div>
               <div th:case="*" th:text="'&#160'"></div>
             </div>
@@ -65,16 +84,32 @@
           <div th:each="lesson:${lessons[1]}" >
             <div th:switch="${lesson.type}">
               <div th:case="${typeLesson[0]}" class="lesson-div lecture ">
-                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
               </div>
               <div th:case="${typeLesson[1]}" class="lesson-div lab ">
-                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                <div th:switch="${lesson.existsLabStatistic()}" th:case=1 class="circle-lab" th:style="'display: block' + ';background:' + ${lesson.getLabStatistic().getColor()}">
+                </div>
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
+                <div th:switch="${lesson.existsGradeStatistic()}" th:case=1 class="circle-lab" th:style="'display: block' + ';background:' + ${lesson.getGradeStatistic().getColor()}">
+                </div>
               </div>
               <div th:case="${typeLesson[2]}" class="lesson-div practice ">
-                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
               </div>
               <div th:case="${typeLesson[3]}" class="lesson-div consultation ">
-                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
               </div>
               <div th:case="*" th:text="'&#160'"></div>
             </div>
@@ -87,16 +122,32 @@
           <div th:each="lesson:${lessons[2]}" >
             <div th:switch="${lesson.type}">
               <div th:case="${typeLesson[0]}" class="lesson-div lecture ">
-                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
               </div>
               <div th:case="${typeLesson[1]}" class="lesson-div lab ">
-                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                <div th:switch="${lesson.existsLabStatistic()}" th:case=1 class="circle-lab" th:style="'display: block' + ';background:' + ${lesson.getLabStatistic().getColor()}">
+                </div>
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
+                <div th:switch="${lesson.existsGradeStatistic()}" th:case=1 class="circle-lab" th:style="'display: block' + ';background:' + ${lesson.getGradeStatistic().getColor()}">
+                </div>
               </div>
               <div th:case="${typeLesson[2]}" class="lesson-div practice ">
-                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
               </div>
               <div th:case="${typeLesson[3]}" class="lesson-div consultation ">
-                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
               </div>
               <div th:case="*" th:text="'&#160'"></div>
             </div>
@@ -109,16 +160,32 @@
           <div th:each="lesson:${lessons[3]}" >
             <div th:switch="${lesson.type}">
               <div th:case="${typeLesson[0]}" class="lesson-div lecture ">
-                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
               </div>
               <div th:case="${typeLesson[1]}" class="lesson-div lab ">
-                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                <div th:switch="${lesson.existsLabStatistic()}" th:case=1 class="circle-lab" th:style="'display: block' + ';background:' + ${lesson.getLabStatistic().getColor()}">
+                </div>
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
+                <div th:switch="${lesson.existsGradeStatistic()}" th:case=1 class="circle-lab" th:style="'display: block' + ';background:' + ${lesson.getGradeStatistic().getColor()}">
+                </div>
               </div>
               <div th:case="${typeLesson[2]}" class="lesson-div practice ">
-                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
               </div>
               <div th:case="${typeLesson[3]}" class="lesson-div consultation ">
-                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
               </div>
               <div th:case="*" th:text="'&#160'"></div>
             </div>
@@ -131,16 +198,32 @@
           <div th:each="lesson:${lessons[4]}" >
             <div th:switch="${lesson.type}">
               <div th:case="${typeLesson[0]}" class="lesson-div lecture ">
-                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
               </div>
               <div th:case="${typeLesson[1]}" class="lesson-div lab ">
-                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                <div th:switch="${lesson.existsLabStatistic()}" th:case=1 class="circle-lab" th:style="'display: block' + ';background:' + ${lesson.getLabStatistic().getColor()}">
+                </div>
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
+                <div th:switch="${lesson.existsGradeStatistic()}" th:case=1 class="circle-lab" th:style="'display: block' + ';background:' + ${lesson.getGradeStatistic().getColor()}">
+                </div>
               </div>
               <div th:case="${typeLesson[2]}" class="lesson-div practice ">
-                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
               </div>
               <div th:case="${typeLesson[3]}" class="lesson-div consultation ">
-                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
               </div>
               <div th:case="*" th:text="'&#160'"></div>
             </div>
@@ -153,16 +236,32 @@
           <div th:each="lesson:${lessons[5]}" >
             <div th:switch="${lesson.type}">
               <div th:case="${typeLesson[0]}" class="lesson-div lecture ">
-                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
               </div>
               <div th:case="${typeLesson[1]}" class="lesson-div lab ">
-                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                <div th:switch="${lesson.existsLabStatistic()}" th:case=1 class="circle-lab" th:style="'display: block' + ';background:' + ${lesson.getLabStatistic().getColor()}">
+                </div>
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
+                <div th:switch="${lesson.existsGradeStatistic()}" th:case=1 class="circle-lab" th:style="'display: block' + ';background:' + ${lesson.getGradeStatistic().getColor()}">
+                </div>
               </div>
               <div th:case="${typeLesson[2]}" class="lesson-div practice ">
-                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
               </div>
               <div th:case="${typeLesson[3]}" class="lesson-div consultation ">
-                <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                <div class="div-lesson-p">
+                  <p class="lesson-time-p" th:text="${lesson.getTime()}"></p>
+                  <p class="lesson-name-p" th:text="${lesson.name}"></p>
+                </div>
               </div>
               <div th:case="*" th:text="'&#160'"></div>
             </div>

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
-import java.lang.reflect.InvocationTargetException;
+
 import java.util.List;
 
 @Controller
@@ -73,6 +73,7 @@ public class MainController {
         session.setAttribute("weekCount",((int)session.getAttribute("weekCount")) - 1);
         return "redirect:/";
     }
+
 
     @RequestMapping(value = "/create-reminder",method = RequestMethod.POST)
     public String postQuest(@AuthenticationPrincipal UserDetails userDetails,Reminder reminder){

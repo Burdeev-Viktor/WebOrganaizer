@@ -6,8 +6,12 @@ import com.organazer.web.weborganaizer.Const;
 import com.organazer.web.weborganaizer.model.enums.DayOfWeek;
 import com.organazer.web.weborganaizer.model.enums.NumberWeek;
 import com.organazer.web.weborganaizer.model.enums.TypeOfLesson;
+import com.organazer.web.weborganaizer.model.statistics.GradeStatistic;
+import com.organazer.web.weborganaizer.model.statistics.LabStatistic;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 
 @Entity
@@ -38,6 +42,10 @@ public class LessonTimetable implements Comparable<LessonTimetable> {
     @Column(name = "number_of_week")
     @Enumerated(EnumType.STRING)
     private NumberWeek numberOfWeek;
+    @Transient
+    private LabStatistic labStatistic;
+    @Transient
+    private GradeStatistic gradeStatistic;
 
     public LessonTimetable() {}
     @Override
@@ -51,4 +59,18 @@ public class LessonTimetable implements Comparable<LessonTimetable> {
         }
         return 0;
     }
+    public void calLabStatistic(Reminder reminder) {
+        this.labStatistic = new LabStatistic(reminder);
+    }
+    public int existsLabStatistic(){
+        if (labStatistic !=null)
+            return 1;
+        return 0;
+    }
+    public int existsGradeStatistic(){
+        if (gradeStatistic !=null)
+            return 1;
+        return 0;
+    }
+
 }

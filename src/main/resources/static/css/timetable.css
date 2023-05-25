@@ -69,5 +69,27 @@
 .lesson-name-p{
     padding: 3px;
     margin: 0;
-    width: 100%;;
+    min-width: 48px;
+    max-width: 150px;
+    font-size: 18px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.div-lesson-p{
+    display: flex;
+    width: 77%;
+    margin: auto auto auto 0;
+}
+.lesson-time-p{
+    min-width: 48px;
+    margin: auto 2px;
+}
+.circle-lab{
+    height: 15px;
+    width: 15px;
+    border-radius: 10px;
+    background: black;
+    margin: auto;
+    /*display: none;*/
 }

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:,">
+    <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
+    <link media="all" rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
+    <link media="all" rel="stylesheet" th:href="@{/css/statistic.css}" type="text/css"/>
+    <title>Статистика</title>
+</head>
+<body>
+<div class="vBox">
+    <div class="menu">
+        <div class="title">
+            <a href="/set-week-count" class="title-a" method="get" >Студеньческий органайзер</a>
+        </div>
+        <div class="menu_buttons">
+            <a href="/lessons/set-week-count">
+                <button  class="button-menu" > Предметы </button>
+            </a>
+            <a href="/timetable">
+                <button class="button-menu" >  Расписание </button>
+            </a>
+            <a href="/statistic">
+                <button class="button-menu" >  Статистика </button>
+            </a>
+
+        </div>
+        <div class="div-logout">
+            <form th:action="@{/logout}" method="post">
+                <input class="button-menu" icon="/img/logout.png" type="submit" value="Выйти"/>
+            </form>
+        </div>
+    </div>
+    <div class="main-container scroll">
+        <div class="div-type-statistic">
+            <samp class="samp-type-statistic">Сдача лабораторных:</samp>
+        </div>
+
+        <div class="second-container">
+            <div th:each="ls:${labStatistic}">
+                <div  class="background-colum">
+                    <div class="colum" th:percent="${ls.getPercent()}" th:colorColum="${ls.getColor()}">
+                    </div>
+                    <samp class="span-name-statistic" th:text="${ls.getName()}">Охрана труда</samp>
+                    <samp class="span-present-statistic" th:text="${ls.getPercentToString()}">100%</samp>
+                </div>
+            </div>
+        </div>
+        <div class="div-type-statistic">
+            <samp class="samp-type-statistic">Успеваймость:</samp>
+        </div>
+
+        <div class="second-container">
+            <div th:each="ls:${gradeStatistic}">
+                <div  class="background-colum">
+                    <div class="colum" th:percent="${ls.getPercent()}" th:colorColum="${ls.getColor()}" >
+                    </div>
+                    <samp class="span-name-statistic" th:text="${ls.getName()}">Охрана труда</samp>
+                    <samp class="span-present-statistic" th:text="${ls.getMean()}">10</samp>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+<script th:src="@{js/script.js}"></script>
+<script th:src="@{js/statistic.js}"></script>
+</html>
