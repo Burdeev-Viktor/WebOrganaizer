@@ -12,7 +12,7 @@ INSERT INTO lessons (conditions, id_user, name, type_of_test) values ('', 1, 'Б
 insert into timetable (day_of_week, id_user, name, number_of_week, room, teacher, time, type)
     values ('MONDAY', 1, 'БЖЧ', 'ALL', 'а.30.к.7', '','12:00', 'LECTURE');
 insert into timetable (day_of_week, id_user, name, number_of_week, room, teacher, time, type)
-    values ('MONDAY', 1, 'Методы машинного обоучения', 'ALL', 'а.2П.к.17', 'Ковалёва','13:55', 'LECTURE');
+    values ('MONDAY', 1, 'Методы машинного обучения', 'ALL', 'а.2П.к.17', 'Ковалёва','13:55', 'LECTURE');
 insert into timetable (day_of_week, id_user, name, number_of_week, room, teacher, time, type)
     values ('MONDAY', 1, 'Экономика', 'ALL', 'а.466.к.1', '','15:40', 'LECTURE');
 insert into timetable (day_of_week, id_user, name, number_of_week, room, teacher, time, type)
@@ -32,7 +32,7 @@ insert into timetable (day_of_week, id_user, name, number_of_week, room, teacher
 insert into timetable (day_of_week, id_user, name, number_of_week, room, teacher, time, type)
     values ('THURSDAY', 1, 'Облачные технологии', 'FIRST', 'а.314 к.1', 'Барышев','12:00', 'LAB');
 insert into timetable (day_of_week, id_user, name, number_of_week, room, teacher, time, type)
-    values ('THURSDAY', 1, 'Методы машинного обоучения', 'SECOND', 'а.314 к.1', 'Чваньков','12:00', 'LAB');
+    values ('THURSDAY', 1, 'Методы машинного обучения', 'SECOND', 'а.314 к.1', 'Чваньков','12:00', 'LAB');
 insert into timetable (day_of_week, id_user, name, number_of_week, room, teacher, time, type)
     values ('FRIDAY', 1, 'Облачные технологии', 'FIRST', 'а.421к.1', 'Барышев','12:00', 'LECTURE');
 insert into timetable (day_of_week, id_user, name, number_of_week, room, teacher, time, type)
