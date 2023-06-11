@@ -34,7 +34,7 @@ create table users (
     id_user bigint not null auto_increment,
     login varchar(55),
     name varchar(55),
-    password varchar(255),
+    password varchar(255) not null,
     primary key (id_user)) engine=InnoDB;
 
 create table grades (

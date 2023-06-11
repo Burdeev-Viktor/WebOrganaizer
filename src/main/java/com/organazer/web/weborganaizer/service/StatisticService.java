@@ -1,7 +1,6 @@
 package com.organazer.web.weborganaizer.service;
 
 import com.organazer.web.weborganaizer.model.Grade;
-import com.organazer.web.weborganaizer.model.LessonTimetable;
 import com.organazer.web.weborganaizer.model.Reminder;
 import com.organazer.web.weborganaizer.model.statistics.GradeStatistic;
 import com.organazer.web.weborganaizer.model.statistics.LabStatistic;

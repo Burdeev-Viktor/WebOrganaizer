@@ -26,10 +26,8 @@ public class LessonService {
         return lessonsRepository.findAllByIdUser(id);
     }
     public String[] getAllLessonsNameByIdUser(Long id){
-        List<Lesson> lessonList = findAllByIdUser(id);
-        return lessonList.stream()
-                .map(Lesson::getName)
-                .toArray(String[]::new);
+        List<String> lessonList = lessonsRepository.getLessonName(id);
+        return lessonList.toArray(String[]::new);
     }
     private void save(Lesson lesson){
         lessonsRepository.save(lesson);

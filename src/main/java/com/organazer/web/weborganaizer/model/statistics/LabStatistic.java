@@ -22,15 +22,12 @@ public class LabStatistic {
             percent*=100;
         }
     }
-
     public float getPercent() {
         return percent;
     }
-
     public String getColor() {
         return color;
     }
-
     public String getName() {
         return name;
     }

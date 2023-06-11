@@ -5,7 +5,6 @@ import com.organazer.web.weborganaizer.model.Grade;
 import java.util.List;
 
 public class GradeStatistic {
-
     private final String name;
     private  float mean;
     private final float percent;
@@ -35,19 +34,15 @@ public class GradeStatistic {
 
 
     }
-
     public String getName() {
         return name;
     }
-
     public String getColor() {
         return color;
     }
-
     public float getMean() {
         return mean;
     }
-
     public float getPercent() {
         return percent;
     }

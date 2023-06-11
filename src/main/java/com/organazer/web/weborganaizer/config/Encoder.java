@@ -9,7 +9,6 @@ import java.util.Objects;
 
 public class Encoder implements PasswordEncoder {
     private final MessageDigest md5;
-
     {
         try {
             md5 = MessageDigest.getInstance("MD5");
@@ -17,21 +16,17 @@ public class Encoder implements PasswordEncoder {
             throw new RuntimeException(e);
         }
     }
-
     public Encoder()  {
     }
-
     @Override
     public String encode(CharSequence rawPassword) {
         return Arrays.toString(md5.digest(rawPassword.toString().getBytes()));
     }
-
     @Override
     public boolean matches(CharSequence rawPassword, String encodedPassword) {
         String encodePas = Arrays.toString(md5.digest(rawPassword.toString().getBytes()));
         return Objects.equals(encodePas,encodedPassword);
     }
-
     @Override
     public boolean upgradeEncoding(String encodedPassword) {
         return PasswordEncoder.super.upgradeEncoding(encodedPassword);
