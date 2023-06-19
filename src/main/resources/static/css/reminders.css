@@ -38,7 +38,7 @@
 }
 .reminders-container{
     overflow-y: auto;
-    max-height: 690px;
+    max-height: 95%;
 }
 
 
